@@ -4227,3 +4227,18 @@ void DSE::SaveState(FILEHANDLE scn) {
 	sprintf(buffer, "%lf %lf %lf %i %lf", tapeSpeedInchesPerSecond, desiredTapeSpeed, tapeMotion, state, lastEventTime); 
 	oapiWriteScenario_string(scn, "DATARECORDER", buffer);
 }
+
+void ACE::Init(Saturn *vessel) {
+	sat = vessel;
+}
+
+void ACE::TimeStep(double simt) {
+	if (sat->LeftAudioPowerSwitch.IsUp()) { // PWR in AUDIO/TONE.
+		sat->cws.SetPlaySounds(true);
+		//sprintf(oapiDebugString(), "Master Alarm Tone enabled.");
+	}
+	else { // PWR in AUDIO or OFF.
+		sat->cws.SetPlaySounds(false);
+		//sprintf(oapiDebugStrin(), "Master Alarm Tone disabled.");
+	}
+}

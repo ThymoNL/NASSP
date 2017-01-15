@@ -373,6 +373,7 @@ void Saturn::SystemsInit() {
 	hga.Init(this);
 	dataRecorder.Init(this);
 	pcm.Init(this);
+	ace.Init(this);
 
 	// Optics initialization
 	optics.Init(this);
@@ -563,7 +564,8 @@ void Saturn::SystemsTimestep(double simt, double simdt, double mjd) {
 		if (!agc.Yaagc) { 
 			// PCM update unless yaAGC did it earlier
 			pcm.TimeStep(MissionTime); 
-		} 
+		}
+		ace.TimeStep(MissionTime);
 		pmp.TimeStep(MissionTime);
 		usb.TimeStep(MissionTime);
 		hga.TimeStep(MissionTime, simdt);

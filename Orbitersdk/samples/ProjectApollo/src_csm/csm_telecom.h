@@ -383,3 +383,13 @@ public:
 private:
 	void ServoDrive(double &Angle, double AngleCmd, double RateLimit, double simdt);
 };
+
+class ACE {
+public:
+	//ACE();
+	void Init(Saturn *vessel);
+	void TimeStep(double simt);
+	//bool IsPowered();
+	
+	Saturn *sat;
+};

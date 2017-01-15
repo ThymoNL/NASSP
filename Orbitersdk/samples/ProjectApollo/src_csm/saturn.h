@@ -3611,6 +3611,7 @@ protected:
 	USB  usb;
 	HGA  hga;
 	EMS  ems;
+	ACE  ace;
 
 	// CM Optics
 	CMOptics optics;
@@ -4491,6 +4492,7 @@ protected:
 	friend class USB;
 	friend class HGA;
 	friend class DSE;
+	friend class ACE;
 	friend class EMS;
 	friend class ORDEAL;
 	friend class SPSPropellantSource;
