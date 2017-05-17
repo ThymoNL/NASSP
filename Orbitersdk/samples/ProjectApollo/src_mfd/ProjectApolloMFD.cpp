@@ -70,6 +70,8 @@ static int g_MFDmode; // identifier for new MFD mode
 #define PROG_DEBUG		7
 // This screen pulls data from the CMC to be used for initializing the LGC
 #define PROG_LGC		8
+// This screen contains GSE operations.
+#define PROG_GSE		9
 
 #define PROGSTATE_NONE				0
 #define PROGSTATE_TLI_START			1
@@ -629,7 +631,7 @@ char *ProjectApolloMFD::ButtonLabel (int bt)
 	// The labels for the buttons used by our MFD mode
 	//Additional button added to labelNone for testing socket work, be SURE to remove it.
 	//Additional button added at the bottom right of none for the debug string.
-	static char *labelNone[12] = {"GNC", "ECS", "IMFD", "TELE","LGC","","","","","","SOCK","DBG"};
+	static char *labelNone[12] = {"GNC", "ECS", "IMFD", "TELE","LGC","GSE","","","","","SOCK","DBG"};
 	static char *labelGNC[4] = {"BCK", "KILR", "EMS", "DMP"};
 	static char *labelECS[4] = {"BCK", "CRW", "PRM", "SEC"};
 	static char *labelIMFDTliStop[3] = {"BCK", "REQ", "SIVB"};
@@ -638,6 +640,7 @@ char *ProjectApolloMFD::ButtonLabel (int bt)
 	static char *labelSOCK[1] = {"BCK"};	
 	static char *labelDEBUG[12] = {"","","","","","","","","","CLR","FRZ","BCK"};
 	static char *labelLGC[5] = {"BCK", "", "", "", "V42"};
+	static char *labelGSE[1] = {"BCK"};
 
 	//If we are working with an unsupported vehicle, we don't want to return any button labels.
 	if (!saturn && !lem) {
@@ -667,6 +670,9 @@ char *ProjectApolloMFD::ButtonLabel (int bt)
 	else if (screen == PROG_LGC) {
 		return (bt < 5 ? labelLGC[bt] : 0);
 	}
+	else if (screen == PROG_GSE) {
+		return (bt < 1 ? labelGSE[bt] : 0);
+	}
 	return (bt < 12 ? labelNone[bt] : 0);
 }
 
@@ -680,7 +686,7 @@ int ProjectApolloMFD::ButtonMenu (const MFDBUTTONMENU **menu) const
 		{"IMFD Support", 0, 'I'},
 		{"Telemetry",0,'T'},
 		{"LGC Initialization Data",0,'L'},
-		{0,0,0},
+		{"GSE Operations",0,'P'},
 		{0,0,0},
 		{0,0,0},
 		{0,0,0},
@@ -748,6 +754,9 @@ int ProjectApolloMFD::ButtonMenu (const MFDBUTTONMENU **menu) const
 		{ 0,0,0 },
 		{ "Calculate V42 Angles", 0, 'F' }
 	};
+	static const MFDBUTTONMENU mnuGSE[1] = {
+		{ "Back", 0, 'B' }
+	};
 	// We don't want to display a menu if we are in an unsupported vessel.
 	if (!saturn && !lem) {
 		menu = 0;
@@ -787,6 +796,11 @@ int ProjectApolloMFD::ButtonMenu (const MFDBUTTONMENU **menu) const
 	{
 		if (menu) *menu = mnuLGC;
 		return 5;
+	}
+	else if (screen == PROG_GSE)
+	{
+		if (menu) *menu = mnuGSE;
+		return 1;
 	}
 	else {
 		if (menu) *menu = mnuNone;
@@ -834,6 +848,11 @@ bool ProjectApolloMFD::ConsumeKeyBuffered (DWORD key)
 			return true;
 		} else if (key == OAPI_KEY_L) {
 			screen = PROG_LGC;
+			InvalidateDisplay();
+			InvalidateButtons();
+			return true;
+		} else if (key == OAPI_KEY_P) {
+			screen = PROG_GSE;
 			InvalidateDisplay();
 			InvalidateButtons();
 			return true;
@@ -1078,6 +1097,16 @@ bool ProjectApolloMFD::ConsumeKeyBuffered (DWORD key)
 			return true;
 		}
 	}
+	else if (screen == PROG_GSE)
+	{
+		if (key == OAPI_KEY_B)
+		{
+			screen = PROG_NONE;
+			InvalidateDisplay();
+			InvalidateButtons();
+			return true;
+		}
+	}
 	return false;
 }
 
@@ -1087,7 +1116,7 @@ bool ProjectApolloMFD::ConsumeButton (int bt, int event)
 	//We only want to accept left mouse button clicks.
 	if (!(event & PANEL_MOUSE_LBDOWN)) return false;
 
-	static const DWORD btkeyNone[12] = { OAPI_KEY_G, OAPI_KEY_E, OAPI_KEY_I, OAPI_KEY_T, OAPI_KEY_L, 0, 0, 0, 0, 0, OAPI_KEY_S, OAPI_KEY_D };
+	static const DWORD btkeyNone[12] = { OAPI_KEY_G, OAPI_KEY_E, OAPI_KEY_I, OAPI_KEY_T, OAPI_KEY_L, OAPI_KEY_P, 0, 0, 0, 0, OAPI_KEY_S, OAPI_KEY_D };
 	static const DWORD btkeyGNC[4] = { OAPI_KEY_B, OAPI_KEY_K, OAPI_KEY_E, OAPI_KEY_D };
 	static const DWORD btkeyECS[4] = { OAPI_KEY_B, OAPI_KEY_C, OAPI_KEY_P, OAPI_KEY_S };
 	static const DWORD btkeyIMFD[3] = { OAPI_KEY_B, OAPI_KEY_R, OAPI_KEY_S };
@@ -1095,6 +1124,7 @@ bool ProjectApolloMFD::ConsumeButton (int bt, int event)
 	static const DWORD btkeySock[1] = { OAPI_KEY_B };	
 	static const DWORD btkeyDEBUG[12] = { 0,0,0,0,0,0,0,0,0,OAPI_KEY_C,OAPI_KEY_F,OAPI_KEY_B };
 	static const DWORD btkeyLgc[5] = { OAPI_KEY_B, 0, 0, 0, OAPI_KEY_F };
+	static const DWORD btkeyGSE[1] = { OAPI_KEY_B };
 
 	if (screen == PROG_GNC) {
 		if (bt < 4) return ConsumeKeyBuffered (btkeyGNC[bt]);
@@ -1117,6 +1147,10 @@ bool ProjectApolloMFD::ConsumeButton (int bt, int event)
 	else if (screen == PROG_LGC)
 	{
 		if (bt < 5) return ConsumeKeyBuffered (btkeyLgc[bt]);
+	}
+	else if (screen == PROG_GSE)
+	{
+		if (bt < 1) return ConsumeKeyBuffered(btkeyGSE[bt]);
 	}
 	else {		
 		if (bt < 12) return ConsumeKeyBuffered (btkeyNone[bt]);
@@ -1668,6 +1702,20 @@ void ProjectApolloMFD::Update (HDC hDC)
 		sprintf(buffer, "Socket: %i", close_Socket);
 		TextOut(hDC, width / 2, (int) (height * 0.4), buffer, strlen(buffer));
 		*/
+	}
+	else if (screen == PROG_GSE) {
+		if (g_Data.progVessel->MainBusAController.IsGSEConnected()) {
+			TextOut(hDC, (int)(width * 0.35), (int)(height * 0.3), "GSE Bus A: Connected", 20);
+		}
+		else {
+			TextOut(hDC, (int)(width * 0.35), (int)(height * 0.3), "GSE Bus A: Disconnected", 23);
+		}
+		if (g_Data.progVessel->MainBusBController.IsGSEConnected()) {
+			TextOut(hDC, (int)(width * 0.35), (int)(height * 0.35), "GSE Bus B: Connected", 20);
+		}
+		else {
+			TextOut(hDC, (int)(width * 0.35), (int)(height * 0.35), "GSE Bus B: Disconnected", 23);
+		}
 	}
 
 }

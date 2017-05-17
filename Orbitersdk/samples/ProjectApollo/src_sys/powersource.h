@@ -130,10 +130,11 @@ public:
 	bool IsFuelCellConnected(int fc);
 	bool IsBusContPowered(int fc);
 	bool IsFuelCellDisconnectAlarm();
+	bool IsGSEConnected() { return gseState; };
 	e_object *GetBusSource() { return &busPower; };
 	void SetTieState(int s) { tieState = s; };
 	void SetTieAuto(bool s) { tieAuto = s; };
-	void SetGSEState(int s);
+	void SetGSEState(int s); // Why is this an integer?
 	void Load(char *line);
 	void Save(FILEHANDLE scn);
 
@@ -151,7 +152,7 @@ protected:
 	bool fcDisconnectAlarm[4];
 	int tieState;
 	bool tieAuto;
-	int gseState;
+	int gseState; // Why is this an integer?
 };
 
 

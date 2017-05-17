@@ -559,7 +559,7 @@ bool DCBusController::IsFuelCellDisconnectAlarm()
 	return fcDisconnectAlarm[1] || fcDisconnectAlarm[2] || fcDisconnectAlarm[3];
 }
 
-void DCBusController::SetGSEState(int s) 
+void DCBusController::SetGSEState(int s) // Why is this an integer?
 
 { 
 	gseState = s; 
