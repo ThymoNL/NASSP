@@ -134,7 +134,7 @@ public:
 	e_object *GetBusSource() { return &busPower; };
 	void SetTieState(int s) { tieState = s; };
 	void SetTieAuto(bool s) { tieAuto = s; };
-	void SetGSEState(int s); // Why is this an integer?
+	virtual void SetGSEState(int s); // Why is this an integer?
 	void Load(char *line);
 	void Save(FILEHANDLE scn);
 

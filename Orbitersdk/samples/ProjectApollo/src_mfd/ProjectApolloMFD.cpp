@@ -640,7 +640,7 @@ char *ProjectApolloMFD::ButtonLabel (int bt)
 	static char *labelSOCK[1] = {"BCK"};	
 	static char *labelDEBUG[12] = {"","","","","","","","","","CLR","FRZ","BCK"};
 	static char *labelLGC[5] = {"BCK", "", "", "", "V42"};
-	static char *labelGSE[1] = {"BCK"};
+	static char *labelGSE[3] = {"BCK", "PWR", "PWR"};
 
 	//If we are working with an unsupported vehicle, we don't want to return any button labels.
 	if (!saturn && !lem) {
@@ -671,7 +671,7 @@ char *ProjectApolloMFD::ButtonLabel (int bt)
 		return (bt < 5 ? labelLGC[bt] : 0);
 	}
 	else if (screen == PROG_GSE) {
-		return (bt < 1 ? labelGSE[bt] : 0);
+		return (bt < 3 ? labelGSE[bt] : 0);
 	}
 	return (bt < 12 ? labelNone[bt] : 0);
 }
@@ -754,8 +754,10 @@ int ProjectApolloMFD::ButtonMenu (const MFDBUTTONMENU **menu) const
 		{ 0,0,0 },
 		{ "Calculate V42 Angles", 0, 'F' }
 	};
-	static const MFDBUTTONMENU mnuGSE[1] = {
-		{ "Back", 0, 'B' }
+	static const MFDBUTTONMENU mnuGSE[3] = {
+		{ "Back", 0, 'B' },
+		{ "GSE Bus A Power", 0, 'A'},
+		{ "GSE Bus B Power", 0, 'C'}
 	};
 	// We don't want to display a menu if we are in an unsupported vessel.
 	if (!saturn && !lem) {
@@ -800,7 +802,7 @@ int ProjectApolloMFD::ButtonMenu (const MFDBUTTONMENU **menu) const
 	else if (screen == PROG_GSE)
 	{
 		if (menu) *menu = mnuGSE;
-		return 1;
+		return 3;
 	}
 	else {
 		if (menu) *menu = mnuNone;
@@ -1106,6 +1108,23 @@ bool ProjectApolloMFD::ConsumeKeyBuffered (DWORD key)
 			InvalidateButtons();
 			return true;
 		}
+		if (key == OAPI_KEY_A)
+		{
+			if (g_Data.progVessel->MainBusAController.IsGSEConnected()) {
+				g_Data.progVessel->MainBusAController.SetGSEState(0);
+			} else {
+				g_Data.progVessel->MainBusAController.SetGSEState(1);
+			}
+		}
+		if (key == OAPI_KEY_C)
+		{
+			if (g_Data.progVessel->MainBusBController.IsGSEConnected()) {
+				g_Data.progVessel->MainBusBController.SetGSEState(0);
+			}
+			else {
+				g_Data.progVessel->MainBusBController.SetGSEState(1);
+			}
+		}
 	}
 	return false;
 }
@@ -1124,7 +1143,7 @@ bool ProjectApolloMFD::ConsumeButton (int bt, int event)
 	static const DWORD btkeySock[1] = { OAPI_KEY_B };	
 	static const DWORD btkeyDEBUG[12] = { 0,0,0,0,0,0,0,0,0,OAPI_KEY_C,OAPI_KEY_F,OAPI_KEY_B };
 	static const DWORD btkeyLgc[5] = { OAPI_KEY_B, 0, 0, 0, OAPI_KEY_F };
-	static const DWORD btkeyGSE[1] = { OAPI_KEY_B };
+	static const DWORD btkeyGSE[3] = { OAPI_KEY_B, OAPI_KEY_A, OAPI_KEY_C };
 
 	if (screen == PROG_GNC) {
 		if (bt < 4) return ConsumeKeyBuffered (btkeyGNC[bt]);
@@ -1150,7 +1169,7 @@ bool ProjectApolloMFD::ConsumeButton (int bt, int event)
 	}
 	else if (screen == PROG_GSE)
 	{
-		if (bt < 1) return ConsumeKeyBuffered(btkeyGSE[bt]);
+		if (bt < 3) return ConsumeKeyBuffered(btkeyGSE[bt]);
 	}
 	else {		
 		if (bt < 12) return ConsumeKeyBuffered (btkeyNone[bt]);
@@ -1704,17 +1723,19 @@ void ProjectApolloMFD::Update (HDC hDC)
 		*/
 	}
 	else if (screen == PROG_GSE) {
+		TextOut(hDC, (int)(width * 0.2), (int)(height * 0.3), "GSE Bus A:", 10);
+		TextOut(hDC, (int)(width * 0.2), (int)(height * 0.35), "GSE Bus B:", 10);
 		if (g_Data.progVessel->MainBusAController.IsGSEConnected()) {
-			TextOut(hDC, (int)(width * 0.35), (int)(height * 0.3), "GSE Bus A: Connected", 20);
+			TextOut(hDC, (int)(width * 0.6), (int)(height * 0.3), "Connected", 9);
 		}
 		else {
-			TextOut(hDC, (int)(width * 0.35), (int)(height * 0.3), "GSE Bus A: Disconnected", 23);
+			TextOut(hDC, (int)(width * 0.6), (int)(height * 0.3), "Disconnected", 12);
 		}
 		if (g_Data.progVessel->MainBusBController.IsGSEConnected()) {
-			TextOut(hDC, (int)(width * 0.35), (int)(height * 0.35), "GSE Bus B: Connected", 20);
+			TextOut(hDC, (int)(width * 0.6), (int)(height * 0.35), "Connected", 9);
 		}
 		else {
-			TextOut(hDC, (int)(width * 0.35), (int)(height * 0.35), "GSE Bus B: Disconnected", 23);
+			TextOut(hDC, (int)(width * 0.6), (int)(height * 0.35), "Disconnected", 12);
 		}
 	}
 
