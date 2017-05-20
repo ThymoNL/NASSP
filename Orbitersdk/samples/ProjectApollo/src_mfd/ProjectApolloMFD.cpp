@@ -757,7 +757,7 @@ int ProjectApolloMFD::ButtonMenu (const MFDBUTTONMENU **menu) const
 	static const MFDBUTTONMENU mnuGSE[3] = {
 		{ "Back", 0, 'B' },
 		{ "GSE Bus A Power", 0, 'A'},
-		{ "GSE Bus B Power", 0, 'C'}
+		{ "GSE Bus B Power", 0, 'P'}
 	};
 	// We don't want to display a menu if we are in an unsupported vessel.
 	if (!saturn && !lem) {
@@ -1116,12 +1116,11 @@ bool ProjectApolloMFD::ConsumeKeyBuffered (DWORD key)
 				g_Data.progVessel->MainBusAController.SetGSEState(1);
 			}
 		}
-		if (key == OAPI_KEY_C)
+		if (key == OAPI_KEY_P)
 		{
 			if (g_Data.progVessel->MainBusBController.IsGSEConnected()) {
 				g_Data.progVessel->MainBusBController.SetGSEState(0);
-			}
-			else {
+			} else {
 				g_Data.progVessel->MainBusBController.SetGSEState(1);
 			}
 		}
@@ -1143,7 +1142,7 @@ bool ProjectApolloMFD::ConsumeButton (int bt, int event)
 	static const DWORD btkeySock[1] = { OAPI_KEY_B };	
 	static const DWORD btkeyDEBUG[12] = { 0,0,0,0,0,0,0,0,0,OAPI_KEY_C,OAPI_KEY_F,OAPI_KEY_B };
 	static const DWORD btkeyLgc[5] = { OAPI_KEY_B, 0, 0, 0, OAPI_KEY_F };
-	static const DWORD btkeyGSE[3] = { OAPI_KEY_B, OAPI_KEY_A, OAPI_KEY_C };
+	static const DWORD btkeyGSE[3] = { OAPI_KEY_B, OAPI_KEY_A, OAPI_KEY_P };
 
 	if (screen == PROG_GNC) {
 		if (bt < 4) return ConsumeKeyBuffered (btkeyGNC[bt]);

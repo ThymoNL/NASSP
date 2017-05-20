@@ -626,7 +626,7 @@ void Saturn::SystemsTimestep(double simt, double simdt, double mjd) {
 				SecEcsRadiatorExchanger2->SetLength(0);
 
 				// GSE provides electrical power
-				//MainBusAController.SetGSEState(1);
+				MainBusAController.SetGSEState(1);
 				MainBusBController.SetGSEState(1);
 
 				// Enable GSE SM RCS heaters
