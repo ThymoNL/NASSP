@@ -40,7 +40,10 @@
 #include "csmcautionwarning.h"
 #include "missiontimer.h"
 #include "FDAI.h"
+#include "dsky.h"
 #include "iu.h"
+#include "cdu.h"
+#include "IMU.h"
 #include "satswitches.h"
 #include "powersource.h"
 #include "dockingprobe.h"
@@ -3484,6 +3487,10 @@ protected:
 	PMP	 pmp;
 	USB  usb;
 	HGA  hga;
+	OMNI omnia;
+	OMNI omnib;
+	OMNI omnic;
+	OMNI omnid;
 	EMS  ems;
 
 	// CM Optics
@@ -3609,6 +3616,8 @@ protected:
 	DSKY dsky2;
 	CSMcomputer agc;	
 	IMU imu;
+	CDU tcdu;
+	CDU scdu;
 	IU iu;
 	CSMCautionWarningSystem cws;
 
@@ -3897,8 +3906,6 @@ protected:
 	void FireTowerJettisonMotor();
 	void FirePitchControlMotor();
 	void MoveTHC(bool dir);
-	void AttitudeLaunchSIVB();
-	void LinearGuidance(VECTOR3 &target, double &pitch, double &yaw);
 
 	void RenderS1bEngineLight(bool EngineOn, SURFHANDLE dest, SURFHANDLE src, int xoffs, int yoffs);
 
@@ -3911,7 +3918,6 @@ protected:
 
 	void StageSix(double simt);
 	void JostleViewpoint(double amount);
-	double CalculateApogeeTime();
 	void UpdatePayloadMass();
 	double GetJ2ISP(double ratio);
 	void GetPayloadName(char *s);
@@ -4154,6 +4160,8 @@ protected:
 	double LMLandingMJD;		// MJD of lunar landing
 	double LMDescentFuelMassKg;	///< Mass of fuel in descent stage of LEM.
 	double LMAscentFuelMassKg;	///< Mass of fuel in ascent stage of LEM.
+	double LMDescentEmptyMassKg;
+	double LMAscentEmptyMassKg;
 
 	//
 	// Earth landing data.
@@ -4215,7 +4223,6 @@ protected:
 	/// LEM checklist file
 	///
 	char LEMCheck[100];
-	bool LEMCheckAuto;
 
 	//
 	// Connectors.
