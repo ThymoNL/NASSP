@@ -31,11 +31,6 @@ See http://nassp.sourceforge.net/license/ for more details.
 #include "lm_cwea.h"
 #include "LEM.h"
 
-/*LEM_CWEA::LEM_CWEA() {
-    lem = NULL;
-
-}*/
-
 LEM_CWEA::LEM_CWEA() {
     lem = NULL;
     CabinLowPressLt = 0;
