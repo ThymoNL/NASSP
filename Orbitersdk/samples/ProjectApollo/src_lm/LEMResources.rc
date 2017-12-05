@@ -29,49 +29,6 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 IDB_DEDA_KEY            BITMAP                  "..\\Bitmaps\\ags_keys.bmp"
 IDB_DEDA_LIGHTS         BITMAP                  "..\\Bitmaps\\ags_lights.bmp"
 IDB_CWS_LIGHTS          BITMAP                  "..\\Bitmaps\\lem_cw_lights.bmp"
-
-#ifdef APSTUDIO_INVOKED
-/////////////////////////////////////////////////////////////////////////////
-//
-// TEXTINCLUDE
-//
-
-1 TEXTINCLUDE 
-BEGIN
-    "lmresource.\0"
-END
-
-3 TEXTINCLUDE 
-BEGIN
-    "\r\0"
-END
-
-2 TEXTINCLUDE 
-BEGIN
-    "#include ""afxres.h""\r\n"
-    "\0"
-END
-
-#endif    // APSTUDIO_INVOKED
-
-#endif    // English (U.S.) resources
-/////////////////////////////////////////////////////////////////////////////
-
-
-/////////////////////////////////////////////////////////////////////////////
-// French (France) resources
-
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
-#ifdef _WIN32
-LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
-#pragma code_page(1252)
-#endif //_WIN32
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Bitmap
-//
-
 IDB_LEM_AOT_VIEW        BITMAP                  "..\\Bitmaps\\lem_aot_panel_wide.bmp"
 IDB_LEM_LEFT_PANEL      BITMAP                  "..\\Bitmaps\\lem_left_panel.bmp"
 IDB_LEM_RIGHT_PANEL     BITMAP                  "..\\Bitmaps\\lem_right_panel.bmp"
@@ -198,18 +155,31 @@ IDB_LEM_FWD_HATCH       BITMAP                  "..\\Bitmaps\\lem_forward_hatch.
 IDB_LEM_FWD_HANDLE      BITMAP                  "..\\Bitmaps\\lem_fwd_handle.bmp"
 IDB_LEM_FWD_REL_VLV     BITMAP                  "..\\Bitmaps\\lem_fwd_rel_valve.bmp"
 IDB_LEM_INTLK_OVRD      BITMAP                  "..\\Bitmaps\\lem_intlk_ovrd.bmp"
+IDB_LEM_MASTERALARM     BITMAP                  "..\\Bitmaps\\lem_master_alarm.bmp"
 
-#endif    // French (France) resources
+#endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////
 
-
-
-#ifndef APSTUDIO_INVOKED
+#ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
 //
-// Generated from the TEXTINCLUDE 3 resource.
+// TEXTINCLUDE
 //
 
-/////////////////////////////////////////////////////////////////////////////
-#endif    // not APSTUDIO_INVOKED
+1 TEXTINCLUDE 
+BEGIN
+    "lmresource.\0"
+END
 
+3 TEXTINCLUDE 
+BEGIN
+    "\r\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED

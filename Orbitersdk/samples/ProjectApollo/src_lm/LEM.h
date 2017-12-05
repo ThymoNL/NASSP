@@ -514,7 +514,8 @@ public:
 		SRF_LEM_U_HATCH_HNDL,
 		SRF_LEM_F_HATCH_HNDL,
 		SRF_LEM_F_HATCH_REL_VLV,
-	    SRF_LEM_INTLK_OVRD,
+    SRF_LEM_INTLK_OVRD,
+    SRF_LEM_MASTERALARM,
 
 		//
 		// NSURF MUST BE THE LAST ENTRY HERE. PUT ANY NEW SURFACE IDS ABOVE THIS LINE
@@ -742,6 +743,9 @@ protected:
 	ModeSelectSwitch ModeSelSwitch;
 	ToggleSwitch AltRngMonSwitch;
 
+  SwitchRow LeftMasterAlarmSwitchRow;
+  PushSwitch LeftMasterAlarmButton;
+
 	SwitchRow LeftMonitorSwitchRow;
 	ToggleSwitch RateErrorMonSwitch;
 	ToggleSwitch AttitudeMonSwitch;
@@ -804,6 +808,9 @@ protected:
 	LMGlycolPressMeter LMGlycolPressMeter;
 	LMOxygenQtyMeter LMOxygenQtyMeter;
 	LMWaterQtyMeter LMWaterQtyMeter;
+
+  SwitchRow RightMasterAlarmSwitchRow;
+  PushSwitch RightMasterAlarmButton;
 
 	SwitchRow RightMonitorSwitchRow;
 	ToggleSwitch RightRateErrorMonSwitch;
