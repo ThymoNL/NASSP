@@ -1438,7 +1438,7 @@ void LEM::InitPanel (int panel)
 		oapiSetSurfaceColourKey(srf[SRF_LEM_F_HATCH_HNDL],      g_Param.col[4]);
 		oapiSetSurfaceColourKey(srf[SRF_LEM_F_HATCH_REL_VLV],   g_Param.col[4]);
 		oapiSetSurfaceColourKey(srf[SRF_LEM_INTLK_OVRD],        g_Param.col[4]);
-    oapiSetSurfaceColourKey(srf[SRF_LEM_MASTERALARM],       g_Param.col[4]);
+		oapiSetSurfaceColourKey(srf[SRF_LEM_MASTERALARM],       g_Param.col[4]);
         
 		//
 		// Borders need to set the center color to transparent so only the outline
@@ -2020,8 +2020,8 @@ void LEM::SetSwitches(int panel) {
 	ModeSelSwitch.Init(0, 83, 34, 29, srf[SRF_LMTHREEPOSSWITCH], srf[SRF_BORDER_34x29], GuidContSwitchRow, &agc);
 	AltRngMonSwitch.Init(0, 167, 34, 29, srf[SRF_SWITCHUP], srf[SRF_BORDER_34x29], GuidContSwitchRow);
 
-  LeftMasterAlarmSwitchRow.Init(AID_LEM_MA_LEFT, MainPanel);
-  LeftMasterAlarmButton.Init(0, 0, 47, 43, srf[SRF_LEM_MASTERALARM], NULL, LeftMasterAlarmSwitchRow); // Needs border
+	LeftMasterAlarmSwitchRow.Init(AID_LEM_MA_LEFT, MainPanel);
+	LeftMasterAlarmButton.Init(0, 0, 47, 43, srf[SRF_LEM_MASTERALARM], NULL, LeftMasterAlarmSwitchRow); // Needs border
 
 	LeftMonitorSwitchRow.Init(AID_LEFTMONITORSWITCHES, MainPanel);
 	RateErrorMonSwitch.Init(0, 0, 34, 29, srf[SRF_SWITCHUP], srf[SRF_BORDER_34x29], LeftMonitorSwitchRow);
@@ -2063,8 +2063,8 @@ void LEM::SetSwitches(int panel) {
 	HeliumMonRotaryRow.Init(AID_HELIUMMONROTARY, MainPanel);
 	HeliumMonRotary.Init(0, 0, 84, 84, srf[SRF_LEMROTARY], srf[SRF_BORDER_84x84], HeliumMonRotaryRow);
 
-  RightMasterAlarmSwitchRow.Init(AID_LEM_MA_RIGHT, MainPanel);
-  RightMasterAlarmButton.Init(0, 0, 47, 43, srf[SRF_LEM_MASTERALARM], NULL, RightMasterAlarmSwitchRow);     // Needs borders
+	RightMasterAlarmSwitchRow.Init(AID_LEM_MA_RIGHT, MainPanel);
+	RightMasterAlarmButton.Init(0, 0, 47, 43, srf[SRF_LEM_MASTERALARM], NULL, RightMasterAlarmSwitchRow);     // Needs border
 
 	RightMonitorSwitchRow.Init(AID_RIGHTMONITORSWITCHES, MainPanel);
 	RightRateErrorMonSwitch.Init(0, 0, 34, 29, srf[SRF_SWITCHUP], srf[SRF_BORDER_34x29], RightMonitorSwitchRow);

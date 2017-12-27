@@ -170,27 +170,13 @@ void LEM_CWEA::TimeStep(double simdt) {
     // On when cabin pressure below 4.15 psia (+/- 0.3 psia)
     // Off when cabin pressure above 4.65 psia (+/- 0.25 psia)
     // Disabled when both Atmosphere Revitalization Section Pressure Regulator Valves in EGRESS or CLOSE position.
-    if (lem->ecs.Cabin_Press < 4.15) {
-        CabinLowPressLt = 1;
-    }
-    if (lem->ecs.Cabin_Press > 4.65 && CabinLowPressLt) {
-        CabinLowPressLt = 0;
-    }
-    // FIXME: Need to check valve when enabled
-    if (CabinLowPressLt) {
         LightStatus[0][3] = 1;
-    }
-    else {
-        LightStatus[0][3] = 0;
-    }
 
     // 6DS17 SUIT/FAN LOW PRESSURE WARNING
     // On when suit pressure below 3.12 psia or #2 suit circulation fan fails.
     // Suit fan failure alarm disabled when Suit Fan DP Control CB is open.
     // FIXME: IMPLEMENT #2 SUIT CIRC FAN TEST
-    if (lem->ECS_SUIT_FAN_DP_CB.GetState() == 0 && lem->ecs.Suit_Press < 3.12) {
         LightStatus[1][3] = 1;
-    }
 
     // 6DS21 HIGH HELIUM REGULATOR OUTLET PRESSURE CAUTION
     // On when helium pressure downstream of regulators in ascent helium lines above 220 psia.
@@ -325,10 +311,7 @@ void LEM_CWEA::TimeStep(double simdt) {
     // < 135 psia in descent oxygen tank, or Less than full (<682.4 / 681.6 psia) ascent oxygen tanks, WHEN NOT STAGED
     // Less than 99.6 psia in ascent oxygen tank #1
     // Off by positioning O2/H20 QTY MON switch to CWEA RESET position.
-    LightStatus[1][7] = 0;
-    if (lem->stage < 2 && (lem->ecs.Asc_Oxygen[0] < 2.43 || lem->ecs.Asc_Oxygen[1] < 2.43)) { LightStatus[1][7] = 1; }
-    if (lem->stage < 2 && (lem->ecs.DescentOxyTankPressure(0) < 135 || lem->ecs.DescentOxyTankPressure(1) < 135)) { LightStatus[1][7] = 1; }
-    if (lem->ecs.AscentOxyTankPressure(0) < 99.6) { LightStatus[1][7] = 1; }
+    LightStatus[1][7] = 1;
 
     // 6DS38 GLYCOL FAILURE CAUTION
     // On when glycol qty low in primary coolant loop or primary loop glycol temp @ water evap outlet > 49.98F
@@ -340,12 +323,8 @@ void LEM_CWEA::TimeStep(double simdt) {
     // NOT STAGED: Descent water tank < 10% or less than full in either ascent tank
     // Unequal levels in either ascent tank
     // Off by positioning O2/H20 QTY MON switch to CWEA RESET position.
-    LightStatus[3][7] = 0;
-    if (WaterWarningDisabled == 0) {
-        if (lem->stage < 2 && (lem->ecs.Des_Water[0] < 33 || lem->ecs.Des_Water[1] < 33)) { LightStatus[3][7] = 1; }
-        if (lem->stage < 2 && (lem->ecs.Asc_Water[0] < 42.5 || lem->ecs.Asc_Water[1] < 42.5)) { LightStatus[3][7] = 1; }
-        if ((int)lem->ecs.Asc_Water[0] != (int)lem->ecs.Asc_Water[1]) { LightStatus[3][7] = 1; }
-    }
+    LightStatus[3][7] = 1;
+
     if (lem->QtyMonRotary.GetState() == 0 && LightStatus[3][7] != 0) {
         WaterWarningDisabled = 1;
     }
