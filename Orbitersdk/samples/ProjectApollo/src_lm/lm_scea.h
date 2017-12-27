@@ -24,11 +24,24 @@ See http://nassp.sourceforge.net/license/ for more details.
 
 #pragma once
 
+//Solid State Switch
+class SCEA_SolidStateSwitch
+{
+public:
+	SCEA_SolidStateSwitch();
+	void Reset();
+	void SetState(bool closed);
+	bool IsClosed() { return isClosed; };
+protected:
+	bool isClosed;
+};
+
 //Sub Assembly 501-1 (DC Amplifier)
 class SCEA_SA_5011
 {
 public:
 	SCEA_SA_5011();
+	void Reset();
 	double GetVoltage(int chan) { return Output[chan - 1]; }
 	void SetOutput(int n, double val) { Output[n - 1] = val; }
 protected:
@@ -40,6 +53,7 @@ class SCEA_SA_5022
 {
 public:
 	SCEA_SA_5022();
+	void Reset();
 	double GetVoltage(int chan) { return Output[chan - 1]; }
 	void SetOutput(int n, double val) { Output[n - 1] = val; }
 protected:
@@ -51,6 +65,7 @@ class SCEA_SA_5032
 {
 public:
 	SCEA_SA_5032();
+	void Reset();
 	double GetVoltage(int chan) { return Output[chan - 1]; }
 	void SetOutput(int n, double val) { Output[n - 1] = val; }
 protected:
@@ -62,6 +77,7 @@ class SCEA_SA_5041
 {
 public:
 	SCEA_SA_5041();
+	void Reset();
 	double GetVoltage(int chan) { return Output[chan - 1]; }
 	void SetOutput(int n, double val) { Output[n - 1] = val; }
 protected:
@@ -73,8 +89,9 @@ class SCEA_SA_5042
 {
 public:
 	SCEA_SA_5042();
+	void Reset();
 	double GetVoltage(int chan) { return Output[chan - 1]; }
-	void SetOutput(int n, double val) { Output[n - 1] = val; }
+	void SetOutput(int n, bool val);
 protected:
 	double Output[10];
 };
@@ -84,8 +101,9 @@ class SCEA_SA_5043
 {
 public:
 	SCEA_SA_5043();
+	void Reset();
 	double GetVoltage(int chan) { return Output[chan - 1]; }
-	void SetOutput(int n, double val) { Output[n - 1] = val; }
+	void SetOutput(int n, bool val);
 protected:
 	double Output[12];
 };
@@ -95,12 +113,13 @@ class SCEA_SA_5044
 {
 public:
 	SCEA_SA_5044();
+	void Reset();
 	double GetVoltage(int chan) { return Output[chan - 1]; }
-	bool GetSwitchState(int chan) { return SolidStateSwitch[chan - 1]; }
+	SCEA_SolidStateSwitch* GetSwitch(int chan) { return &SolidStateSwitch[chan - 1]; }
 	void SetOutput(int n, bool val);
 protected:
 	double Output[12];
-	bool SolidStateSwitch[12];
+	SCEA_SolidStateSwitch SolidStateSwitch[12];
 };
 
 //Sub Assembly 504-5 (Discrete buffer)
@@ -108,7 +127,9 @@ class SCEA_SA_5045
 {
 public:
 	SCEA_SA_5045();
+	void Reset();
 	double GetVoltage(int chan) { return Output[chan - 1]; }
+	void SetOutput(int n, bool val);
 protected:
 	double Output[12];
 };
@@ -118,6 +139,7 @@ class SCEA_SA_5051
 {
 public:
 	SCEA_SA_5051();
+	void Reset();
 	double GetVoltage(int chan) { return Output[chan - 1]; }
 protected:
 	double Output[3];
@@ -128,7 +150,9 @@ class SCEA_SA_5062
 {
 public:
 	SCEA_SA_5062();
+	void Reset();
 	double GetVoltage(int chan) { return Output[chan - 1]; }
+	void SetOutput(int n, double val) { Output[n - 1] = val; }
 protected:
 	double Output[4];
 };
@@ -138,6 +162,7 @@ class SCEA_SA_5071
 {
 public:
 	SCEA_SA_5071();
+	void Reset();
 	double GetVoltage(int chan) { return Output[chan - 1]; }
 protected:
 	double Output[4];
@@ -148,13 +173,19 @@ class LEM;
 class SCERA
 {
 public:
-	SCERA() {}
-	void Init(LEM *l);
+	SCERA();
+	void Init(LEM *l, e_object *dc);
 	virtual void Timestep() = 0;
+	virtual void SystemTimestep(double simdt) = 0;
 	virtual double GetVoltage(int sa, int chan) = 0;
+	virtual SCEA_SolidStateSwitch* GetSwitch(int sa, int chan) = 0;
+	virtual void Reset() = 0;
 	double scale_data(double data, double low, double high);
+	bool IsPowered();
 protected:
 	LEM *lem;
+	e_object *dcpower;
+	bool Operate;
 };
 
 //Signal Conditioning Electronic Replaceable Assembly 1 (ERA-1)
@@ -162,8 +193,11 @@ class SCERA1 : public SCERA
 {
 public:
 	SCERA1();
+	void Reset();
 	void Timestep();
+	void SystemTimestep(double simdt);
 	double GetVoltage(int sa, int chan);
+	SCEA_SolidStateSwitch* GetSwitch(int sa, int chan);
 protected:
 	SCEA_SA_5042 SA2;
 	SCEA_SA_5042 SA3;
@@ -192,8 +226,11 @@ class SCERA2 : public SCERA
 {
 public:
 	SCERA2();
+	void Reset();
 	void Timestep();
+	void SystemTimestep(double simdt);
 	double GetVoltage(int sa, int chan);
+	SCEA_SolidStateSwitch* GetSwitch(int sa, int chan);
 protected:
 	SCEA_SA_5043 SA2;
 	SCEA_SA_5043 SA3;

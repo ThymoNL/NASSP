@@ -91,6 +91,9 @@ void APSPropellantSource::Timestep(double simt, double simdt)
 		OxidTankUllagePressurePSI = 0;
 		FuelTrimOrificeOutletPressurePSI = 0;
 		OxidTrimOrificeOutletPressurePSI = 0;
+
+		fuelLevelLow = false;
+		oxidLevelLow = false;
 	}
 	else
 	{
@@ -148,7 +151,7 @@ void APSPropellantSource::Timestep(double simt, double simdt)
 		//Fuel Tank
 		if (FuelCompatibilityValve.IsOpen() && heliumRegulatorManifoldPressurePSI - 2.0 > 133.5*p / pMaxForPressures)
 		{
-			FuelTankUllagePressurePSI = heliumRegulatorManifoldPressurePSI - 2.0;
+			FuelTankUllagePressurePSI = max(0.0, heliumRegulatorManifoldPressurePSI - 2.0);
 		}
 		else
 		{
@@ -158,15 +161,15 @@ void APSPropellantSource::Timestep(double simt, double simdt)
 		//Oxidizer Tank
 		if (OxidCompatibilityValve.IsOpen() && heliumRegulatorManifoldPressurePSI - 2.0 > 133.5*p / pMaxForPressures)
 		{
-			OxidTankUllagePressurePSI = heliumRegulatorManifoldPressurePSI - 2.0;
+			OxidTankUllagePressurePSI = max(0.0, heliumRegulatorManifoldPressurePSI - 2.0);
 		}
 		else
 		{
 			OxidTankUllagePressurePSI = 133.5*p / pMaxForPressures;
 		}
 
-		FuelTrimOrificeOutletPressurePSI = FuelTankUllagePressurePSI - 14.0;
-		OxidTrimOrificeOutletPressurePSI = OxidTankUllagePressurePSI - 14.0;
+		FuelTrimOrificeOutletPressurePSI = max(0.0, FuelTankUllagePressurePSI - 14.0);
+		OxidTrimOrificeOutletPressurePSI = max(0.0, OxidTankUllagePressurePSI - 14.0);
 
 		//Primary Helium Isolation Valve
 		if (!PrimaryHeliumIsolationValve.IsOpen() && our_vessel->AscentHeliumIsol1Pyros.Blown())
@@ -243,6 +246,16 @@ double APSPropellantSource::GetHeliumRegulator1OutletPressurePSI()
 		return heliumRegulator1OutletPressurePSI;
 
 	return 0.0;
+}
+
+double APSPropellantSource::GetFuelTankBulkTempF()
+{
+	return 70.0;
+}
+
+double APSPropellantSource::GetOxidizerTankBulkTempF()
+{
+	return 70.0;
 }
 
 void APSPropellantSource::SaveState(FILEHANDLE scn)

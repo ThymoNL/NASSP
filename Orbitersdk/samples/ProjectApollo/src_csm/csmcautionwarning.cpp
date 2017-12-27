@@ -745,4 +745,3 @@ void CSMCautionWarningSystem::LoadState(FILEHANDLE scn)
 		CautionWarningSystem::LoadState(line);
 	}
 }
-
