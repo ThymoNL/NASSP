@@ -513,6 +513,7 @@ public:
 	void SetLmLandedMesh();
 	void SetLPDMesh();
 	void SetFwdHatchMesh();
+	void SetOvhdHatchMesh();
 	double GetMissionTime() { return MissionTime; }; // This must be here for the MFD can't use it.
 
 	bool clbkLoadPanel (int id);
@@ -537,8 +538,6 @@ public:
 	void PanelRefreshOverheadHatch();
 
 	// Panel SDK
-	bool GetValveState(int valve);
-	void SetValveState(int valve, bool open);
 	void SetPipeMaxFlow(char *pipe, double flow);
 	h_Pipe* GetLMTunnelPipe();
 	void ConnectTunnelToCabinVent();
@@ -1598,6 +1597,7 @@ protected:
 	int lpdgret;
 	int lpdgext;
 	int fwdhatch;
+	int ovhdhatch;
 
 	// Dust particles
 	THRUSTER_HANDLE th_dust[4];
@@ -1793,6 +1793,7 @@ protected:
 	LEMCabinFan CabinFan;
 	LEMWaterTankSelect WaterTankSelect;
 	LEMPrimGlycolPumpController PrimGlycolPumpController;
+	LEMSuitFanDPSensor SuitFanDPSensor;
 
 	// EDS
 	LEM_EDS eds;
@@ -1894,6 +1895,7 @@ protected:
 	friend class LMRCSAQtyInd;
 	friend class LMRCSBQtyInd;
 	friend class RCS_TCA;
+	friend class LEM_ECS;
 
 	friend class ApolloRTCCMFD;
 	friend class ProjectApolloMFD;
