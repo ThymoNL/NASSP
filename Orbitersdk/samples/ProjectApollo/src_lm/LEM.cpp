@@ -144,7 +144,7 @@ BOOL CALLBACK EnumJoysticksCallback(const DIDEVICEINSTANCE* pdidInstance, VOID* 
 		return DIENUM_STOP; } // If so, stop enumerating additional devices.
 
 	// Obtain an interface to the enumerated joystick.
-    hr = lem->dx8ppv->CreateDevice(pdidInstance->guidInstance, &lem->dx8_joystick[lem->js_enabled], NULL);
+	hr = lem->dx8ppv->CreateDevice(pdidInstance->guidInstance, &lem->dx8_joystick[lem->js_enabled], NULL);
 	
 	if(FAILED(hr)) {              // Did that work?
 		return DIENUM_CONTINUE; } // No, keep enumerating (if there's more)
@@ -158,7 +158,7 @@ BOOL CALLBACK EnumAxesCallback( const DIDEVICEOBJECTINSTANCE* pdidoi, VOID* pLEM
 {
 	class LEM * lem = (LEM*)pLEM; // Pointer to us
 
-    if (pdidoi->guidType == GUID_ZAxis) {
+	if (pdidoi->guidType == GUID_ZAxis) {
 		if (lem->js_current == lem->rhc_id) {
 			lem->rhc_rzx_id = 1;
 		} else {
@@ -166,7 +166,7 @@ BOOL CALLBACK EnumAxesCallback( const DIDEVICEOBJECTINSTANCE* pdidoi, VOID* pLEM
 		}
 	}
 
-    if (pdidoi->guidType == GUID_RzAxis) {
+	if (pdidoi->guidType == GUID_RzAxis) {
 		if (lem->js_current == lem->rhc_id) {
 			lem->rhc_rot_id = 2;
 		} else {
@@ -174,14 +174,14 @@ BOOL CALLBACK EnumAxesCallback( const DIDEVICEOBJECTINSTANCE* pdidoi, VOID* pLEM
 		}
 	}
 
-    if (pdidoi->guidType == GUID_POV) {
+	if (pdidoi->guidType == GUID_POV) {
 		if (lem->js_current == lem->rhc_id) {
 			lem->rhc_pov_id = 0;
 		} else {
 			lem->thc_pov_id = 0;
 		}
 	}
-    return DIENUM_CONTINUE;
+	return DIENUM_CONTINUE;
 }
 
 // Constructor
@@ -240,6 +240,7 @@ LEM::LEM(OBJHANDLE hObj, int fmodel) : Payload (hObj, fmodel),
 	tcdu(agc, RegOPTY, 0141, 0),
 	aea(Panelsdk, deda),
 	deda(this,soundlib, aea),
+	CWEA(soundlib),
 	DPS(th_hover),
 	DPSPropellant(ph_Dsc, Panelsdk),
 	APSPropellant(ph_Asc, Panelsdk),
@@ -278,7 +279,7 @@ LEM::~LEM()
 
 {
 #ifdef DIRECTSOUNDENABLED
-    sevent.Stop();
+	sevent.Stop();
 	sevent.Done();
 #endif
 
@@ -452,11 +453,11 @@ void LEM::DoFirstTimestep()
 void LEM::LoadDefaultSounds()
 
 {
-    char buffers[80];
+	char buffers[80];
 
 	soundlib.SetLanguage(AudioLanguage);
 	sprintf(buffers, "Apollo%d", agc.GetApolloNo());
-    soundlib.SetSoundLibMissionPath(buffers);
+  soundlib.SetSoundLibMissionPath(buffers);
 
 	//
 	// load sounds now that the audio language has been set up.
@@ -479,8 +480,8 @@ void LEM::LoadDefaultSounds()
 
 // MODIF X15 manage landing sound
 #ifdef DIRECTSOUNDENABLED
-    sevent.LoadMissionLandingSoundArray(soundlib,"sound.csv");
-    sevent.InitDirectSound(soundlib);
+	sevent.LoadMissionLandingSoundArray(soundlib,"sound.csv");
+	sevent.InitDirectSound(soundlib);
 #endif
 	SoundsLoaded = true;
 }
@@ -911,10 +912,10 @@ void LEM::clbkPostStep(double simt, double simdt, double mjd)
 	MainPanel.timestep(MissionTime);
 	checkControl.timestep(MissionTime, DummyEvents);
 
-    // x15 landing sound management
+	// x15 landing sound management
 #ifdef DIRECTSOUNDENABLED
 
-    double     simtime       ;
+	double     simtime       ;
 	int        mode          ;
 	double     timeremaining ;
 	double     timeafterpdi  ;
@@ -927,14 +928,14 @@ void LEM::clbkPostStep(double simt, double simdt, double mjd)
 	
 	if(simt >NextEventTime)
 	{
-        NextEventTime=simt+0.1;
-	    agc.GetStatus(&simtime,&mode,&timeremaining,&timeafterpdi,&timetoapproach);
-    	todo = sevent.play(soundlib,
-			    this,
+		NextEventTime=simt+0.1;
+		agc.GetStatus(&simtime,&mode,&timeremaining,&timeafterpdi,&timetoapproach);
+		todo = sevent.play(soundlib,
+				this,
 				names,
 				&offset,
 				&newbuffer,
-		        simtime,
+				simtime,
 				MissionTime,
 				mode,
 				timeremaining,
@@ -942,10 +943,10 @@ void LEM::clbkPostStep(double simt, double simdt, double mjd)
 				timetoapproach,
 				NOLOOP,
 				255);
-        if (todo)
+		if (todo)
 		{
-           if(offset > 0.)
-                sevent.PlaySound( names,newbuffer,offset);
+		   if(offset > 0.)
+				sevent.PlaySound( names,newbuffer,offset);
 		   else sevent.PlaySound( names,true,0);
 		}
 	} 
@@ -964,19 +965,19 @@ void LEM::clbkLoadStateEx (FILEHANDLE scn, void *vs)
 	float ftcp;
 	
 	while (oapiReadScenario_nextline (scn, line)) {
-        if (!strnicmp (line, "CONFIGURATION", 13)) {
-            sscanf (line+13, "%d", &status);
+		if (!strnicmp (line, "CONFIGURATION", 13)) {
+			sscanf (line+13, "%d", &status);
 		}
 		else if (!strnicmp (line, "EVA", 3)) {
 			CDREVA_IP = true;
 		} 
 		else if (!strnicmp (line, "CSWITCH", 7)) {
-            SwitchState = 0;
+			SwitchState = 0;
 			sscanf (line+7, "%d", &SwitchState);
 			SetCSwitchState(SwitchState);
 		} 
 		else if (!strnicmp(line, "MISSNTIME", 9)) {
-            sscanf (line+9, "%f", &ftcp);
+			sscanf (line+9, "%f", &ftcp);
 			MissionTime = ftcp;
 		}
 		else if (!strnicmp(line, "UNMANNED", 8)) {
@@ -1098,7 +1099,7 @@ void LEM::clbkLoadStateEx (FILEHANDLE scn, void *vs)
 		else if (!strnicmp (line, "PANEL_ID", 8)) { 
 			sscanf (line+8, "%d", &PanelId);
 		}
-        else if (!strnicmp (line, PANELSWITCH_START_STRING, strlen(PANELSWITCH_START_STRING))) { 
+		else if (!strnicmp (line, PANELSWITCH_START_STRING, strlen(PANELSWITCH_START_STRING))) { 
 			PSH.LoadState(scn);	
 		}
 		else if (!strnicmp (line, "LEM_EDS_START",sizeof("LEM_EDS_START"))) {
@@ -1191,7 +1192,7 @@ void LEM::clbkLoadStateEx (FILEHANDLE scn, void *vs)
 		else if (!strnicmp(line, "EVENTTIMER_START", sizeof("EVENTTIMER_START"))) {
 			EventTimerDisplay.LoadState(scn, EVENTTIMER_END_STRING);
 		}
-        else if (!strnicmp (line, "<INTERNALS>", 11)) { //INTERNALS signals the PanelSDK part of the scenario
+		else if (!strnicmp (line, "<INTERNALS>", 11)) { //INTERNALS signals the PanelSDK part of the scenario
 			Panelsdk.Load(scn);			//send the loading to the Panelsdk
 		}
 		else if (!strnicmp (line, ChecklistControllerStartString, strlen(ChecklistControllerStartString)))
@@ -1200,9 +1201,9 @@ void LEM::clbkLoadStateEx (FILEHANDLE scn, void *vs)
 		}
 		else 
 		{
-            ParseScenarioLineEx (line, vs);
-        }
-    }
+			ParseScenarioLineEx (line, vs);
+		}
+	}
 
 	switch (status) {
 	case 0:

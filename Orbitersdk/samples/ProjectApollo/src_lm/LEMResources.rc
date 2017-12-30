@@ -85,6 +85,7 @@ IDB_BORDER_34x31        BITMAP                  "..\\Bitmaps\\border34x31.bmp"
 IDB_BORDER_50x158       BITMAP                  "..\\Bitmaps\\border50x158.bmp"
 IDB_BORDER_38x52        BITMAP                  "..\\Bitmaps\\border38x52.bmp"
 IDB_BORDER_34x34        BITMAP                  "..\\Bitmaps\\border34x34.bmp"
+IDB_BORDER_47x43		BITMAP					"..\\Bitmaps\\border47x43.bmp"
 IDB_BORDER_90x90        BITMAP                  "..\\Bitmaps\\border90x90.bmp"
 IDB_BORDER_84x84        BITMAP                  "..\\Bitmaps\\border84x84.bmp"
 IDB_BORDER_70x70        BITMAP                  "..\\Bitmaps\\border70x70.bmp"
@@ -171,18 +172,18 @@ IDB_LEM_MASTERALARM     BITMAP                  "..\\Bitmaps\\lem_master_alarm.b
 
 1 TEXTINCLUDE 
 BEGIN
-    "lmresource.\0"
+	"lmresource.\0"
 END
 
 3 TEXTINCLUDE 
 BEGIN
-    "\r\0"
+	"\r\0"
 END
 
 2 TEXTINCLUDE 
 BEGIN
-    "#include ""afxres.h""\r\n"
-    "\0"
+	"#include ""afxres.h""\r\n"
+	"\0"
 END
 
 #endif    // APSTUDIO_INVOKED

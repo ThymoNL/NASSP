@@ -204,7 +204,7 @@ public:
 	LEM *lem;					// Pointer at LEM
 	h_Radiator *antenna;		// Antenna (loses heat into space)
 	Boiler *antheater;			// Antenna Heater (puts heat back into antenna)
-    e_object *dc_source;		// Source of DC power
+	e_object *dc_source;		// Source of DC power
 	double range;				// Range in feet
 	double rate[3];				// Velocity X/Y/Z in feet/second
 	double antennaAngle;		// Antenna angle
@@ -242,7 +242,7 @@ private:
 	LEM *lem;					// Pointer at LEM
 	h_Radiator *antenna;			// Antenna (loses heat into space)
 	Boiler *antheater;			// Antenna Heater (puts heat back into antenna)
-    e_object *dc_source;
+	e_object *dc_source;
 	e_object *ac_source;
 	double tstime;
 	int	   tstate[2];
@@ -647,7 +647,7 @@ protected:
 	// down without good reason, or you're likely to crash!
 	//
 
-    PanelSDK Panelsdk;
+	PanelSDK Panelsdk;
 
 	void RedrawPanel_Thrust (SURFHANDLE surf);
 	void RedrawPanel_XPointer (CrossPointer *cp, SURFHANDLE surf);
@@ -745,9 +745,6 @@ protected:
 	ModeSelectSwitch ModeSelSwitch;
 	ToggleSwitch AltRngMonSwitch;
 
-  SwitchRow LeftMasterAlarmSwitchRow;
-  PushSwitch LeftMasterAlarmButton;
-
 	SwitchRow LeftMonitorSwitchRow;
 	ToggleSwitch RateErrorMonSwitch;
 	ToggleSwitch AttitudeMonSwitch;
@@ -810,9 +807,6 @@ protected:
 	LMGlycolPressMeter LMGlycolPressMeter;
 	LMOxygenQtyMeter LMOxygenQtyMeter;
 	LMWaterQtyMeter LMWaterQtyMeter;
-
-  SwitchRow RightMasterAlarmSwitchRow;
-  PushSwitch RightMasterAlarmButton;
 
 	SwitchRow RightMonitorSwitchRow;
 	ToggleSwitch RightRateErrorMonSwitch;
@@ -895,7 +889,7 @@ protected:
 	SwitchRow ModeControlSwitchesRow;
 	PGNSSwitch ModeControlPGNSSwitch;
 	ThreePosSwitch ModeControlAGSSwitch;
-    UnguardedIMUCageSwitch IMUCageSwitch;
+	UnguardedIMUCageSwitch IMUCageSwitch;
 
 	SwitchRow EngGimbalEnableSwitchRow;
 	AGCIOSwitch EngGimbalEnableSwitch;
