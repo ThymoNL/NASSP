@@ -840,7 +840,7 @@ void LEMWaterTankSelect::SystemTimestep(double simdt)
 	}
 }
 
-LEMPrimGlycolPumpController::LEMPrimGlycolPumpController(SoundLib &s) : soundlib(s)
+LEMPrimGlycolPumpController::LEMPrimGlycolPumpController(SoundLib &s, Sound &startS, Sound &runS) : soundlib(s), glycolpumpstartsound(startS), glycolpumprunsound(runS)
 {
 	primGlycolAccumulatorTank = NULL;
 	primGlycolPumpManifoldTank = NULL;
@@ -856,9 +856,6 @@ LEMPrimGlycolPumpController::LEMPrimGlycolPumpController(SoundLib &s) : soundlib
 	GlycolAutoTransferRelay = false;
 	GlycolPumpFailRelay = false;
 	PressureSwitch = true;
-
-	s.LoadSound(glycolpumpstartsound, LM_GLYCOLSTART_SOUND);
-	s.LoadSound(glycolpumprunsound, LM_GLYCOLRUN_SOUND);
 }
 
 void LEMPrimGlycolPumpController::Init(h_Tank *pgat, h_Tank *pgpmt, Pump *gp1, Pump *gp2, RotationalSwitch *gr, CircuitBrakerSwitch *gp1cb, CircuitBrakerSwitch *gp2cb, CircuitBrakerSwitch *gpatcb, h_HeatLoad *gp1h, h_HeatLoad *gp2h)
@@ -880,23 +877,27 @@ void LEMPrimGlycolPumpController::Init(h_Tank *pgat, h_Tank *pgpmt, Pump *gp1, P
 
 void LEMPrimGlycolPumpController::StartGlycolPumpSound()
 {
-	glycolpumpstartsound.play(NOLOOP, 200);
-	GlycolPumpSound();
+	glycolpumpstartsound.play(NOLOOP, 255);
+	//GlycolPumpSound();
 }
 
 void LEMPrimGlycolPumpController::GlycolPumpSound()
 {
-	glycolpumprunsound.play(LOOP, 200);
+	if (!glycolpumprunsound.isPlaying())
+		glycolpumprunsound.play(LOOP, 255);
 }
 
 void LEMPrimGlycolPumpController::StopGlycolPumpSound()
 {
-	glycolpumprunsound.stop();
+	//glycolpumprunsound.stop();
 }
 
 
 void LEMPrimGlycolPumpController::SystemTimestep(double simdt)
 {
+	// Force sound for testing
+	glycolpumprunsound.play(LOOP, 255);
+
 	if (!primGlycolPumpManifoldTank || !primGlycolAccumulatorTank) return;
 
 	double DPSensor = primGlycolPumpManifoldTank->space.Press - primGlycolAccumulatorTank->space.Press;
@@ -974,7 +975,7 @@ void LEMPrimGlycolPumpController::SystemTimestep(double simdt)
 		}
 	}
 
-	//sprintf(oapiDebugString(), "DP %f DPSwitch %d ATRelay %d Pump1 %d Pump2 %d", DPSensor*PSI, PressureSwitch, GlycolAutoTransferRelay, glycolPump1->h_pump, glycolPump2->h_pump);
+	sprintf(oapiDebugString(), "DP %f DPSwitch %d ATRelay %d Pump1 %d Pump2 %d SoundPlaying %d", DPSensor*PSI, PressureSwitch, GlycolAutoTransferRelay, glycolPump1->h_pump, glycolPump2->h_pump, glycolpumprunsound.isPlaying());
 }
 
 void LEMPrimGlycolPumpController::LoadState(char *line)

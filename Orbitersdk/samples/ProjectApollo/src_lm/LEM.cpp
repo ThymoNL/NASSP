@@ -226,7 +226,7 @@ LEM::LEM(OBJHANDLE hObj, int fmodel) : Payload (hObj, fmodel),
 	ecs(Panelsdk),
 	CSMToLEMECSConnector(this),
 	AOTLampFeeder("AOT-Lamp-Feeder", Panelsdk),
-	PrimGlycolPumpController(soundlib)
+	PrimGlycolPumpController(soundlib, GlycolPumpStartSound, GlycolPumpRunSound)
 {
 	dllhandle = g_Param.hDLL; // DS20060413 Save for later
 	InitLEMCalled = false;
