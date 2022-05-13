@@ -6694,3 +6694,1653 @@ void Saturn::InitSwitches() {
 	ASCPPitchSwitch.Register(PSH, "ASCPPitchSwitch", 0, 0, 0, 0);
 	ASCPYawSwitch.Register(PSH, "ASCPYawSwitch", 0, 0, 0, 0);
 }
+
+void Saturn::InitSwitchesPrecount() {
+
+	coasEnabled = false;
+	ordealEnabled = 0;
+	opticsDskyEnabled = false;
+	hatchPanel600EnabledLeft = 0;
+	hatchPanel600EnabledRight = 0;
+	panel382Enabled = 0;
+
+	MasterAlarmSwitch.Register(PSH, "MasterAlarmSwitch", TOGGLESWITCH_DOWN);
+
+	AccelGMeter.Register(PSH, "AccelGMeter", -1, 15, 1);
+
+	THCRotary.AddPosition(0, 330);
+	THCRotary.AddPosition(1, 0);
+	THCRotary.AddPosition(2, 30);
+	THCRotary.Register(PSH, "THCRotary", 1);
+
+	LiftoffNoAutoAbortSwitch.Register(PSH, "LiftoffNoAutoAbortSwitch", false, false);
+	LesMotorFireSwitch.Register(PSH, "LesMotorFireSwitch", false, false);
+	CanardDeploySwitch.Register(PSH, "CanardDeploySwitch", false, false);
+	CsmLvSepSwitch.Register(PSH, "CsmLvSepSwitch", false, false);
+	CsmLvSepSwitch.SetDelayTime(1);
+	ApexCoverJettSwitch.Register(PSH, "ApexCoverJettSwitch", false, false);
+	DrogueDeploySwitch.Register(PSH, "DrogueDeploySwitch", false, false);
+	MainDeploySwitch.Register(PSH, "MainDeploySwitch", false, false);
+	CmRcsHeDumpSwitch.Register(PSH, "CmRcsHeDumpSwitch", false, false);
+
+	if (!SkylabCM) {
+		SIVBPayloadSepSwitch.Register(PSH, "SIVBPayloadSepSwitch", TOGGLESWITCH_DOWN, 0, SPRINGLOADEDSWITCH_DOWN);
+		SIVBPayloadSepSwitch.SetDelayTime(2);
+	}
+
+	MissionTimerSwitch.Register(PSH, "MissionTimerSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER_SPRINGDOWN);
+	CautionWarningModeSwitch.Register(PSH, "CautionWarningModeSwitch", THREEPOSSWITCH_UP);
+	CautionWarningCMCSMSwitch.Register(PSH, "CautionWarningCMCSMSwitch", 1);
+	CautionWarningPowerSwitch.Register(PSH, "CautionWarningPowerSwitch", THREEPOSSWITCH_CENTER);
+	CautionWarningLightTestSwitch.Register(PSH, "CautionWarningLightTestSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER, NULL);
+
+	CabinFan1Switch.Register(PSH, "CabinFan1Switch", false);
+	CabinFan2Switch.Register(PSH, "CabinFan2Switch", false);
+	H2Heater1Switch.Register(PSH, "H2Heater1Switch", THREEPOSSWITCH_CENTER);
+	H2Heater2Switch.Register(PSH, "H2Heater2Switch", THREEPOSSWITCH_CENTER);
+	O2Heater1Switch.Register(PSH, "O2Heater1Switch", THREEPOSSWITCH_CENTER);
+	O2Heater2Switch.Register(PSH, "O2Heater2Switch", THREEPOSSWITCH_CENTER);
+	O2PressIndSwitch.Register(PSH, "O2PressIndSwitch", true);
+	H2Fan1Switch.Register(PSH, "H2Fan1Switch", THREEPOSSWITCH_CENTER);
+	H2Fan2Switch.Register(PSH, "H2Fan2Switch", THREEPOSSWITCH_CENTER);
+	O2Fan1Switch.Register(PSH, "O2Fan1Switch", THREEPOSSWITCH_CENTER);
+	O2Fan2Switch.Register(PSH, "O2Fan2Switch", THREEPOSSWITCH_CENTER);
+
+	SCContSwitch.Register(PSH, "SCContSwitch", false);
+	CMCModeSwitch.Register(PSH, "CMCModeSwitch", THREEPOSSWITCH_DOWN);
+
+	SCSTvcPitchSwitch.Register(PSH, "SCSTvcPitchSwitch", THREEPOSSWITCH_CENTER);
+	SCSTvcYawSwitch.Register(PSH, "SCSTvcYawSwitch", THREEPOSSWITCH_CENTER);
+
+	Pitch1Switch.Register(PSH, "Pitch1Switch", THREEPOSSWITCH_DOWN, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	Pitch1Switch.SetDelayTime(1);
+	Pitch2Switch.Register(PSH, "Pitch2Switch", THREEPOSSWITCH_DOWN, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	Pitch2Switch.SetDelayTime(1);
+	Yaw1Switch.Register(PSH, "Yaw1Switch", THREEPOSSWITCH_DOWN, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	Yaw1Switch.SetDelayTime(1);
+	Yaw2Switch.Register(PSH, "Yaw2Switch", THREEPOSSWITCH_DOWN, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	Yaw2Switch.SetDelayTime(1);
+
+	EMSRollSwitch.Register(PSH, "EMSRollSwitch", false);
+	GSwitch.Register(PSH, "GSwitch", false);
+
+	LVSPSPcIndicatorSwitch.Register(PSH, "LVSPSPcIndicatorSwitch", TOGGLESWITCH_UP);
+	LVFuelTankPressIndicatorSwitch.Register(PSH, "LVFuelTankPressIndicatorSwitch", TOGGLESWITCH_UP);
+
+	TVCGimbalDrivePitchSwitch.Register(PSH, "TVCGimbalDrivePitchSwitch", THREEPOSSWITCH_CENTER);
+	TVCGimbalDriveYawSwitch.Register(PSH, "TVCGimbalDriveYawSwitch", THREEPOSSWITCH_CENTER);
+
+	RunEVALightSwitch.Register(PSH, "RunEVALightSwitch", false);
+	RndzLightSwitch.Register(PSH, "RndzLightSwitch", THREEPOSSWITCH_CENTER);
+	TunnelLightSwitch.Register(PSH, "TunnelLightSwitch", false);
+
+	LMPowerSwitch.Register(PSH, "LMPowerSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER_SPRINGDOWN);
+
+	PostLDGVentValveLever.Register(PSH, "PostLDGVentValveLever", 1);
+
+	GDCAlignButton.Register(PSH, "GDCAlignButton", false);
+	GDCAlignButton.SetDelayTime(2);
+
+	GHATrackSwitch.Register(PSH, "GHATrackSwitch", THREEPOSSWITCH_UP);
+	GHABeamSwitch.Register(PSH, "GHABeamSwitch", THREEPOSSWITCH_UP);
+
+	GHAPowerSwitch.Register(PSH, "GHAPowerSwitch", THREEPOSSWITCH_DOWN);
+	GHAServoElecSwitch.Register(PSH, "GHAServoElecSwitch", TOGGLESWITCH_UP);
+
+	FuelCellPhIndicator.Register(PSH, "FuelCellPhIndicator", false);
+	FuelCellRadTempIndicator.Register(PSH, "FuelCellRadTempIndicator", false);
+
+	FuelCellRadiators1Indicator.Register(PSH, "FuelCellRadiators1Indicator", false);
+	FuelCellRadiators2Indicator.Register(PSH, "FuelCellRadiators2Indicator", false);
+	FuelCellRadiators3Indicator.Register(PSH, "FuelCellRadiators3Indicator", false);
+	FuelCellRadiators1Switch.Register(PSH, "FuelCellRadiators1Switch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	FuelCellRadiators2Switch.Register(PSH, "FuelCellRadiators2Switch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	FuelCellRadiators3Switch.Register(PSH, "FuelCellRadiators3Switch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+
+	FuelCellIndicatorsSwitch.AddPosition(0, 330);
+	FuelCellIndicatorsSwitch.AddPosition(1, 0);
+	FuelCellIndicatorsSwitch.AddPosition(2, 30);
+	FuelCellIndicatorsSwitch.Register(PSH, "FuelCellIndicatorsSwitch", 0);
+
+	FuelCellHeater1Switch.Register(PSH, "FuelCellHeater1Switch", true);
+	FuelCellHeater2Switch.Register(PSH, "FuelCellHeater2Switch", true);
+	FuelCellHeater3Switch.Register(PSH, "FuelCellHeater3Switch", true);
+
+	FuelCellPurge1Switch.Register(PSH, "FuelCellPurge1Switch", THREEPOSSWITCH_CENTER);
+	FuelCellPurge2Switch.Register(PSH, "FuelCellPurge2Switch", THREEPOSSWITCH_CENTER);
+	FuelCellPurge3Switch.Register(PSH, "FuelCellPurge3Switch", THREEPOSSWITCH_CENTER);
+
+	FuelCellReactants1Indicator.Register(PSH, "FuelCellReactants1Indicator", false);
+	FuelCellReactants2Indicator.Register(PSH, "FuelCellReactants2Indicator", false);
+	FuelCellReactants3Indicator.Register(PSH, "FuelCellReactants3Indicator", false);
+	FuelCellReactants1Switch.Register(PSH, "FuelCellReactants1Switch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	FuelCellReactants2Switch.Register(PSH, "FuelCellReactants2Switch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	FuelCellReactants3Switch.Register(PSH, "FuelCellReactants3Switch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+
+	FCReacsValvesSwitch.Register(PSH, "FCReacsValvesSwitch", true);
+	H2PurgeLineSwitch.Register(PSH, "H2PurgeLineSwitch", false);
+
+	FuelCellPumps1Switch.Register(PSH, "FuelCellPumps1Switch", THREEPOSSWITCH_UP);
+	FuelCellPumps2Switch.Register(PSH, "FuelCellPumps2Switch", THREEPOSSWITCH_DOWN);
+	FuelCellPumps3Switch.Register(PSH, "FuelCellPumps3Switch", THREEPOSSWITCH_DOWN);
+
+	SuitCompressor1Switch.Register(PSH, "SuitCompressor1Switch", THREEPOSSWITCH_CENTER);
+	SuitCompressor2Switch.Register(PSH, "SuitCompressor2Switch", THREEPOSSWITCH_CENTER);
+
+	RightCOASPowerSwitch.Register(PSH, "RightCOASPowerSwitch", false);
+
+	AudioControlSwitch.Register(PSH, "AudioControlSwitch", TOGGLESWITCH_UP);
+
+	SuitPowerSwitch.Register(PSH, "SuitPowerSwitch", false);
+
+	RightUtilityPowerSwitch.Register(PSH, "RightUtilityPowerSwitch", false);
+
+	RightDockingTargetSwitch.Register(PSH, "RightDockingTargetSwitch", THREEPOSSWITCH_DOWN);
+
+	RightModeIntercomSwitch.Register(PSH, "RightModeIntercomSwitch", THREEPOSSWITCH_UP);
+
+	RightAudioPowerSwitch.Register(PSH, "RightAudioPowerSwitch", THREEPOSSWITCH_CENTER);
+
+	RightPadCommSwitch.Register(PSH, "RightPadCommSwitch", THREEPOSSWITCH_UP);
+
+	RightIntercomSwitch.Register(PSH, "RightIntercomSwitch", THREEPOSSWITCH_UP);
+
+	RightSBandSwitch.Register(PSH, "RightSBandSwitch", THREEPOSSWITCH_UP);
+
+	RightVHFAMSwitch.Register(PSH, "RightVHFAMSwitch", THREEPOSSWITCH_UP);
+
+	GNPowerSwitch.Register(PSH, "GNPowerSwitch", THREEPOSSWITCH_UP);
+
+	MainBusTieBatAcSwitch.Register(PSH, "MainBusTieBatAcSwitch", THREEPOSSWITCH_DOWN);
+	MainBusTieBatBcSwitch.Register(PSH, "MainBusTieBatBcSwitch", THREEPOSSWITCH_DOWN);
+
+	BatCHGRSwitch.Register(PSH, "BatCHGRSwitch", THREEPOSSWITCH_UP);
+
+	NonessBusSwitch.Register(PSH, "NonessBusSwitch", THREEPOSSWITCH_CENTER);
+
+	InteriorLightsFloodDimSwitch.Register(PSH, "InteriorLightsFloodDimSwitch", TOGGLESWITCH_UP);
+	InteriorLightsFloodFixedSwitch.Register(PSH, "InteriorLightsFloodFixedSwitch", false);
+
+	FloatBagSwitch1.Register(PSH, "FloatBagSwitch1", THREEPOSSWITCH_DOWN);
+	FloatBagSwitch2.Register(PSH, "FloatBagSwitch2", THREEPOSSWITCH_DOWN);
+	FloatBagSwitch3.Register(PSH, "FloatBagSwitch3", THREEPOSSWITCH_DOWN);
+
+	SECSLogic1Switch.Register(PSH, "SECSLogic1Switch", false);
+	SECSLogic2Switch.Register(PSH, "SECSLogic2Switch", false);
+	PyroArmASwitch.Register(PSH, "PyroArmASwitch", false);
+	PyroArmBSwitch.Register(PSH, "PyroArmBSwitch", false);
+
+	EDSPowerSwitch.Register(PSH, "EDSPowerSwitch", false);
+
+	TVCServoPower1Switch.Register(PSH, "TVCServoPower1Switch", THREEPOSSWITCH_CENTER);
+	TVCServoPower2Switch.Register(PSH, "TVCServoPower2Switch", THREEPOSSWITCH_CENTER);
+
+	LogicPowerSwitch.Register(PSH, "LogicPowerSwitch", true);
+
+	SIGCondDriverBiasPower1Switch.Register(PSH, "SIGCondDriverBiasPower1Switch", THREEPOSSWITCH_CENTER);
+	SIGCondDriverBiasPower2Switch.Register(PSH, "SIGCondDriverBiasPower2Switch", THREEPOSSWITCH_CENTER);
+
+	SPSGaugingSwitch.Register(PSH, "SPSGaugingSwitch", THREEPOSSWITCH_UP);
+
+	TelcomGroup1Switch.Register(PSH, "TelcomGroup1Switch", THREEPOSSWITCH_UP);
+	TelcomGroup2Switch.Register(PSH, "TelcomGroup2Switch", THREEPOSSWITCH_DOWN);
+
+	LeftCOASPowerSwitch.Register(PSH, "LeftCOASPowerSwitch", false);
+
+	LeftUtilityPowerSwitch.Register(PSH, "LeftUtilityPowerSwitch", false);
+
+	PostLandingBCNLTSwitch.Register(PSH, "PostLandingBCNLTSwitch", THREEPOSSWITCH_CENTER);
+
+	PostLandingDYEMarkerSwitch.Register(PSH, "PostLandingDYEMarkerSwitch", false, false);
+
+	GTASwitch.Register(PSH, "GTASwitch", false, false);
+
+	PostLandingVentSwitch.Register(PSH, "PostLandingVentSwitch", THREEPOSSWITCH_DOWN);
+
+	LeftModeIntercomVOXSensThumbwheelSwitch.Register(PSH, "LeftModeIntercomVOXSensThumbwheelSwitch", 5, 9);
+
+	LeftPowerMasterVolumeThumbwheelSwitch.Register(PSH, "LeftPowerMasterVolumeThumbwheelSwitch", 5, 9);
+
+	LeftPadCommVolumeThumbwheelSwitch.Register(PSH, "LeftPadCommVolumeThumbwheelSwitch", 5, 9);
+
+	LeftIntercomVolumeThumbwheelSwitch.Register(PSH, "LeftIntercomVolumeThumbwheelSwitch", 5, 9);
+
+	LeftSBandVolumeThumbwheelSwitch.Register(PSH, "LeftSBandVolumeThumbwheelSwitch", 5, 9);
+
+	LeftVHFAMVolumeThumbwheelSwitch.Register(PSH, "LeftVHFAMVolumeThumbwheelSwitch", 5, 9);
+
+	LeftAudioVOXSensThumbwheel.Register(PSH, "LeftAudioVOXSensThumbwheel", 5, 9);
+	LeftAudioPadComVolumeThumbwheel.Register(PSH, "LeftAudioPadComVolumeThumbwheel", 5, 9);
+	LeftAudioSBandVolumeThumbwheel.Register(PSH, "LeftAudioSBandVolumeThumbwheel", 5, 9);
+
+	RightAudioMasterVolumeThumbwheel.Register(PSH, "RightAudioMasterVolumeThumbwheel", 5, 9);
+	RightAudioIntercomVolumeThumbwheel.Register(PSH, "RightAudioIntercomVolumeThumbwheel", 5, 9);
+	RightAudioVHFAMVolumeThumbwheel.Register(PSH, "RightAudioVHFAMVolumeThumbwheel", 5, 9);
+
+	LeftModeIntercomSwitch.Register(PSH, "LeftModeIntercomSwitch", THREEPOSSWITCH_UP);
+
+	LeftAudioPowerSwitch.Register(PSH, "LeftAudioPowerSwitch", THREEPOSSWITCH_CENTER);
+
+	LeftPadCommSwitch.Register(PSH, "LeftPadCommSwitch", THREEPOSSWITCH_UP);
+
+	LeftIntercomSwitch.Register(PSH, "LeftIntercomSwitch", THREEPOSSWITCH_UP);
+
+	LeftSBandSwitch.Register(PSH, "LeftSBandSwitch", THREEPOSSWITCH_UP);
+
+	LeftVHFAMSwitch.Register(PSH, "LeftVHFAMSwitch", THREEPOSSWITCH_UP);
+
+	LeftAudioControlSwitch.Register(PSH, "LeftAudioControlSwitch", THREEPOSSWITCH_UP);
+
+	LeftSuitPowerSwitch.Register(PSH, "LeftSuitPowerSwitch", false);
+
+	VHFRNGSwitch.Register(PSH, "VHFRNGSwitch", false, SPRINGLOADEDSWITCH_DOWN);
+
+	AcRollA1Switch.Register(PSH, "AcRollA1Switch", THREEPOSSWITCH_CENTER);
+	AcRollC1Switch.Register(PSH, "AcRollC1Switch", THREEPOSSWITCH_CENTER);
+	AcRollA2Switch.Register(PSH, "AcRollA2Switch", THREEPOSSWITCH_CENTER);
+	AcRollC2Switch.Register(PSH, "AcRollC2Switch", THREEPOSSWITCH_CENTER);
+	BdRollB1Switch.Register(PSH, "BdRollB1Switch", THREEPOSSWITCH_CENTER);
+	BdRollD1Switch.Register(PSH, "BdRollD1Switch", THREEPOSSWITCH_CENTER);
+	BdRollB2Switch.Register(PSH, "BdRollB2Switch", THREEPOSSWITCH_CENTER);
+	BdRollD2Switch.Register(PSH, "BdRollD2Switch", THREEPOSSWITCH_CENTER);
+	PitchA3Switch.Register(PSH, "PitchA3Switch", THREEPOSSWITCH_CENTER);
+	PitchC3Switch.Register(PSH, "PitchC3Switch", THREEPOSSWITCH_CENTER);
+	PitchA4Switch.Register(PSH, "PitchA4Switch", THREEPOSSWITCH_CENTER);
+	PitchC4Switch.Register(PSH, "PitchC4Switch", THREEPOSSWITCH_CENTER);
+	YawB3Switch.Register(PSH, "YawB3Switch", THREEPOSSWITCH_CENTER);
+	YawD3Switch.Register(PSH, "YawD3Switch", THREEPOSSWITCH_CENTER);
+	YawB4Switch.Register(PSH, "YawB4Switch", THREEPOSSWITCH_CENTER);
+	YawD4Switch.Register(PSH, "YawD4Switch", THREEPOSSWITCH_CENTER);
+
+	FloodDimSwitch.Register(PSH, "FloodDimSwitch", TOGGLESWITCH_UP);
+
+	FloodFixedSwitch.Register(PSH, "FloodFixedSwitch", THREEPOSSWITCH_CENTER);
+
+	//RightWindowCoverSwitch.Register(PSH, "RightWindowCoverSwitch", false);
+
+	SBandNormalXPDRSwitch.Register(PSH, "SBandNormalXPDRSwitch", THREEPOSSWITCH_CENTER);
+	SBandNormalPwrAmpl1Switch.Register(PSH, "SBandNormalPwrAmpl1Switch", TOGGLESWITCH_UP);
+	SBandNormalPwrAmpl2Switch.Register(PSH, "SBandNormalPwrAmpl2Switch", THREEPOSSWITCH_CENTER);
+	SBandNormalMode1Switch.Register(PSH, "SBandNormalMode1Switch", THREEPOSSWITCH_UP);
+	SBandNormalMode2Switch.Register(PSH, "SBandNormalMode2Switch", THREEPOSSWITCH_UP);
+	SBandNormalMode3Switch.Register(PSH, "SBandNormalMode3Switch", TOGGLESWITCH_UP);
+
+	PwrAmplTB.Register(PSH, "PwrAmplTB", false);
+	DseTapeTB.Register(PSH, "DseTapeTB", false);
+
+	SBandAuxSwitch1.Register(PSH, "SBandAuxSwitch1", THREEPOSSWITCH_CENTER);
+	SBandAuxSwitch2.Register(PSH, "SBandAuxSwitch2", THREEPOSSWITCH_CENTER);
+
+	UPTLMSwitch1.Register(PSH, "UPTLMSwitch1", TOGGLESWITCH_UP);
+	UPTLMSwitch2.Register(PSH, "UPTLMSwitch2", THREEPOSSWITCH_DOWN, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+
+	SBandAntennaSwitch1.Register(PSH, "SBandAntennaSwitch1", THREEPOSSWITCH_CENTER);
+	SBandAntennaSwitch2.Register(PSH, "SBandAntennaSwitch2", THREEPOSSWITCH_UP);
+
+	VHFAMASwitch.Register(PSH, "VHFAMASwitch", THREEPOSSWITCH_CENTER);
+	VHFAMBSwitch.Register(PSH, "VHFAMBSwitch", THREEPOSSWITCH_CENTER);
+	RCVOnlySwitch.Register(PSH, "RCVOnlySwitch", THREEPOSSWITCH_CENTER);
+	VHFBeaconSwitch.Register(PSH, "VHFBeaconSwitch", false);
+	VHFRangingSwitch.Register(PSH, "VHFRangingSwitch", false);
+
+	TapeRecorderPCMSwitch.Register(PSH, "TapeRecorderPCMSwitch", TOGGLESWITCH_UP);
+	TapeRecorderRecordSwitch.Register(PSH, "TapeRecorderRecordSwitch", THREEPOSSWITCH_UP);
+	TapeRecorderForwardSwitch.Register(PSH, "TapeRecorderForwardSwitch", THREEPOSSWITCH_CENTER);
+
+	SCESwitch.Register(PSH, "SCESwitch", THREEPOSSWITCH_UP);
+	PMPSwitch.Register(PSH, "PMPSwitch", THREEPOSSWITCH_UP);
+
+	PCMBitRateSwitch.Register(PSH, "PCMBitRateSwitch", TOGGLESWITCH_UP);
+
+	MnA1Switch.Register(PSH, "MnA1Switch", true);
+	MnB2Switch.Register(PSH, "MnB2Switch", true);
+	MnA3Switch.Register(PSH, "MnA3Switch", THREEPOSSWITCH_CENTER);
+	AcBus1Switch1.Register(PSH, "AcBus1Switch1", true);
+	AcBus1Switch2.Register(PSH, "AcBus1Switch2", false);
+	AcBus1Switch3.Register(PSH, "AcBus1Switch3", false);
+	AcBus1ResetSwitch.Register(PSH, "AcBus1ResetSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER_SPRINGUP, NULL);
+	AcBus1ResetSwitch.SetDelayTime(1);
+	AcBus2Switch1.Register(PSH, "AcBus2Switch1", false);
+	AcBus2Switch2.Register(PSH, "AcBus2Switch2", true);
+	AcBus2Switch3.Register(PSH, "AcBus2Switch3", false);
+	AcBus2ResetSwitch.Register(PSH, "AcBus2ResetSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER_SPRINGUP, NULL);
+	AcBus2ResetSwitch.SetDelayTime(1);
+
+	MainBusASwitch1.Register(PSH, "MainBusASwitch1", THREEPOSSWITCH_DOWN, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	MainBusASwitch1.SetDelayTime(1);
+	MainBusASwitch2.Register(PSH, "MainBusASwitch2", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	MainBusASwitch2.SetDelayTime(1);
+	MainBusASwitch3.Register(PSH, "MainBusASwitch3", THREEPOSSWITCH_DOWN, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	MainBusASwitch3.SetDelayTime(1);
+	MainBusAResetSwitch.Register(PSH, "MainBusAResetSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	MainBusBSwitch1.Register(PSH, "MainBusBSwitch1", THREEPOSSWITCH_DOWN, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	MainBusBSwitch1.SetDelayTime(1);
+	MainBusBSwitch2.Register(PSH, "MainBusBSwitch2", THREEPOSSWITCH_DOWN, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	MainBusBSwitch2.SetDelayTime(1);
+	MainBusBSwitch3.Register(PSH, "MainBusBSwitch3", THREEPOSSWITCH_DOWN, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	MainBusBSwitch3.SetDelayTime(1);
+	MainBusBResetSwitch.Register(PSH, "MainBusBResetSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	MainBusBIndicator1.Register(PSH, "MainBusBIndicator1", true);
+	MainBusBIndicator2.Register(PSH, "MainBusBIndicator2", true);
+	MainBusBIndicator3.Register(PSH, "MainBusBIndicator3", true);
+	MainBusAIndicator1.Register(PSH, "MainBusAIndicator1", true);
+	MainBusAIndicator2.Register(PSH, "MainBusAIndicator2", true);
+	MainBusAIndicator3.Register(PSH, "MainBusAIndicator3", true);
+
+	MissionTimerHoursSwitch.Register(PSH, "MissionTimerHoursSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	MissionTimerMinutesSwitch.Register(PSH, "MissionTimerMinutesSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	MissionTimerSecondsSwitch.Register(PSH, "MissionTimerSecondsSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+
+	SMRCSHelium1ASwitch.Register(PSH, "SMRCSHelium1ASwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	SMRCSHelium1ASwitch.SetCallback(new PanelSwitchCallback<SMRCSHeliumValve>(SMQuadARCS.GetHeliumValve1(), &SMRCSHeliumValve::SwitchToggled));
+	SMRCSHelium1BSwitch.Register(PSH, "SMRCSHelium1BSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	SMRCSHelium1BSwitch.SetCallback(new PanelSwitchCallback<SMRCSHeliumValve>(SMQuadBRCS.GetHeliumValve1(), &SMRCSHeliumValve::SwitchToggled));
+	SMRCSHelium1CSwitch.Register(PSH, "SMRCSHelium1CSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	SMRCSHelium1CSwitch.SetCallback(new PanelSwitchCallback<SMRCSHeliumValve>(SMQuadCRCS.GetHeliumValve1(), &SMRCSHeliumValve::SwitchToggled));
+	SMRCSHelium1DSwitch.Register(PSH, "SMRCSHelium1DSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	SMRCSHelium1DSwitch.SetCallback(new PanelSwitchCallback<SMRCSHeliumValve>(SMQuadDRCS.GetHeliumValve1(), &SMRCSHeliumValve::SwitchToggled));
+
+	SMRCSHelium1ATalkback.Register(PSH, "SMRCSHelium1ATalkback", true);
+	SMRCSHelium1BTalkback.Register(PSH, "SMRCSHelium1BTalkback", true);
+	SMRCSHelium1CTalkback.Register(PSH, "SMRCSHelium1CTalkback", true);
+	SMRCSHelium1DTalkback.Register(PSH, "SMRCSHelium1DTalkback", true);
+
+	SMRCSHelium2ASwitch.Register(PSH, "SMRCSHelium2ASwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	SMRCSHelium2ASwitch.SetCallback(new PanelSwitchCallback<SMRCSHeliumValve>(SMQuadARCS.GetHeliumValve2(), &SMRCSHeliumValve::SwitchToggled));
+	SMRCSHelium2BSwitch.Register(PSH, "SMRCSHelium2BSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	SMRCSHelium2BSwitch.SetCallback(new PanelSwitchCallback<SMRCSHeliumValve>(SMQuadBRCS.GetHeliumValve2(), &SMRCSHeliumValve::SwitchToggled));
+	SMRCSHelium2CSwitch.Register(PSH, "SMRCSHelium2CSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	SMRCSHelium2CSwitch.SetCallback(new PanelSwitchCallback<SMRCSHeliumValve>(SMQuadCRCS.GetHeliumValve2(), &SMRCSHeliumValve::SwitchToggled));
+	SMRCSHelium2DSwitch.Register(PSH, "SMRCSHelium2DSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	SMRCSHelium2DSwitch.SetCallback(new PanelSwitchCallback<SMRCSHeliumValve>(SMQuadDRCS.GetHeliumValve2(), &SMRCSHeliumValve::SwitchToggled));
+
+	SMRCSHelium2ATalkback.Register(PSH, "SMRCSHelium2ATalkback", true);
+	SMRCSHelium2BTalkback.Register(PSH, "SMRCSHelium2BTalkback", true);
+	SMRCSHelium2CTalkback.Register(PSH, "SMRCSHelium2CTalkback", true);
+	SMRCSHelium2DTalkback.Register(PSH, "SMRCSHelium2DTalkback", true);
+
+	SMRCSProp1ASwitch.Register(PSH, "SMRCSProp1ASwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	SMRCSProp1ASwitch.SetCallback(new PanelSwitchCallback<SMRCSPropellantSource>(&SMQuadARCS, &SMRCSPropellantSource::PropellantSwitchToggled));
+	SMRCSProp1BSwitch.Register(PSH, "SMRCSProp1BSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	SMRCSProp1BSwitch.SetCallback(new PanelSwitchCallback<SMRCSPropellantSource>(&SMQuadBRCS, &SMRCSPropellantSource::PropellantSwitchToggled));
+	SMRCSProp1CSwitch.Register(PSH, "SMRCSProp1CSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	SMRCSProp1CSwitch.SetCallback(new PanelSwitchCallback<SMRCSPropellantSource>(&SMQuadCRCS, &SMRCSPropellantSource::PropellantSwitchToggled));
+	SMRCSProp1DSwitch.Register(PSH, "SMRCSProp1DSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	SMRCSProp1DSwitch.SetCallback(new PanelSwitchCallback<SMRCSPropellantSource>(&SMQuadDRCS, &SMRCSPropellantSource::PropellantSwitchToggled));
+
+	SMRCSProp1ATalkback.Register(PSH, "SMRCSProp1ATalkback", false);
+	SMRCSProp1BTalkback.Register(PSH, "SMRCSProp1BTalkback", false);
+	SMRCSProp1CTalkback.Register(PSH, "SMRCSProp1CTalkback", false);
+	SMRCSProp1DTalkback.Register(PSH, "SMRCSProp1DTalkback", false);
+
+	SMRCSProp2ASwitch.Register(PSH, "SMRCSProp2ASwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	SMRCSProp2ASwitch.SetCallback(new PanelSwitchCallback<SMRCSHeliumValve>(SMQuadARCS.GetSecPropellantPressureValve(), &SMRCSHeliumValve::SwitchToggled));
+	SMRCSProp2BSwitch.Register(PSH, "SMRCSProp2BSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	SMRCSProp2BSwitch.SetCallback(new PanelSwitchCallback<SMRCSHeliumValve>(SMQuadBRCS.GetSecPropellantPressureValve(), &SMRCSHeliumValve::SwitchToggled));
+	SMRCSProp2CSwitch.Register(PSH, "SMRCSProp2CSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	SMRCSProp2CSwitch.SetCallback(new PanelSwitchCallback<SMRCSHeliumValve>(SMQuadCRCS.GetSecPropellantPressureValve(), &SMRCSHeliumValve::SwitchToggled));
+	SMRCSProp2DSwitch.Register(PSH, "SMRCSProp2DSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	SMRCSProp2DSwitch.SetCallback(new PanelSwitchCallback<SMRCSHeliumValve>(SMQuadDRCS.GetSecPropellantPressureValve(), &SMRCSHeliumValve::SwitchToggled));
+
+	SMRCSProp2ATalkback.Register(PSH, "SMRCSProp2ATalkback", false);
+	SMRCSProp2BTalkback.Register(PSH, "SMRCSProp2BTalkback", false);
+	SMRCSProp2CTalkback.Register(PSH, "SMRCSProp2CTalkback", false);
+	SMRCSProp2DTalkback.Register(PSH, "SMRCSProp2DTalkback", false);
+
+	SPSInjectorValve1Indicator.Register(PSH, "SPSInjectorValve1Indicator", false);
+	SPSInjectorValve2Indicator.Register(PSH, "SPSInjectorValve2Indicator", false);
+	SPSInjectorValve3Indicator.Register(PSH, "SPSInjectorValve3Indicator", false);
+	SPSInjectorValve4Indicator.Register(PSH, "SPSInjectorValve4Indicator", false);
+
+	SPSOxidFlowValveMaxIndicator.Register(PSH, "SPSOxidFlowValveMaxIndicator", true);
+	SPSOxidFlowValveMinIndicator.Register(PSH, "SPSOxidFlowValveMinIndicator", true);
+
+	SPSOxidFlowValveSwitch.Register(PSH, "SPSOxidFlowValveSwitch", THREEPOSSWITCH_UP);
+	SPSOxidFlowValveSelectorSwitch.Register(PSH, "SPSOxidFlowValveSelectorSwitch", TOGGLESWITCH_UP);
+	SPSPugModeSwitch.Register(PSH, "SPSPugModeSwitch", THREEPOSSWITCH_CENTER);
+
+	SPSHeliumValveAIndicator.Register(PSH, "SPSHeliumValveAIndicator", true);
+	SPSHeliumValveBIndicator.Register(PSH, "SPSHeliumValveBIndicator", true);
+
+	SPSHeliumValveASwitch.Register(PSH, "SPSHeliumValveASwitch", THREEPOSSWITCH_UP);
+	SPSHeliumValveBSwitch.Register(PSH, "SPSHeliumValveBSwitch", THREEPOSSWITCH_UP);
+	SPSLineHTRSSwitch.Register(PSH, "SPSLineHTRSSwitch", THREEPOSSWITCH_CENTER);
+	SPSPressIndSwitch.Register(PSH, "SPSPressIndSwitch", THREEPOSSWITCH_UP);
+
+	CMUplinkSwitch.Register(PSH, "CMUplinkSwitch", TOGGLESWITCH_DOWN);
+
+	if (!SkylabCM)
+		IUUplinkSwitch.Register(PSH, "IUUplinkSwitch", TOGGLESWITCH_DOWN);
+
+	CMRCSPressSwitch.Register(PSH, "CMRCSPressSwitch", 0, 0, SPRINGLOADEDSWITCH_DOWN);
+	SMRCSIndSwitch.Register(PSH, "SMRCSIndSwitch", TOGGLESWITCH_UP);
+
+	RCSQuantityMeter.Register(PSH, "RCSQuantityMeter", 0.0, 1.0, 2);
+	RCSFuelPressMeter.Register(PSH, "RCSFuelPressMeter", 0.0, 400.0, 2);
+	RCSHeliumPressMeter.Register(PSH, "RCSHeliumPressMeter", 0.0, 5000.0, 2);
+	RCSTempMeter.Register(PSH, "RCSTempMeter", 0.0, 300.0, 2);
+
+	SMRCSHeaterASwitch.Register(PSH, "SMRCSHeaterASwitch", THREEPOSSWITCH_CENTER);
+	SMRCSHeaterBSwitch.Register(PSH, "SMRCSHeaterBSwitch", THREEPOSSWITCH_CENTER);
+	SMRCSHeaterCSwitch.Register(PSH, "SMRCSHeaterCSwitch", THREEPOSSWITCH_CENTER);
+	SMRCSHeaterDSwitch.Register(PSH, "SMRCSHeaterDSwitch", THREEPOSSWITCH_CENTER);
+
+	RCSCMDSwitch.Register(PSH, "RCSCMDSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	RCSCMDSwitch.SetDelayTime(1);
+	RCSTrnfrSwitch.Register(PSH, "RCSTrnfrSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	RCSTrnfrSwitch.SetDelayTime(1);
+
+	CMRCSProp1Switch.Register(PSH, "CMRCSProp1Switch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	CMRCSProp1Switch.SetCallback(new PanelSwitchCallback<CMRCSPropellantSource>(&CMRCS1, &CMRCSPropellantSource::PropellantSwitchToggled));
+	CMRCSProp2Switch.Register(PSH, "CMRCSProp2Switch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	CMRCSProp2Switch.SetCallback(new PanelSwitchCallback<CMRCSPropellantSource>(&CMRCS2, &CMRCSPropellantSource::PropellantSwitchToggled));
+
+	CMRCSProp1Talkback.Register(PSH, "CMRCSProp1Talkback", false);
+	CMRCSProp2Talkback.Register(PSH, "CMRCSProp2Talkback", false);
+
+	ManualAttRollSwitch.Register(PSH, "ManualAttRollSwitch", THREEPOSSWITCH_CENTER);
+	ManualAttPitchSwitch.Register(PSH, "ManualAttPitchSwitch", THREEPOSSWITCH_UP);
+	ManualAttYawSwitch.Register(PSH, "ManualAttYawSwitch", THREEPOSSWITCH_CENTER);
+
+	LimitCycleSwitch.Register(PSH, "LimitCycleSwitch", 0);
+	AttDeadbandSwitch.Register(PSH, "AttDeadbandSwitch", 0);
+	AttRateSwitch.Register(PSH, "AttRateSwitch", TOGGLESWITCH_UP);
+	TransContrSwitch.Register(PSH, "TransContrSwitch", 0);
+
+	BMAGRollSwitch.Register(PSH, "BMAGRollSwitch", THREEPOSSWITCH_UP);
+	BMAGPitchSwitch.Register(PSH, "BMAGPitchSwitch", THREEPOSSWITCH_UP);
+	BMAGYawSwitch.Register(PSH, "BMAGYawSwitch", THREEPOSSWITCH_UP);
+
+	EMSModeSwitch.Register(PSH, "EMSModeSwitch", THREEPOSSWITCH_CENTER);
+	CMCAttSwitch.Register(PSH, "CMCAttSwitch", 1);
+
+	FDAIScaleSwitch.Register(PSH, "FDAIScaleSwitch", THREEPOSSWITCH_UP);
+	FDAISelectSwitch.Register(PSH, "FDAISelectSwitch", THREEPOSSWITCH_UP);
+	FDAISourceSwitch.Register(PSH, "FDAISourceSwitch", THREEPOSSWITCH_UP);
+	FDAIAttSetSwitch.Register(PSH, "FDAIAttSetSwitch", false);
+
+	IMUGuardedCageSwitch.Register(PSH, "IMUGuardedCageSwitch", 0, 0);
+
+	RCSIndicatorsSwitch.AddPosition(0, 280);
+	RCSIndicatorsSwitch.AddPosition(1, 320);
+	RCSIndicatorsSwitch.AddPosition(2, 340);
+	RCSIndicatorsSwitch.AddPosition(3, 20);
+	RCSIndicatorsSwitch.AddPosition(4, 40);
+	RCSIndicatorsSwitch.AddPosition(5, 70);
+	RCSIndicatorsSwitch.Register(PSH, "RCSIndicatorsSwitch", 1);
+
+	LVGuidanceSwitch.Register(PSH, "LVGuidanceSwitch", TOGGLESWITCH_UP, false);
+	LVGuidanceSwitch.SetGuardResetsState(false);
+
+	if (!SkylabCM) {
+		SIISIVBSepSwitch.Register(PSH, "SIISIVBSepSwitch", false, false);
+		TLIEnableSwitch.Register(PSH, "TLIEnableSwitch", true);
+	}
+
+	ECSIndicatorsSwitch.AddPosition(0, 340);
+	ECSIndicatorsSwitch.AddPosition(1, 20);
+	ECSIndicatorsSwitch.Register(PSH, "ECSIndicatorsSwitch", 0);
+
+	CGSwitch.Register(PSH, "CGSwitch", 1);
+	ELSLogicSwitch.Register(PSH, "ELSLogicSwitch", 0, 0);
+	ELSAutoSwitch.Register(PSH, "ELSAutoSwitch", 1);
+	CMRCSLogicSwitch.Register(PSH, "CMRCSLogicSwitch", 0);
+	CMPropDumpSwitch.Register(PSH, "CMPropDumpSwitch", 0, 0);
+	CMPropPurgeSwitch.Register(PSH, "CMPropPurgeSwitch", 0, 0);
+
+	// FCSMSPSASwitch.Register(PSH, "FCSMSPSASwitch", 0);
+	// FCSMSPSBSwitch.Register(PSH, "FCSMSPSBSwitch", 0);
+	EventTimerUpDownSwitch.Register(PSH, "EventTimerUpDownSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	EventTimerContSwitch.Register(PSH, "EventTimerControlSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	EventTimerMinutesSwitch.Register(PSH, "EventTimerMinutesSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	EventTimerSecondsSwitch.Register(PSH, "EventTimerSecondsSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	SaturnEventTimerDisplay.Register(PSH, "SaturnEventTimerDisplay", 0, 0, 0);	// dummy switch/display for checklist controller
+
+	MainReleaseSwitch.Register(PSH, "MainReleaseSwitch", 0, 0, SPRINGLOADEDSWITCH_DOWN);
+
+	PropDumpAutoSwitch.Register(PSH, "PropDumpAutoSwitch", 1);
+	TwoEngineOutAutoSwitch.Register(PSH, "TwoEngineOutAutoSwitch", 1);
+	LVRateAutoSwitch.Register(PSH, "LVRateAutoSwitch", 1);
+	TowerJett1Switch.Register(PSH, "TowerJett1Switch", THREEPOSSWITCH_DOWN, false, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	TowerJett1Switch.SetGuardResetsState(false);
+	TowerJett1Switch.SetDelayTime(2);
+	TowerJett2Switch.Register(PSH, "TowerJett2Switch", THREEPOSSWITCH_DOWN, false, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	TowerJett2Switch.SetGuardResetsState(false);
+	TowerJett2Switch.SetDelayTime(2);
+
+	CmSmSep1Switch.Register(PSH, "CmSmSep1Switch", 0, 0, SPRINGLOADEDSWITCH_DOWN);
+	CmSmSep1Switch.SetDelayTime(1);
+	CmSmSep2Switch.Register(PSH, "CmSmSep2Switch", 0, 0, SPRINGLOADEDSWITCH_DOWN);
+	CmSmSep2Switch.SetDelayTime(1);
+
+	EDSSwitch.Register(PSH, "EDSSwitch", 0, SPRINGLOADEDSWITCH_NONE, "EDS Auto switch");
+	CsmLmFinalSep1Switch.Register(PSH, "CsmLmFinalSep1Switch", THREEPOSSWITCH_DOWN, false, SPRINGLOADEDSWITCH_DOWN);
+	CsmLmFinalSep2Switch.Register(PSH, "CsmLmFinalSep2Switch", THREEPOSSWITCH_DOWN, false, SPRINGLOADEDSWITCH_DOWN);
+
+	RotPowerNormal1Switch.Register(PSH, "RotPowerNormal1Switch", THREEPOSSWITCH_CENTER);
+	RotPowerNormal2Switch.Register(PSH, "RotPowerNormal2Switch", THREEPOSSWITCH_CENTER);
+	RotPowerDirect1Switch.Register(PSH, "RotPowerDirect1Switch", THREEPOSSWITCH_CENTER);
+	RotPowerDirect2Switch.Register(PSH, "RotPowerDirect2Switch", THREEPOSSWITCH_CENTER);
+
+	dVThrust1Switch.Register(PSH, "dVThrust1Switch", 0, 0);
+	dVThrust2Switch.Register(PSH, "dVThrust2Switch", 0, 0);
+
+	SPSswitch.Register(PSH, "SPSswitch", false);
+
+	SPSGimbalPitchThumbwheel.Register(PSH, "SPSGimbalPitchThumbwheel", 8, 16, false, 5);
+	SPSGimbalYawThumbwheel.Register(PSH, "SPSGimbalYawThumbwheel", 8, 16, true, 5);
+
+	SPSOxidPercentMeter.Register(PSH, "SPSOxidPercentMeter", 0, 0.999, 1, 0.999);
+	SPSFuelPercentMeter.Register(PSH, "SPSFuelPercentMeter", 0, 0.999, 1, 0.999);
+	SPSOxidUnbalMeter.Register(PSH, "SPSOxidUnbalMeter", -600, 600, 10);
+
+	SPSTempMeter.Register(PSH, "SPSTempMeter", 0, 200, 2);
+	SPSHeliumNitrogenPressMeter.Register(PSH, "SPSHeliumNitrogenPressMeter", 0, 5000, 2);
+	SPSFuelPressMeter.Register(PSH, "SPSFuelPressMeter", 0, 250, 2);
+	SPSOxidPressMeter.Register(PSH, "SPSOxidPressMeter", 0, 250, 2);
+
+	LVSPSPcMeter.Register(PSH, "LVSPSPcMeter", 0, 150, 2);
+
+	GPFPIPitch1Meter.Register(PSH, "GPFPIPitch1Meter", 0, 92, 2);
+	GPFPIPitch2Meter.Register(PSH, "GPFPIPitch2Meter", 0, 92, 2);
+	GPFPIYaw1Meter.Register(PSH, "GPFPIYaw1Meter", 0, 92, 2);
+	GPFPIYaw2Meter.Register(PSH, "GPFPIYaw2Meter", 0, 92, 2);
+
+	DirectUllageButton.Register(PSH, "DirectUllageButton", false);
+	ThrustOnButton.Register(PSH, "ThrustOnButton", false);
+
+	H2Pressure1Meter.Register(PSH, "H2Pressure1Meter", 0, 400, 10);
+	H2Pressure2Meter.Register(PSH, "H2Pressure2Meter", 0, 400, 10);
+	O2Pressure1Meter.Register(PSH, "O2Pressure1Meter", 100, 1050, 10);
+	O2Pressure2Meter.Register(PSH, "O2Pressure2Meter", 100, 1050, 10);
+	H2Quantity1Meter.Register(PSH, "H2Quantity1Meter", 0, 1, 10);
+	H2Quantity2Meter.Register(PSH, "H2Quantity2Meter", 0, 1, 10);
+	O2Quantity1Meter.Register(PSH, "O2Quantity1Meter", 0, 1, 10);
+	O2Quantity2Meter.Register(PSH, "O2Quantity2Meter", 0, 1, 10);
+
+	CSMACVoltMeter.Register(PSH, "ACVoltMeter", 85, 145, 3);
+	CSMDCVoltMeter.Register(PSH, "DCVoltMeter", 17.5, 47.5, 3);
+	SystemTestVoltMeter.Register(PSH, "SystemTestMeter", 0.0, 5.0, 3);
+	DCAmpMeter.Register(PSH, "DCAmpMeter", 0, 100, 3);
+
+	FuelCellH2FlowMeter.Register(PSH, "FuelCellH2FlowMeter", 0, 0.2, 2);
+	FuelCellO2FlowMeter.Register(PSH, "FuelCellO2FlowMeter", 0, 1.6, 2);
+	FuelCellTempMeter.Register(PSH, "FuelCellTempMeter", 100, 550, 2);
+	FuelCellCondenserTempMeter.Register(PSH, "FuelCellCondenserTempMeter", 150, 250, 2);
+
+	SuitTempMeter.Register(PSH, "SuitTempMeter", 20, 95, 2);
+	CabinTempMeter.Register(PSH, "CabinTempMeter", 40, 120, 2);
+	SuitPressMeter.Register(PSH, "SuitPressMeter", 0, 16, 2);
+	CabinPressMeter.Register(PSH, "CabinPressMeter", 0, 16, 2);
+	PartPressCO2Meter.Register(PSH, "PartPressCO2Meter", 0, 30, 2);
+
+	SuitComprDeltaPMeter.Register(PSH, "SuitComprDeltaPMeter", -0.1, 1.1, 5);
+	LeftO2FlowMeter.Register(PSH, "LeftO2FlowMeter", 0.1, 1.1, 5);
+
+	SuitCabinDeltaPMeter.Register(PSH, "SuitCabinDeltaPMeter", -6, 6, 5);
+	RightO2FlowMeter.Register(PSH, "RightO2FlowMeter", 0.1, 1.1, 5);
+
+	EcsRadTempInletMeter.Register(PSH, "EcsRadTempInletMeter", 50, 130, 5);
+	EcsRadTempPrimOutletMeter.Register(PSH, "EcsRadTempPrimOutletMeter", -60, 110, 5, 50);
+
+	EcsRadTempSecOutletMeter.Register(PSH, "EcsRadTempSecOutletMeter", 26, 74, 5);
+	GlyEvapTempOutletMeter.Register(PSH, "GlyEvapTempOutletMeter", 26, 74, 5);
+
+	GlyEvapSteamPressMeter.Register(PSH, "GlyEvapSteamPressMeter", 0.03, 0.27, 5);
+	GlycolDischPressMeter.Register(PSH, "GlycolDischPressMeter", -6, 66, 5);
+
+	AccumQuantityMeter.Register(PSH, "AccumQuantityMeter", 0, 1, 5);
+	H2oQuantityMeter.Register(PSH, "H2oQuantityMeter", 0, 1, 3);
+
+	EcsRadiatorIndicator.Register(PSH, "EcsRadiatorIndicator", true);
+
+	EcsRadiatorsFlowContAutoSwitch.Register(PSH, "EcsRadiatorsFlowContAutoSwitch", THREEPOSSWITCH_UP);
+	EcsRadiatorsFlowContPwrSwitch.Register(PSH, "EcsRadiatorsFlowContPwrSwitch", THREEPOSSWITCH_CENTER);
+	EcsRadiatorsManSelSwitch.Register(PSH, "EcsRadiatorsManSelSwitch", THREEPOSSWITCH_UP);
+	EcsRadiatorsHeaterPrimSwitch.Register(PSH, "EcsRadiatorsHeaterPrimSwitch", THREEPOSSWITCH_CENTER);
+	EcsRadiatorsHeaterSecSwitch.Register(PSH, "EcsRadiatorsHeaterSecSwitch", false);
+
+	PotH2oHtrSwitch.Register(PSH, "PotH2oHtrSwitch", THREEPOSSWITCH_CENTER);
+	SuitCircuitH2oAccumAutoSwitch.Register(PSH, "SuitCircuitH2oAccumAutoSwitch", THREEPOSSWITCH_CENTER);
+	SuitCircuitH2oAccumAutoSwitch.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
+		&SaturnGlycolCoolingController::H2oAccumSwitchesToggled));
+	SuitCircuitH2oAccumOnSwitch.Register(PSH, "SuitCircuitH2oAccumOnSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	SuitCircuitH2oAccumOnSwitch.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
+		&SaturnGlycolCoolingController::H2oAccumSwitchesToggled));
+	SuitCircuitHeatExchSwitch.Register(PSH, "SuitCircuitHeatExchSwitch", THREEPOSSWITCH_CENTER);
+	SecCoolantLoopEvapSwitch.Register(PSH, "SecCoolantLoopEvapSwitch", THREEPOSSWITCH_CENTER);
+	SecCoolantLoopEvapSwitch.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
+		&SaturnGlycolCoolingController::SecEvapSwitchesToggled));
+	SecCoolantLoopPumpSwitch.Register(PSH, "SecCoolantLoopPumpSwitch", THREEPOSSWITCH_CENTER);
+	H2oQtyIndSwitch.Register(PSH, "H2oQtyIndSwitch", TOGGLESWITCH_UP);
+	GlycolEvapTempInSwitch.Register(PSH, "GlycolEvapTempInSwitch", false);
+	GlycolEvapTempInSwitch.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
+		&SaturnGlycolCoolingController::GlycolEvapTempInSwitchToggled));
+	GlycolEvapSteamPressAutoManSwitch.Register(PSH, "GlycolEvapSteamPressAutoManSwitch", false);
+	GlycolEvapSteamPressAutoManSwitch.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
+		&SaturnGlycolCoolingController::PrimEvapSwitchesToggled));
+	GlycolEvapSteamPressIncrDecrSwitch.Register(PSH, "GlycolEvapSteamPressIncrDecrSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	GlycolEvapH2oFlowSwitch.Register(PSH, "GlycolEvapH2oFlowSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER_SPRINGDOWN);
+	GlycolEvapH2oFlowSwitch.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
+		&SaturnGlycolCoolingController::PrimEvapSwitchesToggled));
+	CabinTempAutoManSwitch.Register(PSH, "CabinTempAutoManSwitch", false);
+	CabinTempAutoManSwitch.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
+		&SaturnGlycolCoolingController::CabinTempSwitchToggled));
+
+	CabinTempAutoControlSwitch.Register(PSH, "CabinTempAutoControlSwitch", 0, 9);
+	CabinTempAutoControlSwitch.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
+		&SaturnGlycolCoolingController::CabinTempSwitchToggled));
+
+	SquelchAThumbwheel.Register(PSH, "SquelchAThumbwheel", 2, 9);
+	SquelchBThumbwheel.Register(PSH, "SquelchBThumbwheel", 2, 9);
+
+	SPSTestSwitch.Register(PSH, "SPSTestSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+
+	EcsGlycolPumpsSwitch.AddPosition(0, 240);
+	EcsGlycolPumpsSwitch.AddPosition(1, 270);
+	EcsGlycolPumpsSwitch.AddPosition(2, 300);
+	EcsGlycolPumpsSwitch.AddPosition(3, 330);
+	EcsGlycolPumpsSwitch.AddPosition(4, 0);
+	EcsGlycolPumpsSwitch.Register(PSH, "EcsGlycolPumpsSwitch", 2);
+
+	RightIntegralRotarySwitch.AddPosition(0, 210);
+	RightIntegralRotarySwitch.AddPosition(1, 240);
+	RightIntegralRotarySwitch.AddPosition(2, 270);
+	RightIntegralRotarySwitch.AddPosition(3, 300);
+	RightIntegralRotarySwitch.AddPosition(4, 330);
+	RightIntegralRotarySwitch.AddPosition(5, 0);
+	RightIntegralRotarySwitch.AddPosition(6, 30);
+	RightIntegralRotarySwitch.AddPosition(7, 60);
+	RightIntegralRotarySwitch.AddPosition(8, 90);
+	RightIntegralRotarySwitch.AddPosition(9, 120);
+	RightIntegralRotarySwitch.AddPosition(10, 150);
+	RightIntegralRotarySwitch.Register(PSH, "RightIntegralRotarySwitch", 0);
+
+	RightFloodRotarySwitch.AddPosition(0, 210);
+	RightFloodRotarySwitch.AddPosition(1, 240);
+	RightFloodRotarySwitch.AddPosition(2, 270);
+	RightFloodRotarySwitch.AddPosition(3, 300);
+	RightFloodRotarySwitch.AddPosition(4, 330);
+	RightFloodRotarySwitch.AddPosition(5, 0);
+	RightFloodRotarySwitch.AddPosition(6, 30);
+	RightFloodRotarySwitch.AddPosition(7, 60);
+	RightFloodRotarySwitch.AddPosition(8, 90);
+	RightFloodRotarySwitch.AddPosition(9, 120);
+	RightFloodRotarySwitch.AddPosition(10, 150);
+	RightFloodRotarySwitch.Register(PSH, "RightFloodRotarySwitch", 0);
+
+	HighGainAntennaPitchPositionSwitch.AddPosition(0, 0);
+	HighGainAntennaPitchPositionSwitch.AddPosition(1, 15);
+	HighGainAntennaPitchPositionSwitch.AddPosition(2, 30);
+	HighGainAntennaPitchPositionSwitch.AddPosition(3, 45);
+	HighGainAntennaPitchPositionSwitch.AddPosition(4, 60);
+	HighGainAntennaPitchPositionSwitch.AddPosition(5, 75);
+	HighGainAntennaPitchPositionSwitch.AddPosition(6, 90);
+	HighGainAntennaPitchPositionSwitch.AddPosition(7, 105);
+	HighGainAntennaPitchPositionSwitch.AddPosition(8, 120);
+	HighGainAntennaPitchPositionSwitch.AddPosition(9, 135);
+	HighGainAntennaPitchPositionSwitch.AddPosition(10, 150);
+	HighGainAntennaPitchPositionSwitch.AddPosition(11, 165);
+	HighGainAntennaPitchPositionSwitch.AddPosition(12, 180);
+	HighGainAntennaPitchPositionSwitch.Register(PSH, "HighGainAntennaPitchPositionSwitch", 3);
+
+	HighGainAntennaYawPositionSwitch.AddPosition(0, 0);
+	HighGainAntennaYawPositionSwitch.AddPosition(1, 15);
+	HighGainAntennaYawPositionSwitch.AddPosition(2, 30);
+	HighGainAntennaYawPositionSwitch.AddPosition(3, 45);
+	HighGainAntennaYawPositionSwitch.AddPosition(4, 60);
+	HighGainAntennaYawPositionSwitch.AddPosition(5, 75);
+	HighGainAntennaYawPositionSwitch.AddPosition(6, 90);
+	HighGainAntennaYawPositionSwitch.AddPosition(7, 105);
+	HighGainAntennaYawPositionSwitch.AddPosition(8, 120);
+	HighGainAntennaYawPositionSwitch.AddPosition(9, 135);
+	HighGainAntennaYawPositionSwitch.AddPosition(10, 150);
+	HighGainAntennaYawPositionSwitch.AddPosition(11, 165);
+	HighGainAntennaYawPositionSwitch.AddPosition(12, 180);
+	HighGainAntennaYawPositionSwitch.AddPosition(13, 195);
+	HighGainAntennaYawPositionSwitch.AddPosition(14, 210);
+	HighGainAntennaYawPositionSwitch.AddPosition(15, 225);
+	HighGainAntennaYawPositionSwitch.AddPosition(16, 240);
+	HighGainAntennaYawPositionSwitch.AddPosition(17, 255);
+	HighGainAntennaYawPositionSwitch.AddPosition(18, 270);
+	HighGainAntennaYawPositionSwitch.AddPosition(19, 285);
+	HighGainAntennaYawPositionSwitch.AddPosition(20, 300);
+	HighGainAntennaYawPositionSwitch.AddPosition(21, 315);
+	HighGainAntennaYawPositionSwitch.AddPosition(22, 330);
+	HighGainAntennaYawPositionSwitch.AddPosition(23, 345);
+	HighGainAntennaYawPositionSwitch.Register(PSH, "HighGainAntennaYawPositionSwitch", 6);
+	HighGainAntennaYawPositionSwitch.SetWraparound(true);
+
+	HighGainAntennaPitchMeter.Register(PSH, "HighGainAntennaPitchMeter", -90, 90, 5, 90);
+	HighGainAntennaStrengthMeter.Register(PSH, "HighGainAntennaStrengthMeter", 0, 100, 5);
+	HighGainAntennaYawMeter.Register(PSH, "HighGainAntennaYawMeter", 0, 360, 5, 0);
+
+	EMSFunctionSwitch.AddPosition(0, 180);
+	EMSFunctionSwitch.AddPosition(1, 210);
+	EMSFunctionSwitch.AddPosition(2, 240);
+	EMSFunctionSwitch.AddPosition(3, 270);
+	EMSFunctionSwitch.AddPosition(4, 300);
+	EMSFunctionSwitch.AddPosition(5, 330);
+	EMSFunctionSwitch.AddPosition(6, 0);
+	EMSFunctionSwitch.AddPosition(7, 30);
+	EMSFunctionSwitch.AddPosition(8, 60);
+	EMSFunctionSwitch.AddPosition(9, 90);
+	EMSFunctionSwitch.AddPosition(10, 120);
+	EMSFunctionSwitch.AddPosition(11, 150);
+	EMSFunctionSwitch.Register(PSH, "EMSFunctionSwitch", 0);
+	EMSFunctionSwitch.SetWraparound(true);
+
+	EMSDvDisplay.Register(PSH, "EMSDvDisplay", -1000, 14000, 1, 0);
+	EMSScrollDisplay.Register(PSH, "EMSScrollDisplay", 0, 0, 0, 0);	// dummy switch/display for checklist controller
+
+	VHFAntennaRotarySwitch.AddPosition(0, 300);
+	VHFAntennaRotarySwitch.AddPosition(1, 0);
+	VHFAntennaRotarySwitch.AddPosition(2, 60);
+	VHFAntennaRotarySwitch.Register(PSH, "VHFAntennaRotarySwitch", 1);
+
+	DCIndicatorsRotary.AddPosition(0, 210);
+	DCIndicatorsRotary.AddPosition(1, 240);
+	DCIndicatorsRotary.AddPosition(2, 270);
+	DCIndicatorsRotary.AddPosition(3, 300);
+	DCIndicatorsRotary.AddPosition(4, 330);
+	DCIndicatorsRotary.AddPosition(5, 0);
+	DCIndicatorsRotary.AddPosition(6, 30);
+	DCIndicatorsRotary.AddPosition(7, 60);
+	DCIndicatorsRotary.AddPosition(8, 90);
+	DCIndicatorsRotary.AddPosition(9, 120);
+	DCIndicatorsRotary.AddPosition(10, 150);
+	DCIndicatorsRotary.Register(PSH, "DCIndicatorsRotary", 3);
+
+	DCIndicatorsRotary.SetSource(0, FuelCells[0]);
+	DCIndicatorsRotary.SetSource(1, FuelCells[1]);
+	DCIndicatorsRotary.SetSource(2, FuelCells[2]);
+	DCIndicatorsRotary.SetSource(3, MainBusA);
+	DCIndicatorsRotary.SetSource(4, MainBusB);
+	DCIndicatorsRotary.SetSource(5, &BatteryBusA);
+	DCIndicatorsRotary.SetSource(6, &BatteryBusB);
+	DCIndicatorsRotary.SetSource(7, &BatteryCharger);
+	DCIndicatorsRotary.SetSource(8, EntryBatteryC);
+	DCIndicatorsRotary.SetSource(9, &PyroBusAFeeder);
+	DCIndicatorsRotary.SetSource(10, &PyroBusBFeeder);
+
+	ACIndicatorRotary.AddPosition(0, 290);
+	ACIndicatorRotary.AddPosition(1, 315);
+	ACIndicatorRotary.AddPosition(2, 340);
+	ACIndicatorRotary.AddPosition(3, 20);
+	ACIndicatorRotary.AddPosition(4, 45);
+	ACIndicatorRotary.AddPosition(5, 70);
+	ACIndicatorRotary.Register(PSH, "ACIndicatorRotary", 5);
+
+	ACIndicatorRotary.SetSource(0, &ACBus1PhaseA);
+	ACIndicatorRotary.SetSource(1, &ACBus1PhaseB);
+	ACIndicatorRotary.SetSource(2, &ACBus1PhaseC);
+	ACIndicatorRotary.SetSource(3, &ACBus2PhaseA);
+	ACIndicatorRotary.SetSource(4, &ACBus2PhaseB);
+	ACIndicatorRotary.SetSource(5, &ACBus2PhaseC);
+
+	BatteryChargeRotary.AddPosition(0, 300);
+	BatteryChargeRotary.AddPosition(1, 330);
+	BatteryChargeRotary.AddPosition(2, 0);
+	BatteryChargeRotary.AddPosition(3, 30);
+	BatteryChargeRotary.Register(PSH, "BatteryChargeRotary", 0);
+
+	DockingProbeExtdRelSwitch.Register(PSH, "DockingProbeExtdRelSwitch", THREEPOSSWITCH_CENTER, false, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	DockingProbeExtdRelSwitch.SetDelayTime(5);
+	DockingProbeExtdRelSwitch.SetGuardResetsState(false);
+	DockingProbeRetractPrimSwitch.Register(PSH, "DockingProbeRetractPrimSwitch", THREEPOSSWITCH_CENTER);
+	DockingProbeRetractSecSwitch.Register(PSH, "DockingProbeRetractSecSwitch", THREEPOSSWITCH_CENTER);
+	DockingProbeAIndicator.Register(PSH, "DockingProbeAIndicator", false);
+	DockingProbeBIndicator.Register(PSH, "DockingProbeBIndicator", false);
+
+	NumericRotarySwitch.AddPosition(0, 210);
+	NumericRotarySwitch.AddPosition(1, 240);
+	NumericRotarySwitch.AddPosition(2, 270);
+	NumericRotarySwitch.AddPosition(3, 300);
+	NumericRotarySwitch.AddPosition(4, 330);
+	NumericRotarySwitch.AddPosition(5, 0);
+	NumericRotarySwitch.AddPosition(6, 30);
+	NumericRotarySwitch.AddPosition(7, 60);
+	NumericRotarySwitch.AddPosition(8, 90);
+	NumericRotarySwitch.AddPosition(9, 120);
+	NumericRotarySwitch.AddPosition(10, 150);
+	NumericRotarySwitch.Register(PSH, "NumericRotarySwitch", 4);
+
+	FloodRotarySwitch.AddPosition(0, 210);
+	FloodRotarySwitch.AddPosition(1, 240);
+	FloodRotarySwitch.AddPosition(2, 270);
+	FloodRotarySwitch.AddPosition(3, 300);
+	FloodRotarySwitch.AddPosition(4, 330);
+	FloodRotarySwitch.AddPosition(5, 0);
+	FloodRotarySwitch.AddPosition(6, 30);
+	FloodRotarySwitch.AddPosition(7, 60);
+	FloodRotarySwitch.AddPosition(8, 90);
+	FloodRotarySwitch.AddPosition(9, 120);
+	FloodRotarySwitch.AddPosition(10, 150);
+	FloodRotarySwitch.Register(PSH, "FloodRotarySwitch", 4);
+
+	IntegralRotarySwitch.AddPosition(0, 210);
+	IntegralRotarySwitch.AddPosition(1, 240);
+	IntegralRotarySwitch.AddPosition(2, 270);
+	IntegralRotarySwitch.AddPosition(3, 300);
+	IntegralRotarySwitch.AddPosition(4, 330);
+	IntegralRotarySwitch.AddPosition(5, 0);
+	IntegralRotarySwitch.AddPosition(6, 30);
+	IntegralRotarySwitch.AddPosition(7, 60);
+	IntegralRotarySwitch.AddPosition(8, 90);
+	IntegralRotarySwitch.AddPosition(9, 120);
+	IntegralRotarySwitch.AddPosition(10, 150);
+	IntegralRotarySwitch.Register(PSH, "IntegralRotarySwitch", 4);
+
+	FDAIPowerRotarySwitch.AddPosition(0, 0);
+	FDAIPowerRotarySwitch.AddPosition(1, 30);
+	FDAIPowerRotarySwitch.AddPosition(2, 60);
+	FDAIPowerRotarySwitch.AddPosition(3, 90);
+	FDAIPowerRotarySwitch.Register(PSH, "FDAIPowerRotarySwitch", 0);
+
+	SCSElectronicsPowerRotarySwitch.AddPosition(0, 30);
+	SCSElectronicsPowerRotarySwitch.AddPosition(1, 60);
+	SCSElectronicsPowerRotarySwitch.AddPosition(2, 90);
+	SCSElectronicsPowerRotarySwitch.Register(PSH, "SCSElectronicsPowerRotarySwitch", 0);
+
+	BMAGPowerRotary1Switch.AddPosition(0, 30);
+	BMAGPowerRotary1Switch.AddPosition(1, 60);
+	BMAGPowerRotary1Switch.AddPosition(2, 90);
+	BMAGPowerRotary1Switch.Register(PSH, "BMAGPowerRotary1Switch", 1);
+
+	BMAGPowerRotary2Switch.AddPosition(0, 30);
+	BMAGPowerRotary2Switch.AddPosition(1, 60);
+	BMAGPowerRotary2Switch.AddPosition(2, 90);
+	BMAGPowerRotary2Switch.Register(PSH, "BMAGPowerRotary2Switch", 1);
+
+	DirectO2RotarySwitch.AddPosition(0, 330);
+	DirectO2RotarySwitch.AddPosition(1, 0);
+	DirectO2RotarySwitch.AddPosition(2, 30);
+	DirectO2RotarySwitch.AddPosition(3, 60);
+	DirectO2RotarySwitch.AddPosition(4, 90);
+	DirectO2RotarySwitch.AddPosition(5, 120);
+	DirectO2RotarySwitch.AddPosition(6, 150);
+	DirectO2RotarySwitch.Register(PSH, "DirectO2RotarySwitch", 6);
+
+	GlycolReservoirInletRotary.AddPosition(0, 90);
+	GlycolReservoirInletRotary.AddPosition(1, 180);
+	GlycolReservoirInletRotary.Register(PSH, "GlycolReservoirInletRotary", 0);
+
+	GlycolReservoirBypassRotary.AddPosition(0, 90);
+	GlycolReservoirBypassRotary.AddPosition(1, 180);
+	GlycolReservoirBypassRotary.Register(PSH, "GlycolReservoirBypassRotary", 1);
+
+	GlycolReservoirOutletRotary.AddPosition(0, 90);
+	GlycolReservoirOutletRotary.AddPosition(1, 180);
+	GlycolReservoirOutletRotary.Register(PSH, "GlycolReservoirOutletRotary", 0);
+
+	OxygenSurgeTankRotary.AddPosition(0, 0);
+	OxygenSurgeTankRotary.AddPosition(1, 90);
+	OxygenSurgeTankRotary.Register(PSH, "OxygenSurgeTankRotary", 1);
+
+	OxygenSMSupplyRotary.AddPosition(0, 0);
+	OxygenSMSupplyRotary.AddPosition(1, 90);
+	OxygenSMSupplyRotary.Register(PSH, "OxygenSMSupplyRotary", 1);
+
+	OxygenRepressPackageRotary.AddPosition(0, 330);
+	OxygenRepressPackageRotary.AddPosition(1, 60);
+	OxygenRepressPackageRotary.AddPosition(2, 120);
+	OxygenRepressPackageRotary.Register(PSH, "OxygenRepressPackageRotary", 1);
+
+	ORDEALAltSetRotary.AddPosition(0, 240);
+	ORDEALAltSetRotary.AddPosition(1, 270);
+	ORDEALAltSetRotary.AddPosition(2, 330);
+	ORDEALAltSetRotary.AddPosition(3, 0);
+	ORDEALAltSetRotary.AddPosition(4, 60);
+	ORDEALAltSetRotary.AddPosition(5, 90);
+	ORDEALAltSetRotary.AddPosition(6, 150);
+	ORDEALAltSetRotary.Register(PSH, "ORDEALAltSetRotary", 2);
+
+	LeftSystemTestRotarySwitch.AddPosition(0, 240);
+	LeftSystemTestRotarySwitch.AddPosition(1, 270);
+	LeftSystemTestRotarySwitch.AddPosition(2, 300);
+	LeftSystemTestRotarySwitch.AddPosition(3, 330);
+	LeftSystemTestRotarySwitch.AddPosition(4, 0);
+	LeftSystemTestRotarySwitch.AddPosition(5, 30);
+	LeftSystemTestRotarySwitch.AddPosition(6, 60);
+	LeftSystemTestRotarySwitch.AddPosition(7, 90);
+	LeftSystemTestRotarySwitch.AddPosition(8, 120);
+	LeftSystemTestRotarySwitch.Register(PSH, "LeftSystemTestRotarySwitch", 4);
+
+	RightSystemTestRotarySwitch.AddPosition(0, 315);
+	RightSystemTestRotarySwitch.AddPosition(1, 340);
+	RightSystemTestRotarySwitch.AddPosition(2, 20);
+	RightSystemTestRotarySwitch.AddPosition(3, 45);
+	RightSystemTestRotarySwitch.Register(PSH, "RightSystemTestRotarySwitch", 1);
+
+	Panel100NumericRotarySwitch.AddPosition(0, 210);
+	Panel100NumericRotarySwitch.AddPosition(1, 240);
+	Panel100NumericRotarySwitch.AddPosition(2, 270);
+	Panel100NumericRotarySwitch.AddPosition(3, 300);
+	Panel100NumericRotarySwitch.AddPosition(4, 330);
+	Panel100NumericRotarySwitch.AddPosition(5, 0);
+	Panel100NumericRotarySwitch.AddPosition(6, 30);
+	Panel100NumericRotarySwitch.AddPosition(7, 60);
+	Panel100NumericRotarySwitch.AddPosition(8, 90);
+	Panel100NumericRotarySwitch.AddPosition(9, 120);
+	Panel100NumericRotarySwitch.AddPosition(10, 150);
+	Panel100NumericRotarySwitch.Register(PSH, "Panel100NumericRotarySwitch", 4);
+
+	Panel100FloodRotarySwitch.AddPosition(0, 210);
+	Panel100FloodRotarySwitch.AddPosition(1, 240);
+	Panel100FloodRotarySwitch.AddPosition(2, 270);
+	Panel100FloodRotarySwitch.AddPosition(3, 300);
+	Panel100FloodRotarySwitch.AddPosition(4, 330);
+	Panel100FloodRotarySwitch.AddPosition(5, 0);
+	Panel100FloodRotarySwitch.AddPosition(6, 30);
+	Panel100FloodRotarySwitch.AddPosition(7, 60);
+	Panel100FloodRotarySwitch.AddPosition(8, 90);
+	Panel100FloodRotarySwitch.AddPosition(9, 120);
+	Panel100FloodRotarySwitch.AddPosition(10, 150);
+	Panel100FloodRotarySwitch.Register(PSH, "Panel100FloodRotarySwitch", 0);
+
+	Panel100IntegralRotarySwitch.AddPosition(0, 210);
+	Panel100IntegralRotarySwitch.AddPosition(1, 240);
+	Panel100IntegralRotarySwitch.AddPosition(2, 270);
+	Panel100IntegralRotarySwitch.AddPosition(3, 300);
+	Panel100IntegralRotarySwitch.AddPosition(4, 330);
+	Panel100IntegralRotarySwitch.AddPosition(5, 0);
+	Panel100IntegralRotarySwitch.AddPosition(6, 30);
+	Panel100IntegralRotarySwitch.AddPosition(7, 60);
+	Panel100IntegralRotarySwitch.AddPosition(8, 90);
+	Panel100IntegralRotarySwitch.AddPosition(9, 120);
+	Panel100IntegralRotarySwitch.AddPosition(10, 150);
+	Panel100IntegralRotarySwitch.Register(PSH, "Panel100IntegralRotarySwitch", 4);
+
+	OxygenSurgeTankValveRotary.AddPosition(0, 330);
+	OxygenSurgeTankValveRotary.AddPosition(1, 0);
+	OxygenSurgeTankValveRotary.AddPosition(2, 30);
+	OxygenSurgeTankValveRotary.AddPosition(3, 60);
+	OxygenSurgeTankValveRotary.AddPosition(4, 90);
+	OxygenSurgeTankValveRotary.AddPosition(5, 120);
+	OxygenSurgeTankValveRotary.AddPosition(6, 150);
+	OxygenSurgeTankValveRotary.AddPosition(7, 180);
+	OxygenSurgeTankValveRotary.AddPosition(8, 210);
+	OxygenSurgeTankValveRotary.Register(PSH, "OxygenSurgeTankValveRotary", 8);
+
+	GlycolToRadiatorsRotary.AddPosition(0, 0);
+	GlycolToRadiatorsRotary.AddPosition(1, 90);
+	GlycolToRadiatorsRotary.Register(PSH, "GlycolToRadiatorsRotary", 0);
+
+	GlycolRotary.AddPosition(0, 90);
+	GlycolRotary.AddPosition(1, 180);
+	GlycolRotary.Register(PSH, "GlycolRotary", 0);
+
+	AccumRotary.AddPosition(0, 90);
+	AccumRotary.AddPosition(1, 180);
+	AccumRotary.Register(PSH, "AccumRotary", 1);
+
+	PLVCSwitch.Register(PSH, "PLVCSwitch", TOGGLESWITCH_UP);
+	PLVCSwitch.SetSideways(1);
+
+	PressureReliefRotary.AddPosition(0, 0);
+	PressureReliefRotary.AddPosition(1, 90);
+	PressureReliefRotary.AddPosition(2, 180);
+	PressureReliefRotary.AddPosition(3, 270);
+	PressureReliefRotary.Register(PSH, "PressureReliefRotary", 1);
+	PressureReliefRotary.SetWraparound(true);
+
+	WasteTankInletRotary.AddPosition(0, 0);
+	WasteTankInletRotary.AddPosition(1, 90);
+	WasteTankInletRotary.Register(PSH, "WasteTankInletRotary", 0);
+
+	PotableTankInletRotary.AddPosition(0, 0);
+	PotableTankInletRotary.AddPosition(1, 90);
+	PotableTankInletRotary.Register(PSH, "PotableTankInletRotary", 1);
+
+	WasteTankServicingRotary.AddPosition(0, 0);
+	WasteTankServicingRotary.AddPosition(1, 90);
+	WasteTankServicingRotary.Register(PSH, "WasteTankServicingRotary", 1);
+
+	CabinRepressValveRotary.AddPosition(0, 90);
+	CabinRepressValveRotary.AddPosition(1, 120);
+	CabinRepressValveRotary.AddPosition(2, 150);
+	CabinRepressValveRotary.AddPosition(3, 180);
+	CabinRepressValveRotary.AddPosition(4, 210);
+	CabinRepressValveRotary.AddPosition(5, 240);
+	CabinRepressValveRotary.AddPosition(6, 270);
+	CabinRepressValveRotary.Register(PSH, "CabinRepressValveRotary", 0);
+
+	SelectorInletValveRotary.AddPosition(0, 0);
+	SelectorInletValveRotary.AddPosition(1, 90);
+	SelectorInletValveRotary.AddPosition(2, 180);
+	SelectorInletValveRotary.AddPosition(3, 270);
+	SelectorInletValveRotary.Register(PSH, "SelectorInletValveRotary", 3);
+	SelectorInletValveRotary.SetWraparound(true);
+
+	SelectorOutletValveRotary.AddPosition(0, 0);
+	SelectorOutletValveRotary.AddPosition(1, 90);
+	SelectorOutletValveRotary.AddPosition(2, 180);
+	SelectorOutletValveRotary.AddPosition(3, 270);
+	SelectorOutletValveRotary.Register(PSH, "SelectorOutletValveRotary", 3);
+	SelectorOutletValveRotary.SetWraparound(true);
+
+	EmergencyCabinPressureRotary.AddPosition(0, 0);
+	EmergencyCabinPressureRotary.AddPosition(1, 90);
+	EmergencyCabinPressureRotary.AddPosition(2, 180);
+	EmergencyCabinPressureRotary.AddPosition(3, 270);
+	EmergencyCabinPressureRotary.Register(PSH, "EmergencyCabinPressureRotary", 3);
+	EmergencyCabinPressureRotary.SetWraparound(true);
+
+	O2MainRegulatorASwitch.Register(PSH, "O2MainRegulatorASwitch", 0);
+	O2MainRegulatorBSwitch.Register(PSH, "O2MainRegulatorBSwitch", 0);
+
+	EmergencyCabinPressureTestSwitch.Register(PSH, "EmergencyCabinPressureTestSwitch", 0);
+
+	EvapWaterControlPrimaryRotary.AddPosition(0, 0);
+	EvapWaterControlPrimaryRotary.AddPosition(1, 90);
+	EvapWaterControlPrimaryRotary.Register(PSH, "EvapWaterControlPrimaryRotary", 1);
+	EvapWaterControlPrimaryRotary.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
+		&SaturnGlycolCoolingController::PrimEvapSwitchesToggled));
+	EvapWaterControlSecondaryRotary.AddPosition(0, 0);
+	EvapWaterControlSecondaryRotary.AddPosition(1, 90);
+	EvapWaterControlSecondaryRotary.Register(PSH, "EvapWaterControlSecondaryRotary", 1);
+	EvapWaterControlSecondaryRotary.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
+		&SaturnGlycolCoolingController::SecEvapSwitchesToggled));
+
+	WaterAccumulator1Rotary.AddPosition(0, 200);
+	WaterAccumulator1Rotary.AddPosition(1, 240);
+	WaterAccumulator1Rotary.AddPosition(2, 290);
+	WaterAccumulator1Rotary.Register(PSH, "WaterAccumulator1Rotary", 0);
+	WaterAccumulator1Rotary.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
+		&SaturnGlycolCoolingController::H2oAccumSwitchesToggled));
+
+	WaterAccumulator2Rotary.AddPosition(0, 200);
+	WaterAccumulator2Rotary.AddPosition(1, 240);
+	WaterAccumulator2Rotary.AddPosition(2, 290);
+	WaterAccumulator2Rotary.Register(PSH, "WaterAccumulator2Rotary", 0);
+	WaterAccumulator2Rotary.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
+		&SaturnGlycolCoolingController::H2oAccumSwitchesToggled));
+
+	PrimaryGlycolEvapInletTempRotary.AddPosition(0, 90);
+	PrimaryGlycolEvapInletTempRotary.AddPosition(1, 120);
+	PrimaryGlycolEvapInletTempRotary.AddPosition(2, 150);
+	PrimaryGlycolEvapInletTempRotary.AddPosition(3, 180);
+	PrimaryGlycolEvapInletTempRotary.Register(PSH, "PrimaryGlycolEvapInletTempRotary", 0);
+	PrimaryGlycolEvapInletTempRotary.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
+		&SaturnGlycolCoolingController::PrimaryGlycolEvapInletTempRotaryToggled));
+
+	SuitFlowReliefRotary.AddPosition(0, 90);
+	SuitFlowReliefRotary.AddPosition(1, 270);
+	SuitFlowReliefRotary.Register(PSH, "SuitFlowReliefRotary", 1);
+
+	SuitHeatExchangerPrimaryGlycolRotary.AddPosition(0, 0);
+	SuitHeatExchangerPrimaryGlycolRotary.AddPosition(1, 180);
+	SuitHeatExchangerPrimaryGlycolRotary.Register(PSH, "SuitHeatExchangerPrimaryGlycolRotary", 0);
+
+	SuitHeatExchangerSecondaryGlycolRotary.AddPosition(0, 0);
+	SuitHeatExchangerSecondaryGlycolRotary.AddPosition(1, 90);
+	SuitHeatExchangerSecondaryGlycolRotary.Register(PSH, "SuitHeatExchangerSecondaryGlycolRotary", 0);
+
+	Panel382Cover.Register(PSH, "Panel382Cover", 0, 0, 0, 0);	// dummy switch/display for checklist controller
+
+	SecondaryCabinTempValve.AddPosition(0, 0);
+	SecondaryCabinTempValve.AddPosition(1, 60);
+	SecondaryCabinTempValve.AddPosition(2, 90);
+	SecondaryCabinTempValve.AddPosition(3, 150);
+	SecondaryCabinTempValve.AddPosition(4, 180);
+	SecondaryCabinTempValve.Register(PSH, "SecondaryCabinTempValve", 4);
+	SecondaryCabinTempValve.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
+		&SaturnGlycolCoolingController::CabinTempSwitchToggled));
+
+	FoodPreparationWaterHotLever.Register(PSH, "FoodPreparationWaterHotLever", 0, SPRINGLOADEDSWITCH_DOWN);
+	FoodPreparationWaterHotLever.SetCallback(new PanelSwitchCallback<SaturnWaterController>(&WaterController, &SaturnWaterController::FoodPreparationWaterSwitchToggled));
+	FoodPreparationWaterColdLever.Register(PSH, "FoodPreparationWaterColdLever", 0, SPRINGLOADEDSWITCH_DOWN);
+	FoodPreparationWaterColdLever.SetCallback(new PanelSwitchCallback<SaturnWaterController>(&WaterController, &SaturnWaterController::FoodPreparationWaterSwitchToggled));
+
+	EventTimerUpDown306Switch.Register(PSH, "EventTimerUpDown306Switch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	EventTimerUpDown306Switch.SetSideways(1);
+	EventTimerControl306Switch.Register(PSH, "EventTimerControl306Switch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	EventTimerControl306Switch.SetSideways(1);
+	EventTimer306MinutesSwitch.Register(PSH, "EventTimer306MinutesSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	EventTimer306MinutesSwitch.SetSideways(1);
+	EventTimer306SecondsSwitch.Register(PSH, "EventTimer306SecondsSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	EventTimer306SecondsSwitch.SetSideways(1);
+	SaturnEventTimer306Display.Register(PSH, "SaturnEventTimer306Display", 0, 0, 0);	// dummy switch/display for checklist controller
+	MissionTimer306HoursSwitch.Register(PSH, "MissionTimer306HoursSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	MissionTimer306HoursSwitch.SetSideways(1);
+	MissionTimer306MinutesSwitch.Register(PSH, "MissionTimer306MinutesSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	MissionTimer306MinutesSwitch.SetSideways(1);
+	MissionTimer306SecondsSwitch.Register(PSH, "MissionTimer306SecondsSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	MissionTimer306SecondsSwitch.SetSideways(1);
+
+	MissionTimer306Switch.Register(PSH, "MissionTimer306Switch", THREEPOSSWITCH_UP, SPRINGLOADEDSWITCH_CENTER_SPRINGDOWN); // Default state UP is correct!
+	MissionTimer306Switch.SetSideways(1);
+
+	LMTunnelVentValve.AddPosition(0, 300);
+	LMTunnelVentValve.AddPosition(1, 330);
+	LMTunnelVentValve.AddPosition(2, 30);
+	LMTunnelVentValve.AddPosition(3, 60);
+	LMTunnelVentValve.Register(PSH, "LMTunnelVentValve", 0);
+
+	LMDPGauge.Register(PSH, "LMDPGauge", -1, 4, 5);
+
+	PressEqualValve.AddPosition(0, 120);
+	PressEqualValve.AddPosition(1, 150);
+	PressEqualValve.AddPosition(2, 180);
+	PressEqualValve.AddPosition(3, 210);
+	PressEqualValve.Register(PSH, "PressEqualValve", 3);
+
+	WasteMGMTOvbdDrainDumpRotary.AddPosition(0, 0);
+	WasteMGMTOvbdDrainDumpRotary.AddPosition(1, 90);
+	WasteMGMTOvbdDrainDumpRotary.AddPosition(2, 180);
+	WasteMGMTOvbdDrainDumpRotary.AddPosition(3, 270);
+	WasteMGMTOvbdDrainDumpRotary.Register(PSH, "WasteMGMTOvbdDrainDumpRotary", 1);
+
+	WasteMGMTBatteryVentRotary.AddPosition(0, 0);
+	WasteMGMTBatteryVentRotary.AddPosition(1, 180);
+	WasteMGMTBatteryVentRotary.AddPosition(2, 270);
+	WasteMGMTBatteryVentRotary.Register(PSH, "WasteMGMTBatteryVentRotary", 1);
+	WasteMGMTBatteryVentRotary.SetWraparound(true);
+
+	WasteMGMTStoageVentRotary.AddPosition(0, 0);
+	WasteMGMTStoageVentRotary.AddPosition(1, 180);
+	WasteMGMTStoageVentRotary.AddPosition(2, 270);
+	WasteMGMTStoageVentRotary.Register(PSH, "WasteMGMTStoageVentRotary", 1);
+	WasteMGMTStoageVentRotary.SetWraparound(true);
+
+	WasteDisposalSwitch.Register(PSH, "WasteDisposalSwitch", THREEPOSSWITCH_UP);
+
+	OrbiterAttitudeToggle.SetActive(false);
+
+	EpsSensorSignalDcMnaCircuitBraker.Register(PSH, "EpsSensorSignalDcMnaCircuitBraker", 1);
+	EpsSensorSignalDcMnbCircuitBraker.Register(PSH, "EpsSensorSignalDcMnbCircuitBraker", 1);
+
+	EpsSensorSignalAc1CircuitBraker.Register(PSH, "EpsSensorSignalAc1CircuitBraker", 1);
+	EpsSensorSignalAc2CircuitBraker.Register(PSH, "EpsSensorSignalAc2CircuitBraker", 1);
+
+	CWMnaCircuitBraker.Register(PSH, "CWMnaCircuitBraker", 1);
+	CWMnbCircuitBraker.Register(PSH, "CWMnbCircuitBraker", 1);
+
+	MnbLMPWR1CircuitBraker.Register(PSH, "MnbLMPWR1CircuitBraker", 1);
+	MnbLMPWR2CircuitBraker.Register(PSH, "MnbLMPWR2CircuitBraker", 1);
+
+	InverterControl1CircuitBraker.Register(PSH, "InverterControl1CircuitBraker", 1);
+	InverterControl2CircuitBraker.Register(PSH, "InverterControl2CircuitBraker", 1);
+	InverterControl3CircuitBraker.Register(PSH, "InverterControl3CircuitBraker", 1);
+
+	EPSSensorUnitDcBusACircuitBraker.Register(PSH, "EPSSensorUnitDcBusACircuitBraker", 1);
+	EPSSensorUnitDcBusBCircuitBraker.Register(PSH, "EPSSensorUnitDcBusBCircuitBraker", 1);
+	EPSSensorUnitAcBus1CircuitBraker.Register(PSH, "EPSSensorUnitAcBus1CircuitBraker", 1);
+	EPSSensorUnitAcBus2CircuitBraker.Register(PSH, "EPSSensorUnitAcBus2CircuitBraker", 1);
+
+	BATRLYBusBatACircuitBraker.Register(PSH, "BATRLYBusBatACircuitBraker", 1);
+	BATRLYBusBatBCircuitBraker.Register(PSH, "BATRLYBusBatBCircuitBraker", 1);
+
+	ControllerAc1CircuitBraker.Register(PSH, "ControllerAc1CircuitBraker", 1);
+	ControllerAc2CircuitBraker.Register(PSH, "ControllerAc2CircuitBraker", 1);
+	CONTHTRSMnACircuitBraker.Register(PSH, "CONTHTRSMnACircuitBraker", 1);
+	CONTHTRSMnBCircuitBraker.Register(PSH, "CONTHTRSMnBCircuitBraker", 1);
+	HTRSOVLDBatACircuitBraker.Register(PSH, "HTRSOVLDBatACircuitBraker", 1);
+	HTRSOVLDBatBCircuitBraker.Register(PSH, "HTRSOVLDBatBCircuitBraker", 1);
+
+	BatteryChargerBatACircuitBraker.Register(PSH, "BatteryChargerBatACircuitBraker", 1);
+	BatteryChargerBatBCircuitBraker.Register(PSH, "BatteryChargerBatBCircuitBraker", 1);
+	BatteryChargerMnACircuitBraker.Register(PSH, "BatteryChargerMnACircuitBraker", 1);
+	BatteryChargerMnBCircuitBraker.Register(PSH, "BatteryChargerMnBCircuitBraker", 1);
+	BatteryChargerAcPwrCircuitBraker.Register(PSH, "BatteryChargerAcPWRCircuitBraker", 1);
+
+	InstrumentLightingESSMnACircuitBraker.Register(PSH, "InstrumentLightingESSMnACircuitBraker", 1);
+	InstrumentLightingESSMnBCircuitBraker.Register(PSH, "InstrumentLightingESSMnBCircuitBraker", 1);
+	InstrumentLightingNonESSCircuitBraker.Register(PSH, "InstrumentLightingNonESSCircuitBraker", 0);
+	InstrumentLightingSCIEquipSEP1CircuitBraker.Register(PSH, "InstrumentLightingSCIEquipSEP1CircuitBraker", 1);
+	InstrumentLightingSCIEquipSEP2CircuitBraker.Register(PSH, "InstrumentLightingSCIEquipSEP2CircuitBraker", 1);
+	InstrumentLightingSCIEquipHatchCircuitBraker.Register(PSH, "InstrumentLightingSCIEquipHatchCircuitBraker", 1);
+
+	ECSPOTH2OHTRMnACircuitBraker.Register(PSH, "ECSPOTH2OHTRMnACircuitBraker", 1);
+	ECSPOTH2OHTRMnBCircuitBraker.Register(PSH, "ECSPOTH2OHTRMnBCircuitBraker", 1);
+	ECSH2OAccumMnACircuitBraker.Register(PSH, "ECSH2OAccumMnACircuitBraker", 1);
+	ECSH2OAccumMnBCircuitBraker.Register(PSH, "ECSH2OAccumMnBCircuitBraker", 1);
+	ECSTransducerWastePOTH2OMnACircuitBraker.Register(PSH, "ECSTransducerWastePOTH2OMnACircuitBraker", 1);
+	ECSTransducerWastePOTH2OMnBCircuitBraker.Register(PSH, "ECSTransducerWastePOTH2OMnBCircuitBraker", 1);
+	ECSTransducerPressGroup1MnACircuitBraker.Register(PSH, "ECSTransducerPressGroup1MnACircuitBraker", 1);
+	ECSTransducerPressGroup1MnBCircuitBraker.Register(PSH, "ECSTransducerPressGroup1MnBCircuitBraker", 1);
+	ECSTransducerPressGroup2MnACircuitBraker.Register(PSH, "ECSTransducerPressGroup2MnACircuitBraker", 1);
+	ECSTransducerPressGroup2MnBCircuitBraker.Register(PSH, "ECSTransducerPressGroup2MnBCircuitBraker", 1);
+	ECSTransducerTempMnACircuitBraker.Register(PSH, "ECSTransducerTempMnACircuitBraker", 1);
+	ECSTransducerTempMnBCircuitBraker.Register(PSH, "ECSTransducerTempMnBCircuitBraker", 1);
+
+	ECSSecCoolLoopAc1CircuitBraker.Register(PSH, "ECSSecCoolLoopAc1CircuitBraker", 1);
+	ECSSecCoolLoopAc2CircuitBraker.Register(PSH, "ECSSecCoolLoopAc2CircuitBraker", 1);
+	ECSSecCoolLoopRADHTRMnACircuitBraker.Register(PSH, "ECSSecCoolLoopRADHTRMnACircuitBraker", 1);
+	ECSSecCoolLoopXducersMnACircuitBraker.Register(PSH, "ECSSecCoolLoopXducersMnACircuitBraker", 1);
+	ECSSecCoolLoopXducersMnBCircuitBraker.Register(PSH, "ECSSecCoolLoopXducersMnBCircuitBraker", 1);
+	ECSWasteH2OUrineDumpHTRMnACircuitBraker.Register(PSH, "ECSWasteH2OUrineDumpHTRMnACircuitBraker", 0);
+	ECSWasteH2OUrineDumpHTRMnBCircuitBraker.Register(PSH, "ECSWasteH2OUrineDumpHTRMnBCircuitBraker", 0);
+	ECSCabinFanAC1ACircuitBraker.Register(PSH, "ECSCabinFanAC1ACircuitBraker", 1);
+	ECSCabinFanAC1BCircuitBraker.Register(PSH, "ECSCabinFanAC1BCircuitBraker", 1);
+	ECSCabinFanAC1CCircuitBraker.Register(PSH, "ECSCabinFanAC1CCircuitBraker", 1);
+	ECSCabinFanAC2ACircuitBraker.Register(PSH, "ECSCabinFanAC2ACircuitBraker", 1);
+	ECSCabinFanAC2BCircuitBraker.Register(PSH, "ECSCabinFanAC2BCircuitBraker", 1);
+	ECSCabinFanAC2CCircuitBraker.Register(PSH, "ECSCabinFanAC2CCircuitBraker", 1);
+
+	GNPowerAc1CircuitBraker.Register(PSH, "GNPowerAc1CircuitBraker", 1);
+	GNPowerAc2CircuitBraker.Register(PSH, "GNPowerAc2CircuitBraker", 1);
+	GNIMUMnACircuitBraker.Register(PSH, "GNIMUMnACircuitBraker", 1);
+	GNIMUMnBCircuitBraker.Register(PSH, "GNIMUMnBCircuitBraker", 1);
+	GNIMUHTRMnACircuitBraker.Register(PSH, "GNIMUHTRMnACircuitBraker", 1);
+	GNIMUHTRMnBCircuitBraker.Register(PSH, "GNIMUHTRMnBCircuitBraker", 1);
+	GNComputerMnACircuitBraker.Register(PSH, "GNComputerMnACircuitBraker", 0);
+	GNComputerMnBCircuitBraker.Register(PSH, "GNComputerMnBCircuitBraker", 0);
+	GNOpticsMnACircuitBraker.Register(PSH, "GNOpticsMnACircuitBraker", 1);
+	GNOpticsMnBCircuitBraker.Register(PSH, "GNOpticsMnBCircuitBraker", 1);
+
+	SuitCompressorsAc1ACircuitBraker.Register(PSH, "SuitCompressorsAc1ACircuitBraker", 1);
+	SuitCompressorsAc1BCircuitBraker.Register(PSH, "SuitCompressorsAc1BCircuitBraker", 1);
+	SuitCompressorsAc1CCircuitBraker.Register(PSH, "SuitCompressorsAc1CCircuitBraker", 1);
+	SuitCompressorsAc2ACircuitBraker.Register(PSH, "SuitCompressorsAc2ACircuitBraker", 1);
+	SuitCompressorsAc2BCircuitBraker.Register(PSH, "SuitCompressorsAc2BCircuitBraker", 1);
+	SuitCompressorsAc2CCircuitBraker.Register(PSH, "SuitCompressorsAc2CCircuitBraker", 1);
+
+	ECSGlycolPumpsAc1ACircuitBraker.Register(PSH, "ECSGlycolPumpsAc1ACircuitBraker", 1);
+	ECSGlycolPumpsAc1BCircuitBraker.Register(PSH, "ECSGlycolPumpsAc1BCircuitBraker", 1);
+	ECSGlycolPumpsAc1CCircuitBraker.Register(PSH, "ECSGlycolPumpsAc1CCircuitBraker", 1);
+	ECSGlycolPumpsAc2ACircuitBraker.Register(PSH, "ECSGlycolPumpsAc2ACircuitBraker", 1);
+	ECSGlycolPumpsAc2BCircuitBraker.Register(PSH, "ECSGlycolPumpsAc2BCircuitBraker", 1);
+	ECSGlycolPumpsAc2CCircuitBraker.Register(PSH, "ECSGlycolPumpsAc2CCircuitBraker", 1);
+
+	StabContSystemTVCAc1CircuitBraker.Register(PSH, "StabContSystemTVCAc1CircuitBraker", 1);
+	StabContSystemAc1CircuitBraker.Register(PSH, "StabContSystemAc1CircuitBraker", 1);
+	StabContSystemAc2CircuitBraker.Register(PSH, "StabContSystemAc2CircuitBraker", 1);
+
+	ECATVCAc2CircuitBraker.Register(PSH, "StabContSystemTVCAc1CircuitBraker", 1);
+	DirectUllMnACircuitBraker.Register(PSH, "DirectUllMnACircuitBraker", 1);
+	DirectUllMnBCircuitBraker.Register(PSH, "DirectUllMnBCircuitBraker", 1);
+	ContrDirectMnA1CircuitBraker.Register(PSH, "ContrDirectMnA1CircuitBraker", 1);
+	ContrDirectMnB1CircuitBraker.Register(PSH, "ContrDirectMnB1CircuitBraker", 1);
+	ContrDirectMnA2CircuitBraker.Register(PSH, "ContrDirectMnA2CircuitBraker", 1);
+	ContrDirectMnB2CircuitBraker.Register(PSH, "ContrDirectMnB2CircuitBraker", 1);
+	ACRollMnACircuitBraker.Register(PSH, "ACRollMnACircuitBraker", 1);
+	ACRollMnBCircuitBraker.Register(PSH, "ACRollMnBCircuitBraker", 1);
+	BDRollMnACircuitBraker.Register(PSH, "BDRollMnACircuitBraker", 1);
+	BDRollMnBCircuitBraker.Register(PSH, "BDRollMnBCircuitBraker", 1);
+	PitchMnACircuitBraker.Register(PSH, "PitchMnACircuitBraker", 1);
+	PitchMnBCircuitBraker.Register(PSH, "PitchMnBCircuitBraker", 1);
+	YawMnACircuitBraker.Register(PSH, "YawMnACircuitBraker", 1);
+	YawMnBCircuitBraker.Register(PSH, "YawMnBCircuitBraker", 1);
+
+	OrdealAc2CircuitBraker.Register(PSH, "OrdealAc2CircuitBraker", 1);
+	OrdealMnBCircuitBraker.Register(PSH, "OrdealMnBCircuitBraker", 1);
+	ContrAutoMnACircuitBraker.Register(PSH, "ContrAutoMnACircuitBraker", 1);
+	ContrAutoMnBCircuitBraker.Register(PSH, "ContrAutoMnBCircuitBraker", 1);
+	LogicBus12MnACircuitBraker.Register(PSH, "LogicBus12MnACircuitBraker", 1);
+	LogicBus34MnACircuitBraker.Register(PSH, "LogicBus34MnACircuitBraker", 1);
+	LogicBus14MnBCircuitBraker.Register(PSH, "LogicBus14MnBCircuitBraker", 1);
+	LogicBus23MnBCircuitBraker.Register(PSH, "LogicBus23MnBCircuitBraker", 1);
+	SystemMnACircuitBraker.Register(PSH, "SystemMnACircuitBraker", 1);
+	SystemMnBCircuitBraker.Register(PSH, "SystemMnBCircuitBraker", 1);
+
+	CMHeater1MnACircuitBraker.Register(PSH, "CMHeater1MnACircuitBraker", 0);
+	CMHeater2MnBCircuitBraker.Register(PSH, "CMHeater2MnBCircuitBraker", 0);
+	SMHeatersAMnBCircuitBraker.Register(PSH, "SMHeatersAMnBCircuitBraker", 1);
+	SMHeatersCMnBCircuitBraker.Register(PSH, "SMHeatersCMnBCircuitBraker", 1);
+	SMHeatersBMnACircuitBraker.Register(PSH, "SMHeatersBMnACircuitBraker", 1);
+	SMHeatersDMnACircuitBraker.Register(PSH, "SMHeatersDMnACircuitBraker", 1);
+	PrplntIsolMnACircuitBraker.Register(PSH, "PrplntIsolMnACircuitBraker", 1);
+	PrplntIsolMnBCircuitBraker.Register(PSH, "PrplntIsolMnBCircuitBraker", 1);
+	RCSLogicMnACircuitBraker.Register(PSH, "RCSLogicMnACircuitBraker", 1);
+	RCSLogicMnBCircuitBraker.Register(PSH, "RCSLogicMnBCircuitBraker", 1);
+	EMSMnACircuitBraker.Register(PSH, "EMSMnACircuitBraker", 1);
+	EMSMnBCircuitBraker.Register(PSH, "EMSMnBCircuitBraker", 1);
+	DockProbeMnACircuitBraker.Register(PSH, "DockProbeMnACircuitBraker", 1);
+	DockProbeMnBCircuitBraker.Register(PSH, "DockProbeMnBCircuitBraker", 1);
+
+	GaugingMnACircuitBraker.Register(PSH, "GaugingMnACircuitBraker", 1);
+	GaugingMnBCircuitBraker.Register(PSH, "GaugingMnBCircuitBraker", 1);
+	GaugingAc1CircuitBraker.Register(PSH, "GaugingAc1CircuitBraker", 1);
+	GaugingAc2CircuitBraker.Register(PSH, "GaugingAc2CircuitBraker", 1);
+	HeValveMnACircuitBraker.Register(PSH, "HeValveMnACircuitBraker", 1);
+	HeValveMnBCircuitBraker.Register(PSH, "HeValveMnBCircuitBraker", 1);
+	PitchBatACircuitBraker.Register(PSH, "PitchBatACircuitBraker", 0);
+	PitchBatBCircuitBraker.Register(PSH, "PitchBatBCircuitBraker", 1);
+	YawBatACircuitBraker.Register(PSH, "YawBatACircuitBraker", 0);
+	YawBatBCircuitBraker.Register(PSH, "YawBatBCircuitBraker", 1);
+	PilotValveMnACircuitBraker.Register(PSH, "PilotValveMnACircuit", 1);
+	PilotValveMnBCircuitBraker.Register(PSH, "PilotValveMnBCircuit", 1);
+
+	FloatBag1BatACircuitBraker.Register(PSH, "FloatBag1BatACircuitBraker", 0);
+	FloatBag2BatBCircuitBraker.Register(PSH, "FloatBag2BatBCircuitBraker", 0);
+	FloatBag3FLTPLCircuitBraker.Register(PSH, "FloatBag3FLTPLCircuitBraker", 0);
+
+	SECSLogicBatACircuitBraker.Register(PSH, "SECSLogicBatACircuitBraker", 0);
+	SECSLogicBatBCircuitBraker.Register(PSH, "SECSLogicBatBCircuitBraker", 0);
+	SECSArmBatACircuitBraker.Register(PSH, "SECSArmBatACircuitBraker", 0);
+	SECSArmBatBCircuitBraker.Register(PSH, "SECSArmBatBCircuitBraker", 0);
+
+	EDS1BatACircuitBraker.Register(PSH, "EDS1BatACircuitBraker", 1);
+	EDS2BatCCircuitBraker.Register(PSH, "EDS2BatCCircuitBraker", 1);
+	EDS3BatBCircuitBraker.Register(PSH, "EDS3BatBCircuitBraker", 1);
+
+	ELSBatACircuitBraker.Register(PSH, "ELSBatACircuitBraker", 1);
+	ELSBatBCircuitBraker.Register(PSH, "ELSBatBCircuitBraker", 1);
+
+	FLTPLCircuitBraker.Register(PSH, "FLTPLCircuitBraker", 1);
+
+	ModeIntercomVOXSensThumbwheelSwitch.Register(PSH, "ModeIntercomVOXSensThumbwheelSwitch", 5, 9);
+
+	PowerMasterVolumeThumbwheelSwitch.Register(PSH, "PowerMasterVolumeThumbwheelSwitch", 5, 9);
+
+	PadCommVolumeThumbwheelSwitch.Register(PSH, "PadCommVolumeThumbwheelSwitch", 5, 9);
+
+	IntercomVolumeThumbwheelSwitch.Register(PSH, "IntercomVolumeThumbwheelSwitch", 5, 9);
+
+	SBandVolumeThumbwheelSwitch.Register(PSH, "SBandVolumeThumbwheelSwitch", 5, 9);
+
+	VHFAMVolumeThumbwheelSwitch.Register(PSH, "VHFAMVolumeThumbwheelSwitch", 5, 9);
+
+	OpticsZeroSwitch.Register(PSH, "OpticsZeroSwitch", TOGGLESWITCH_UP);
+	ControllerSpeedSwitch.Register(PSH, "ControllerSpeedSwitch", THREEPOSSWITCH_DOWN);
+	ControllerCouplingSwitch.Register(PSH, "ControllerCouplingSwitch", TOGGLESWITCH_UP);
+	OpticsModeSwitch.Register(PSH, "OpticsModeSwitch", TOGGLESWITCH_DOWN);
+	ControllerTelescopeTrunnionSwitch.Register(PSH, "ControllerTelescopeTrunnionSwitch", THREEPOSSWITCH_UP);
+	ConditionLampsSwitch.Register(PSH, "ConditionLampsSwitch", THREEPOSSWITCH_UP, SPRINGLOADEDSWITCH_CENTER_SPRINGDOWN);
+	ConditionLampsSwitch.SetCallback(new PanelSwitchCallback<CSMCautionWarningSystem>(&cws, &CSMCautionWarningSystem::GNLampSwitchToggled));
+	UPTLMSwitch.Register(PSH, "UPTLMSwitch", TOGGLESWITCH_UP);
+	OpticsHandcontrollerSwitch.Register(PSH, "OpticsHandcontrollerSwitch");
+	OpticsMarkButton.Register(PSH, "OpticsMarkButton", false);
+	OpticsMarkButton.SetDelayTime(1);
+	OpticsMarkRejectButton.Register(PSH, "OpticsMarkRejectButton", false);
+	OpticsMarkRejectButton.SetDelayTime(1);
+	MinImpulseHandcontrollerSwitch.Register(PSH, "MinImpulseHandcontrollerSwitch", true);
+
+	GlycolToRadiatorsLever.Register(PSH, "GlycolToRadiatorsLever", 1);
+	CabinPressureReliefLever1.Register(PSH, "CabinPressureReliefLever1", 2, 2, true);
+	CabinPressureReliefLever2.Register(PSH, "CabinPressureReliefLever2", 2, 3, true);
+
+	SuitCircuitReturnValveLever.Register(PSH, "SuitCircuitReturnValveLever", 1);
+
+	O2DemandRegulatorRotary.AddPosition(0, 0);
+	O2DemandRegulatorRotary.AddPosition(1, 120);
+	O2DemandRegulatorRotary.AddPosition(2, 180);
+	O2DemandRegulatorRotary.AddPosition(3, 240);
+	O2DemandRegulatorRotary.Register(PSH, "O2DemandRegulatorRotary", 2);
+
+	SuitTestRotary.AddPosition(0, 0);
+	SuitTestRotary.AddPosition(1, 60);
+	SuitTestRotary.AddPosition(2, 90);
+	SuitTestRotary.Register(PSH, "SuitTestRotary", 0);
+
+	ORDEALFDAI1Switch.Register(PSH, "ORDEALFDAI1Switch", false);
+	ORDEALFDAI2Switch.Register(PSH, "ORDEALFDAI2Switch", false);
+	ORDEALEarthSwitch.Register(PSH, "ORDEALEarthSwitch", THREEPOSSWITCH_CENTER);
+	ORDEALLightingSwitch.Register(PSH, "ORDEALLightingSwitch", THREEPOSSWITCH_CENTER);
+	ORDEALModeSwitch.Register(PSH, "ORDEALModeSwitch", false);
+	ORDEALSlewSwitch.Register(PSH, "ORDEALSlewSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
+	PanelOrdeal.Register(PSH, "PanelOrdeal", 0, 0, 0, 0);	// dummy switch/display for checklist controller
+
+	RNDZXPDRSwitch.Register(PSH, "RNDZXPDRSwitch", TOGGLESWITCH_DOWN, SPRINGLOADEDSWITCH_DOWN);
+
+	CMRCSHTRSSwitch.Register(PSH, "CMRCSHTRSSwitch", false);
+	WasteH2ODumpSwitch.Register(PSH, "WasteH2ODumpSwitch", THREEPOSSWITCH_CENTER);
+	UrineDumpSwitch.Register(PSH, "UrineDumpSwitch", THREEPOSSWITCH_CENTER);
+
+	UtilityPowerSwitch.Register(PSH, "UtilityPowerSwitch", false);
+	Panel100FloodDimSwitch.Register(PSH, "Panel100FloodDimSwitch", TOGGLESWITCH_UP);
+	Panel100FloodFixedSwitch.Register(PSH, "Panel100FloodFixedSwitch", false);
+	GNPowerOpticsSwitch.Register(PSH, "GNPowerOpticsSwitch", false);
+	GNPowerIMUSwitch.Register(PSH, "GNPowerIMUSwitch", TOGGLESWITCH_DOWN, false);
+	GNPowerIMUSwitch.SetGuardResetsState(false);
+	Panel100RNDZXPDRSwitch.Register(PSH, "Panel100RNDZXPDRSwitch", THREEPOSSWITCH_CENTER);
+
+	SCIUtilPowerSwitch.Register(PSH, "SCIUtilPowerSwitch", false);
+
+	SCIInstSwitch.Register(PSH, "SCIInstSwitch", TOGGLESWITCH_UP);
+	SCIInstSwitch.SetSideways(1);
+
+	CenterSuitPowerSwitch.Register(PSH, "CenterSuitPowerSwitch", false);
+	CenterAudioControlSwitch.Register(PSH, "CenterAudioControlSwitch", TOGGLESWITCH_UP);
+
+	ModeIntercomSwitch.Register(PSH, "ModeIntercomSwitch", THREEPOSSWITCH_UP);
+	PadComSwitch.Register(PSH, "PadComSwitch", THREEPOSSWITCH_UP);
+	SBandSwitch.Register(PSH, "SBandSwitch", THREEPOSSWITCH_UP);
+
+	PowerAudioSwitch.Register(PSH, "PowerAudioSwitch", THREEPOSSWITCH_CENTER);
+	IntercomSwitch.Register(PSH, "IntercomSwitch", THREEPOSSWITCH_UP);
+	VHFAMSwitch.Register(PSH, "VHFAMSwitch", THREEPOSSWITCH_UP);
+
+	InverterPower3MainBCircuitBraker.Register(PSH, "InverterPower3MainBCircuitBraker", 1);
+	InverterPower3MainACircuitBraker.Register(PSH, "InverterPower3MainACircuitBraker", 1);
+	InverterPower2MainBCircuitBraker.Register(PSH, "InverterPower2MainBCircuitBraker", 1);
+	InverterPower1MainACircuitBraker.Register(PSH, "InverterPower1MainACircuitBraker", 1);
+	FlightPostLandingMainBCircuitBraker.Register(PSH, "FlightPostLandingMainBCircuitBraker", 1);
+	FlightPostLandingMainACircuitBraker.Register(PSH, "FlightPostLandingMainACircuitBraker", 1);
+	FlightPostLandingBatCCircuitBraker.Register(PSH, "FlightPostLandingBatCCircuitBraker", 0);
+	FlightPostLandingBatBusBCircuitBraker.Register(PSH, "FlightPostLandingBatBusBCircuitBraker", 0);
+	FlightPostLandingBatBusACircuitBraker.Register(PSH, "FlightPostLandingBatBusACircuitBraker", 0);
+	MainBBatBusBCircuitBraker.Register(PSH, "MainBBatBusBCircuitBraker", 1);
+	MainBBatCCircuitBraker.Register(PSH, "MainBBatCCircuitBraker", 0);
+	MainABatCCircuitBraker.Register(PSH, "MainABatCCircuitBraker", 0);
+	MainABatBusACircuitBraker.Register(PSH, "MainABatBusACircuitBraker", 1);
+
+	Panel276CB1.Register(PSH, "Panel276CB1", 1);
+	Panel276CB2.Register(PSH, "Panel276CB2", 1);
+	Panel276CB3.Register(PSH, "Panel276CB3", 1);
+	Panel276CB4.Register(PSH, "Panel276CB4", 1);
+
+	UprightingSystemCompressor1CircuitBraker.Register(PSH, "UprightingSystemCompressor1CircuitBraker", 0);
+	UprightingSystemCompressor2CircuitBraker.Register(PSH, "UprightingSystemCompressor2CircuitBraker", 0);
+	SIVBLMSepPyroACircuitBraker.Register(PSH, "SIVBLMSepPyroACircuitBraker", 1);
+	SIVBLMSepPyroBCircuitBraker.Register(PSH, "SIVBLMSepPyroBCircuitBraker", 1);
+
+	PCMTLMGroup1CB.Register(PSH, "PCMTLMGroup1CB", 1);
+	PCMTLMGroup2CB.Register(PSH, "PCMTLMGroup2CB", 1);
+	FLTBusMNACB.Register(PSH, "FLTBusMNACB", 1);
+	FLTBusMNBCB.Register(PSH, "FLTBusMNBCB", 1);
+	PMPPowerPrimCB.Register(PSH, "PMPPowerPrimCB", 1);
+	PMPPowerAuxCB.Register(PSH, "PMPPowerAuxCB", 1);
+	VHFStationAudioLCB.Register(PSH, "VHFStationAudioLCB", 1);
+	VHFStationAudioCTRCB.Register(PSH, "VHFStationAudioCTRCB", 1);
+	VHFStationAudioRCB.Register(PSH, "VHFStationAudioRCB", 1);
+	UDLCB.Register(PSH, "UDLCB", 1);
+	HGAFLTBus1CB.Register(PSH, "HGAFLTBus1CB", 0);
+	HGAGroup2CB.Register(PSH, "HGAGroup2CB", 0);
+	SBandFMXMTRFLTBusCB.Register(PSH, "SBandFMXMTRFLTBusCB", 1);
+	SBandFMXMTRGroup1CB.Register(PSH, "SBandFMXMTRGroup1CB", 1);
+	CentralTimingEquipMNACB.Register(PSH, "CentralTimingEquipMNACB", 1);
+	CentralTimingEquipMNBCB.Register(PSH, "CentralTimingEquipMNBCB", 1);
+	RNDZXPNDRFLTBusCB.Register(PSH, "RNDZXPNDRFLTBusCB", 1);
+	SIGCondrFLTBusCB.Register(PSH, "SIGCondrFLTBusCB", 1);
+	SBandPWRAmpl1FLTBusCB.Register(PSH, "SBandPWRAmpl1FLTBusCB", 1);
+	SBandPWRAmpl1Group1CB.Register(PSH, "SBandPWRAmpl1Group1CB", 1);
+	SBandPWRAmpl2FLTBusCB.Register(PSH, "SBandPWRAmpl2FLTBusCB", 1);
+	SBandPWRAmpl2Group1CB.Register(PSH, "SBandPWRAmpl2Group1CB", 1);
+
+	FuelCell1PumpsACCB.Register(PSH, "FuelCell1PumpsACCB", 1);
+	FuelCell1ReacsCB.Register(PSH, "FuelCell1ReacsCB", 0);
+	FuelCell1BusContCB.Register(PSH, "FuelCell1BusContCB", 1);
+	FuelCell1PurgeCB.Register(PSH, "FuelCell1PurgeCB", 1);
+	FuelCell1RadCB.Register(PSH, "FuelCell1RadCB", 1);
+	CryogenicH2HTR1CB.Register(PSH, "CryogenicH2HTR1CB", 1);
+	CryogenicH2HTR2CB.Register(PSH, "CryogenicH2HTR2CB", 1);
+	FuelCell2PumpsACCB.Register(PSH, "FuelCell2PumpsACCB", 1);
+	FuelCell2ReacsCB.Register(PSH, "FuelCell2ReacsCB", 0);
+	FuelCell2BusContCB.Register(PSH, "FuelCell2BusContCB", 1);
+	FuelCell2PurgeCB.Register(PSH, "FuelCell2PurgeCB", 1);
+	FuelCell2RadCB.Register(PSH, "FuelCell2RadCB", 1);
+	CryogenicO2HTR1CB.Register(PSH, "CryogenicO2HTR1CB", 1);
+	CryogenicO2HTR2CB.Register(PSH, "CryogenicO2HTR2CB", 1);
+	FuelCell3PumpsACCB.Register(PSH, "FuelCell3PumpsACCB", 1);
+	FuelCell3ReacsCB.Register(PSH, "FuelCell3ReacsCB", 0);
+	FuelCell3BusContCB.Register(PSH, "FuelCell3BusContCB", 1);
+	FuelCell3PurgeCB.Register(PSH, "FuelCell3PurgeCB", 1);
+	FuelCell3RadCB.Register(PSH, "FuelCell3RadCB", 1);
+	CryogenicQTYAmpl1CB.Register(PSH, "CryogenicQTYAmpl1CB", 1);
+	CryogenicQTYAmpl2CB.Register(PSH, "CryogenicQTYAmpl2CB", 1);
+	CryogenicFanMotorsAC1ACB.Register(PSH, "CryogenicFanMotorsAC1ACB", 1);
+	CryogenicFanMotorsAC1BCB.Register(PSH, "CryogenicFanMotorsAC1BCB", 1);
+	CryogenicFanMotorsAC1CCB.Register(PSH, "CryogenicFanMotorsAC1CCB", 1);
+	CryogenicFanMotorsAC2ACB.Register(PSH, "CryogenicFanMotorsAC2ACB", 1);
+	CryogenicFanMotorsAC2BCB.Register(PSH, "CryogenicFanMotorsAC2BCB", 1);
+	CryogenicFanMotorsAC2CCB.Register(PSH, "CryogenicFanMotorsAC2CCB", 1);
+	LightingRndzMNACB.Register(PSH, "LightingRndzMNACB", 1);
+	LightingRndzMNBCB.Register(PSH, "LightingRndzMNBCB", 1);
+	LightingFloodMNACB.Register(PSH, "LightingFloodMNACB", 1);
+	LightingFloodMNBCB.Register(PSH, "LightingFloodMNBCB", 1);
+	LightingFloodFLTPLCB.Register(PSH, "LightingFloodFLTPLCB", 1);
+	LightingNumIntLEBCB.Register(PSH, "LightingNumIntLEBCB", 1);
+	LightingNumIntLMDCCB.Register(PSH, "LightingNumIntLMDCCB", 1);
+	LightingNumIntRMDCCB.Register(PSH, "LightingNumIntRMDCCB", 1);
+	RunEVATRGTAC1CB.Register(PSH, "RunEVATRGTAC1CB", 1);
+	RunEVATRGTAC2CB.Register(PSH, "RunEVATRGTAC2CB", 1);
+
+	TimersMnACircuitBraker.Register(PSH, "TimersMnACircuitBraker", 1);
+	TimersMnBCircuitBraker.Register(PSH, "TimersMnBCircuitBraker", 1);
+	EPSMnAGroup1CircuitBraker.Register(PSH, "EPSMnAGroup1CircuitBraker", 1);
+	EPSMnBGroup1CircuitBraker.Register(PSH, "EPSMnBGroup1CircuitBraker", 1);
+	SPSLineHtrsMnACircuitBraker.Register(PSH, "SPSLineHtrsMnACircuitBraker", 1);
+	SPSLineHtrsMnBCircuitBraker.Register(PSH, "SPSLineHtrsMnBCircuitBraker", 1);
+	EPSMnAGroup2CircuitBraker.Register(PSH, "EPSMnAGroup2CircuitBraker", 1);
+	EPSMnBGroup2CircuitBraker.Register(PSH, "EPSMnBGroup2CircuitBraker", 1);
+	O2VacIonPumpsMnACircuitBraker.Register(PSH, "O2VacIonPumpsMnACircuitBraker", 0);
+	O2VacIonPumpsMnBCircuitBraker.Register(PSH, "O2VacIonPumpsMnBCircuitBraker", 0);
+	EPSMnAGroup3CircuitBraker.Register(PSH, "EPSMnAGroup3CircuitBraker", 1);
+	EPSMnBGroup3CircuitBraker.Register(PSH, "EPSMnBGroup3CircuitBraker", 1);
+	MainReleasePyroACircuitBraker.Register(PSH, "MainReleasePyroACircuitBraker", 0);
+	MainReleasePyroBCircuitBraker.Register(PSH, "MainReleasePyroBCircuitBraker", 0);
+	EPSMnAGroup4CircuitBraker.Register(PSH, "EPSMnAGroup4CircuitBraker", 1);
+	EPSMnBGroup4CircuitBraker.Register(PSH, "EPSMnBGroup4CircuitBraker", 1);
+	EPSMnAGroup5CircuitBraker.Register(PSH, "EPSMnAGroup5CircuitBraker", 1);
+	EPSMnBGroup5CircuitBraker.Register(PSH, "EPSMnBGroup5CircuitBraker", 1);
+	UtilityCB1.Register(PSH, "UtilityCB1", 1);
+	UtilityCB2.Register(PSH, "UtilityCB2", 1);
+	EPSBatBusACircuitBraker.Register(PSH, "EPSBatBusACircuitBraker", 1);
+	EPSBatBusBCircuitBraker.Register(PSH, "EPSBatBusBCircuitBraker", 1);
+
+	BatBusAToPyroBusTieCircuitBraker.Register(PSH, "BatBusAToPyroBusTieCircuitBraker", 0);
+	PyroASeqACircuitBraker.Register(PSH, "PyroASeqACircuitBraker", 1);
+	BatBusBToPyroBusTieCircuitBraker.Register(PSH, "BatBusBToPyroBusTieCircuitBraker", 0);
+	PyroBSeqBCircuitBraker.Register(PSH, "PyroBSeqBCircuitBraker", 1);
+	BatAPWRCircuitBraker.Register(PSH, "BatAPWRCircuitBraker", 1);
+	BatBPWRCircuitBraker.Register(PSH, "BatBPWRCircuitBraker", 1);
+	BatCPWRCircuitBraker.Register(PSH, "BatCPWRCircuitBraker", 1);
+	BatCtoBatBusACircuitBraker.Register(PSH, "BatCtoBatBusACircuitBraker", 0);
+	BatCtoBatBusBCircuitBraker.Register(PSH, "BatCtoBatBusBCircuitBraker", 0);
+	BatCCHRGCircuitBraker.Register(PSH, "BatCCHRGCircuitBraker", 1);
+
+	SuitCircuitFlow300Switch.Register(PSH, "SuitCircuitFlow300Switch", THREEPOSSWITCH_DOWN);
+	SuitCircuitFlow301Switch.Register(PSH, "SuitCircuitFlow301Switch", THREEPOSSWITCH_DOWN);
+	SuitCircuitFlow302Switch.Register(PSH, "SuitCircuitFlow302Switch", THREEPOSSWITCH_DOWN);
+
+	HatchGearBoxSelector.AddPosition(0, 60);
+	HatchGearBoxSelector.AddPosition(1, 90);
+	HatchGearBoxSelector.AddPosition(2, 120);
+	HatchGearBoxSelector.Register(PSH, "HatchGearBoxSelector", 2);
+
+	HatchActuatorHandleSelector.AddPosition(0, 150);
+	HatchActuatorHandleSelector.AddPosition(1, 180);
+	HatchActuatorHandleSelector.AddPosition(2, 210);
+	HatchActuatorHandleSelector.Register(PSH, "HatchActuatorHandleSelector", 2);
+
+	HatchVentValveRotary.AddPosition(0, 120);
+	HatchVentValveRotary.AddPosition(1, 150);
+	HatchVentValveRotary.AddPosition(2, 180);
+	HatchVentValveRotary.AddPosition(3, 210);
+	HatchVentValveRotary.AddPosition(4, 240);
+	HatchVentValveRotary.AddPosition(5, 270);
+	HatchVentValveRotary.AddPosition(6, 300);
+	HatchVentValveRotary.AddPosition(7, 330);
+	HatchVentValveRotary.Register(PSH, "HatchVentValveRotary", 7);
+
+	HatchActuatorHandleSelectorOpen.AddPosition(0, 180);
+	HatchActuatorHandleSelectorOpen.AddPosition(1, 200);
+	HatchActuatorHandleSelectorOpen.AddPosition(2, 210);
+	HatchActuatorHandleSelectorOpen.Register(PSH, "HatchActuatorHandleSelectorOpen", 2);
+
+	HatchToggle.Register(PSH, "HatchToggle", false);
+
+	HatchEmergencyO2ValveSwitch.Register(PSH, "HatchEmergencyO2ValveSwitch", 0);
+	HatchRepressO2ValveSwitch.Register(PSH, "HatchRepressO2ValveSwitch", THREEPOSSWITCH_DOWN);
+	HatchOxygenRepressPressMeter.Register(PSH, "HatchOxygenRepressPressMeter", 0, 1200, 1, 900);
+	Panel600.Register(PSH, "Panel600", 0, 0, 0, 0);	// dummy switch/display for checklist controller
+
+	DskySwitchVerb.Register(PSH, "DskySwitchVerb", false);
+	DskySwitchNoun.Register(PSH, "DskySwitchNoun", false);
+	DskySwitchPlus.Register(PSH, "DskySwitchPlus", false);
+	DskySwitchMinus.Register(PSH, "DskySwitchMinus", false);
+	DskySwitchZero.Register(PSH, "DskySwitchZero", false);
+	DskySwitchOne.Register(PSH, "DskySwitchOne", false);
+	DskySwitchTwo.Register(PSH, "DskySwitchTwo", false);
+	DskySwitchThree.Register(PSH, "DskySwitchThree", false);
+	DskySwitchFour.Register(PSH, "DskySwitchFour", false);
+	DskySwitchFive.Register(PSH, "DskySwitchFive", false);
+	DskySwitchSix.Register(PSH, "DskySwitchSix", false);
+	DskySwitchSeven.Register(PSH, "DskySwitchSeven", false);
+	DskySwitchEight.Register(PSH, "DskySwitchEight", false);
+	DskySwitchNine.Register(PSH, "DskySwitchNine", false);
+	DskySwitchClear.Register(PSH, "DskySwitchClear", false);
+	DskySwitchProg.Register(PSH, "DskySwitchProg", false);
+	DskySwitchKeyRel.Register(PSH, "DskySwitchKeyRel", false);
+	DskySwitchEnter.Register(PSH, "DskySwitchEnter", false);
+	DskySwitchReset.Register(PSH, "DskySwitchReset", false);
+
+	DskySwitchVerb.SetCallback(new PanelSwitchCallback<DSKY>(&dsky, &DSKY::VerbCallback));
+	DskySwitchNoun.SetCallback(new PanelSwitchCallback<DSKY>(&dsky, &DSKY::NounCallback));
+	DskySwitchPlus.SetCallback(new PanelSwitchCallback<DSKY>(&dsky, &DSKY::PlusCallback));
+	DskySwitchMinus.SetCallback(new PanelSwitchCallback<DSKY>(&dsky, &DSKY::MinusCallback));
+	DskySwitchZero.SetCallback(new PanelSwitchCallback<DSKY>(&dsky, &DSKY::zeroCallback));
+	DskySwitchOne.SetCallback(new PanelSwitchCallback<DSKY>(&dsky, &DSKY::oneCallback));
+	DskySwitchTwo.SetCallback(new PanelSwitchCallback<DSKY>(&dsky, &DSKY::twoCallback));
+	DskySwitchThree.SetCallback(new PanelSwitchCallback<DSKY>(&dsky, &DSKY::threeCallback));
+	DskySwitchFour.SetCallback(new PanelSwitchCallback<DSKY>(&dsky, &DSKY::fourCallback));
+	DskySwitchFive.SetCallback(new PanelSwitchCallback<DSKY>(&dsky, &DSKY::fiveCallback));
+	DskySwitchSix.SetCallback(new PanelSwitchCallback<DSKY>(&dsky, &DSKY::sixCallback));
+	DskySwitchSeven.SetCallback(new PanelSwitchCallback<DSKY>(&dsky, &DSKY::sevenCallback));
+	DskySwitchEight.SetCallback(new PanelSwitchCallback<DSKY>(&dsky, &DSKY::eightCallback));
+	DskySwitchNine.SetCallback(new PanelSwitchCallback<DSKY>(&dsky, &DSKY::nineCallback));
+	DskySwitchProg.SetCallback(new PanelSwitchCallback<DSKY>(&dsky, &DSKY::ProgCallback));
+	DskySwitchClear.SetCallback(new PanelSwitchCallback<DSKY>(&dsky, &DSKY::ClearCallback));
+	DskySwitchKeyRel.SetCallback(new PanelSwitchCallback<DSKY>(&dsky, &DSKY::KeyRelCallback));
+	DskySwitchEnter.SetCallback(new PanelSwitchCallback<DSKY>(&dsky, &DSKY::EnterCallback));
+	DskySwitchReset.SetCallback(new PanelSwitchCallback<DSKY>(&dsky, &DSKY::ResetCallback));
+
+	Dsky2SwitchVerb.Register(PSH, "Dsky2SwitchVerb", false);
+	Dsky2SwitchNoun.Register(PSH, "Dsky2SwitchNoun", false);
+	Dsky2SwitchPlus.Register(PSH, "Dsky2SwitchPlus", false);
+	Dsky2SwitchMinus.Register(PSH, "Dsky2SwitchMinus", false);
+	Dsky2SwitchZero.Register(PSH, "Dsky2SwitchZero", false);
+	Dsky2SwitchOne.Register(PSH, "Dsky2SwitchOne", false);
+	Dsky2SwitchTwo.Register(PSH, "Dsky2SwitchTwo", false);
+	Dsky2SwitchThree.Register(PSH, "Dsky2SwitchThree", false);
+	Dsky2SwitchFour.Register(PSH, "Dsky2SwitchFour", false);
+	Dsky2SwitchFive.Register(PSH, "Dsky2SwitchFive", false);
+	Dsky2SwitchSix.Register(PSH, "Dsky2SwitchSix", false);
+	Dsky2SwitchSeven.Register(PSH, "Dsky2SwitchSeven", false);
+	Dsky2SwitchEight.Register(PSH, "Dsky2SwitchEight", false);
+	Dsky2SwitchNine.Register(PSH, "Dsky2SwitchNine", false);
+	Dsky2SwitchClear.Register(PSH, "Dsky2SwitchClear", false);
+	Dsky2SwitchProg.Register(PSH, "Dsky2SwitchProg", false);
+	Dsky2SwitchKeyRel.Register(PSH, "Dsky2SwitchKeyRel", false);
+	Dsky2SwitchEnter.Register(PSH, "Dsky2SwitchEnter", false);
+	Dsky2SwitchReset.Register(PSH, "Dsky2SwitchReset", false);
+
+	Dsky2SwitchVerb.SetCallback(new PanelSwitchCallback<DSKY>(&dsky2, &DSKY::VerbCallback));
+	Dsky2SwitchNoun.SetCallback(new PanelSwitchCallback<DSKY>(&dsky2, &DSKY::NounCallback));
+	Dsky2SwitchPlus.SetCallback(new PanelSwitchCallback<DSKY>(&dsky2, &DSKY::PlusCallback));
+	Dsky2SwitchMinus.SetCallback(new PanelSwitchCallback<DSKY>(&dsky2, &DSKY::MinusCallback));
+	Dsky2SwitchZero.SetCallback(new PanelSwitchCallback<DSKY>(&dsky2, &DSKY::zeroCallback));
+	Dsky2SwitchOne.SetCallback(new PanelSwitchCallback<DSKY>(&dsky2, &DSKY::oneCallback));
+	Dsky2SwitchTwo.SetCallback(new PanelSwitchCallback<DSKY>(&dsky2, &DSKY::twoCallback));
+	Dsky2SwitchThree.SetCallback(new PanelSwitchCallback<DSKY>(&dsky2, &DSKY::threeCallback));
+	Dsky2SwitchFour.SetCallback(new PanelSwitchCallback<DSKY>(&dsky2, &DSKY::fourCallback));
+	Dsky2SwitchFive.SetCallback(new PanelSwitchCallback<DSKY>(&dsky2, &DSKY::fiveCallback));
+	Dsky2SwitchSix.SetCallback(new PanelSwitchCallback<DSKY>(&dsky2, &DSKY::sixCallback));
+	Dsky2SwitchSeven.SetCallback(new PanelSwitchCallback<DSKY>(&dsky2, &DSKY::sevenCallback));
+	Dsky2SwitchEight.SetCallback(new PanelSwitchCallback<DSKY>(&dsky2, &DSKY::eightCallback));
+	Dsky2SwitchNine.SetCallback(new PanelSwitchCallback<DSKY>(&dsky2, &DSKY::nineCallback));
+	Dsky2SwitchProg.SetCallback(new PanelSwitchCallback<DSKY>(&dsky2, &DSKY::ProgCallback));
+	Dsky2SwitchClear.SetCallback(new PanelSwitchCallback<DSKY>(&dsky2, &DSKY::ClearCallback));
+	Dsky2SwitchKeyRel.SetCallback(new PanelSwitchCallback<DSKY>(&dsky2, &DSKY::KeyRelCallback));
+	Dsky2SwitchEnter.SetCallback(new PanelSwitchCallback<DSKY>(&dsky2, &DSKY::EnterCallback));
+	Dsky2SwitchReset.SetCallback(new PanelSwitchCallback<DSKY>(&dsky2, &DSKY::ResetCallback));
+
+	DskySwitchProg.SetDelayTime(1.5);
+	Dsky2SwitchProg.SetDelayTime(1.5);
+
+	ASCPRollSwitch.Register(PSH, "ASCPRollSwitch", 0, 0, 0, 0);	// dummy switch/display for checklist controller
+	ASCPPitchSwitch.Register(PSH, "ASCPPitchSwitch", 0, 0, 0, 0);
+	ASCPYawSwitch.Register(PSH, "ASCPYawSwitch", 0, 0, 0, 0);
+}

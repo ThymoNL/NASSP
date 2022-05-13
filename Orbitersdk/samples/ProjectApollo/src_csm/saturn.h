@@ -1388,6 +1388,7 @@ protected:
 	// FILE *PanelsdkLogFile;
 
 	void InitSwitches();
+	void InitSwitchesPrecount();
 
 	///
 	/// Check whether the Saturn vehicle has a CSM. Some, like Apollo 5, flew without a CSM for
