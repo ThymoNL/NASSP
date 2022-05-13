@@ -6729,24 +6729,24 @@ void Saturn::InitSwitchesPrecount() {
 	}
 
 	MissionTimerSwitch.Register(PSH, "MissionTimerSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER_SPRINGDOWN);
-	CautionWarningModeSwitch.Register(PSH, "CautionWarningModeSwitch", THREEPOSSWITCH_UP);
+	CautionWarningModeSwitch.Register(PSH, "CautionWarningModeSwitch", THREEPOSSWITCH_DOWN);
 	CautionWarningCMCSMSwitch.Register(PSH, "CautionWarningCMCSMSwitch", 1);
 	CautionWarningPowerSwitch.Register(PSH, "CautionWarningPowerSwitch", THREEPOSSWITCH_CENTER);
 	CautionWarningLightTestSwitch.Register(PSH, "CautionWarningLightTestSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER, NULL);
 
-	CabinFan1Switch.Register(PSH, "CabinFan1Switch", false);
-	CabinFan2Switch.Register(PSH, "CabinFan2Switch", false);
+	CabinFan1Switch.Register(PSH, "CabinFan1Switch", TOGGLESWITCH_DOWN);
+	CabinFan2Switch.Register(PSH, "CabinFan2Switch", TOGGLESWITCH_DOWN);
 	H2Heater1Switch.Register(PSH, "H2Heater1Switch", THREEPOSSWITCH_CENTER);
 	H2Heater2Switch.Register(PSH, "H2Heater2Switch", THREEPOSSWITCH_CENTER);
 	O2Heater1Switch.Register(PSH, "O2Heater1Switch", THREEPOSSWITCH_CENTER);
 	O2Heater2Switch.Register(PSH, "O2Heater2Switch", THREEPOSSWITCH_CENTER);
-	O2PressIndSwitch.Register(PSH, "O2PressIndSwitch", true);
+	O2PressIndSwitch.Register(PSH, "O2PressIndSwitch", TOGGLESWITCH_DOWN);
 	H2Fan1Switch.Register(PSH, "H2Fan1Switch", THREEPOSSWITCH_CENTER);
 	H2Fan2Switch.Register(PSH, "H2Fan2Switch", THREEPOSSWITCH_CENTER);
 	O2Fan1Switch.Register(PSH, "O2Fan1Switch", THREEPOSSWITCH_CENTER);
 	O2Fan2Switch.Register(PSH, "O2Fan2Switch", THREEPOSSWITCH_CENTER);
 
-	SCContSwitch.Register(PSH, "SCContSwitch", false);
+	SCContSwitch.Register(PSH, "SCContSwitch", TOGGLESWITCH_DOWN);
 	CMCModeSwitch.Register(PSH, "CMCModeSwitch", THREEPOSSWITCH_DOWN);
 
 	SCSTvcPitchSwitch.Register(PSH, "SCSTvcPitchSwitch", THREEPOSSWITCH_CENTER);
@@ -6765,7 +6765,7 @@ void Saturn::InitSwitchesPrecount() {
 	GSwitch.Register(PSH, "GSwitch", false);
 
 	LVSPSPcIndicatorSwitch.Register(PSH, "LVSPSPcIndicatorSwitch", TOGGLESWITCH_UP);
-	LVFuelTankPressIndicatorSwitch.Register(PSH, "LVFuelTankPressIndicatorSwitch", TOGGLESWITCH_UP);
+	LVFuelTankPressIndicatorSwitch.Register(PSH, "LVFuelTankPressIndicatorSwitch", TOGGLESWITCH_DOWN);
 
 	TVCGimbalDrivePitchSwitch.Register(PSH, "TVCGimbalDrivePitchSwitch", THREEPOSSWITCH_CENTER);
 	TVCGimbalDriveYawSwitch.Register(PSH, "TVCGimbalDriveYawSwitch", THREEPOSSWITCH_CENTER);
@@ -6802,9 +6802,9 @@ void Saturn::InitSwitchesPrecount() {
 	FuelCellIndicatorsSwitch.AddPosition(2, 30);
 	FuelCellIndicatorsSwitch.Register(PSH, "FuelCellIndicatorsSwitch", 0);
 
-	FuelCellHeater1Switch.Register(PSH, "FuelCellHeater1Switch", true);
-	FuelCellHeater2Switch.Register(PSH, "FuelCellHeater2Switch", true);
-	FuelCellHeater3Switch.Register(PSH, "FuelCellHeater3Switch", true);
+	FuelCellHeater1Switch.Register(PSH, "FuelCellHeater1Switch", false);
+	FuelCellHeater2Switch.Register(PSH, "FuelCellHeater2Switch", false);
+	FuelCellHeater3Switch.Register(PSH, "FuelCellHeater3Switch", false);
 
 	FuelCellPurge1Switch.Register(PSH, "FuelCellPurge1Switch", THREEPOSSWITCH_CENTER);
 	FuelCellPurge2Switch.Register(PSH, "FuelCellPurge2Switch", THREEPOSSWITCH_CENTER);
@@ -6820,9 +6820,9 @@ void Saturn::InitSwitchesPrecount() {
 	FCReacsValvesSwitch.Register(PSH, "FCReacsValvesSwitch", true);
 	H2PurgeLineSwitch.Register(PSH, "H2PurgeLineSwitch", false);
 
-	FuelCellPumps1Switch.Register(PSH, "FuelCellPumps1Switch", THREEPOSSWITCH_UP);
-	FuelCellPumps2Switch.Register(PSH, "FuelCellPumps2Switch", THREEPOSSWITCH_DOWN);
-	FuelCellPumps3Switch.Register(PSH, "FuelCellPumps3Switch", THREEPOSSWITCH_DOWN);
+	FuelCellPumps1Switch.Register(PSH, "FuelCellPumps1Switch", THREEPOSSWITCH_CENTER);
+	FuelCellPumps2Switch.Register(PSH, "FuelCellPumps2Switch", THREEPOSSWITCH_CENTER);
+	FuelCellPumps3Switch.Register(PSH, "FuelCellPumps3Switch", THREEPOSSWITCH_CENTER);
 
 	SuitCompressor1Switch.Register(PSH, "SuitCompressor1Switch", THREEPOSSWITCH_CENTER);
 	SuitCompressor2Switch.Register(PSH, "SuitCompressor2Switch", THREEPOSSWITCH_CENTER);
@@ -6841,22 +6841,22 @@ void Saturn::InitSwitchesPrecount() {
 
 	RightAudioPowerSwitch.Register(PSH, "RightAudioPowerSwitch", THREEPOSSWITCH_CENTER);
 
-	RightPadCommSwitch.Register(PSH, "RightPadCommSwitch", THREEPOSSWITCH_UP);
+	RightPadCommSwitch.Register(PSH, "RightPadCommSwitch", THREEPOSSWITCH_CENTER);
 
-	RightIntercomSwitch.Register(PSH, "RightIntercomSwitch", THREEPOSSWITCH_UP);
+	RightIntercomSwitch.Register(PSH, "RightIntercomSwitch", THREEPOSSWITCH_CENTER);
 
-	RightSBandSwitch.Register(PSH, "RightSBandSwitch", THREEPOSSWITCH_UP);
+	RightSBandSwitch.Register(PSH, "RightSBandSwitch", THREEPOSSWITCH_CENTER);
 
-	RightVHFAMSwitch.Register(PSH, "RightVHFAMSwitch", THREEPOSSWITCH_UP);
+	RightVHFAMSwitch.Register(PSH, "RightVHFAMSwitch", THREEPOSSWITCH_CENTER);
 
-	GNPowerSwitch.Register(PSH, "GNPowerSwitch", THREEPOSSWITCH_UP);
+	GNPowerSwitch.Register(PSH, "GNPowerSwitch", THREEPOSSWITCH_CENTER);
 
 	MainBusTieBatAcSwitch.Register(PSH, "MainBusTieBatAcSwitch", THREEPOSSWITCH_DOWN);
 	MainBusTieBatBcSwitch.Register(PSH, "MainBusTieBatBcSwitch", THREEPOSSWITCH_DOWN);
 
 	BatCHGRSwitch.Register(PSH, "BatCHGRSwitch", THREEPOSSWITCH_UP);
 
-	NonessBusSwitch.Register(PSH, "NonessBusSwitch", THREEPOSSWITCH_CENTER);
+	NonessBusSwitch.Register(PSH, "NonessBusSwitch", THREEPOSSWITCH_DOWN);
 
 	InteriorLightsFloodDimSwitch.Register(PSH, "InteriorLightsFloodDimSwitch", TOGGLESWITCH_UP);
 	InteriorLightsFloodFixedSwitch.Register(PSH, "InteriorLightsFloodFixedSwitch", false);
@@ -6875,15 +6875,15 @@ void Saturn::InitSwitchesPrecount() {
 	TVCServoPower1Switch.Register(PSH, "TVCServoPower1Switch", THREEPOSSWITCH_CENTER);
 	TVCServoPower2Switch.Register(PSH, "TVCServoPower2Switch", THREEPOSSWITCH_CENTER);
 
-	LogicPowerSwitch.Register(PSH, "LogicPowerSwitch", true);
+	LogicPowerSwitch.Register(PSH, "LogicPowerSwitch", false);
 
 	SIGCondDriverBiasPower1Switch.Register(PSH, "SIGCondDriverBiasPower1Switch", THREEPOSSWITCH_CENTER);
 	SIGCondDriverBiasPower2Switch.Register(PSH, "SIGCondDriverBiasPower2Switch", THREEPOSSWITCH_CENTER);
 
-	SPSGaugingSwitch.Register(PSH, "SPSGaugingSwitch", THREEPOSSWITCH_UP);
+	SPSGaugingSwitch.Register(PSH, "SPSGaugingSwitch", THREEPOSSWITCH_CENTER);
 
-	TelcomGroup1Switch.Register(PSH, "TelcomGroup1Switch", THREEPOSSWITCH_UP);
-	TelcomGroup2Switch.Register(PSH, "TelcomGroup2Switch", THREEPOSSWITCH_DOWN);
+	TelcomGroup1Switch.Register(PSH, "TelcomGroup1Switch", THREEPOSSWITCH_CENTER);
+	TelcomGroup2Switch.Register(PSH, "TelcomGroup2Switch", THREEPOSSWITCH_CENTER);
 
 	LeftCOASPowerSwitch.Register(PSH, "LeftCOASPowerSwitch", false);
 
@@ -6921,13 +6921,13 @@ void Saturn::InitSwitchesPrecount() {
 
 	LeftAudioPowerSwitch.Register(PSH, "LeftAudioPowerSwitch", THREEPOSSWITCH_CENTER);
 
-	LeftPadCommSwitch.Register(PSH, "LeftPadCommSwitch", THREEPOSSWITCH_UP);
+	LeftPadCommSwitch.Register(PSH, "LeftPadCommSwitch", THREEPOSSWITCH_CENTER);
 
-	LeftIntercomSwitch.Register(PSH, "LeftIntercomSwitch", THREEPOSSWITCH_UP);
+	LeftIntercomSwitch.Register(PSH, "LeftIntercomSwitch", THREEPOSSWITCH_CENTER);
 
-	LeftSBandSwitch.Register(PSH, "LeftSBandSwitch", THREEPOSSWITCH_UP);
+	LeftSBandSwitch.Register(PSH, "LeftSBandSwitch", THREEPOSSWITCH_CENTER);
 
-	LeftVHFAMSwitch.Register(PSH, "LeftVHFAMSwitch", THREEPOSSWITCH_UP);
+	LeftVHFAMSwitch.Register(PSH, "LeftVHFAMSwitch", THREEPOSSWITCH_CENTER);
 
 	LeftAudioControlSwitch.Register(PSH, "LeftAudioControlSwitch", THREEPOSSWITCH_UP);
 
@@ -6961,9 +6961,9 @@ void Saturn::InitSwitchesPrecount() {
 	SBandNormalXPDRSwitch.Register(PSH, "SBandNormalXPDRSwitch", THREEPOSSWITCH_CENTER);
 	SBandNormalPwrAmpl1Switch.Register(PSH, "SBandNormalPwrAmpl1Switch", TOGGLESWITCH_UP);
 	SBandNormalPwrAmpl2Switch.Register(PSH, "SBandNormalPwrAmpl2Switch", THREEPOSSWITCH_CENTER);
-	SBandNormalMode1Switch.Register(PSH, "SBandNormalMode1Switch", THREEPOSSWITCH_UP);
-	SBandNormalMode2Switch.Register(PSH, "SBandNormalMode2Switch", THREEPOSSWITCH_UP);
-	SBandNormalMode3Switch.Register(PSH, "SBandNormalMode3Switch", TOGGLESWITCH_UP);
+	SBandNormalMode1Switch.Register(PSH, "SBandNormalMode1Switch", THREEPOSSWITCH_CENTER);
+	SBandNormalMode2Switch.Register(PSH, "SBandNormalMode2Switch", THREEPOSSWITCH_CENTER);
+	SBandNormalMode3Switch.Register(PSH, "SBandNormalMode3Switch", TOGGLESWITCH_DOWN);
 
 	PwrAmplTB.Register(PSH, "PwrAmplTB", false);
 	DseTapeTB.Register(PSH, "DseTapeTB", false);
@@ -6980,46 +6980,46 @@ void Saturn::InitSwitchesPrecount() {
 	VHFAMASwitch.Register(PSH, "VHFAMASwitch", THREEPOSSWITCH_CENTER);
 	VHFAMBSwitch.Register(PSH, "VHFAMBSwitch", THREEPOSSWITCH_CENTER);
 	RCVOnlySwitch.Register(PSH, "RCVOnlySwitch", THREEPOSSWITCH_CENTER);
-	VHFBeaconSwitch.Register(PSH, "VHFBeaconSwitch", false);
-	VHFRangingSwitch.Register(PSH, "VHFRangingSwitch", false);
+	VHFBeaconSwitch.Register(PSH, "VHFBeaconSwitch", TOGGLESWITCH_DOWN);
+	VHFRangingSwitch.Register(PSH, "VHFRangingSwitch", TOGGLESWITCH_DOWN);
 
 	TapeRecorderPCMSwitch.Register(PSH, "TapeRecorderPCMSwitch", TOGGLESWITCH_UP);
-	TapeRecorderRecordSwitch.Register(PSH, "TapeRecorderRecordSwitch", THREEPOSSWITCH_UP);
+	TapeRecorderRecordSwitch.Register(PSH, "TapeRecorderRecordSwitch", THREEPOSSWITCH_CENTER);
 	TapeRecorderForwardSwitch.Register(PSH, "TapeRecorderForwardSwitch", THREEPOSSWITCH_CENTER);
 
-	SCESwitch.Register(PSH, "SCESwitch", THREEPOSSWITCH_UP);
-	PMPSwitch.Register(PSH, "PMPSwitch", THREEPOSSWITCH_UP);
+	SCESwitch.Register(PSH, "SCESwitch", THREEPOSSWITCH_CENTER);
+	PMPSwitch.Register(PSH, "PMPSwitch", THREEPOSSWITCH_CENTER);
 
 	PCMBitRateSwitch.Register(PSH, "PCMBitRateSwitch", TOGGLESWITCH_UP);
 
-	MnA1Switch.Register(PSH, "MnA1Switch", true);
-	MnB2Switch.Register(PSH, "MnB2Switch", true);
+	MnA1Switch.Register(PSH, "MnA1Switch", TOGGLESWITCH_DOWN);
+	MnB2Switch.Register(PSH, "MnB2Switch", TOGGLESWITCH_DOWN);
 	MnA3Switch.Register(PSH, "MnA3Switch", THREEPOSSWITCH_CENTER);
-	AcBus1Switch1.Register(PSH, "AcBus1Switch1", true);
-	AcBus1Switch2.Register(PSH, "AcBus1Switch2", false);
-	AcBus1Switch3.Register(PSH, "AcBus1Switch3", false);
-	AcBus1ResetSwitch.Register(PSH, "AcBus1ResetSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER_SPRINGUP, NULL);
+	AcBus1Switch1.Register(PSH, "AcBus1Switch1", TOGGLESWITCH_DOWN);
+	AcBus1Switch2.Register(PSH, "AcBus1Switch2", TOGGLESWITCH_DOWN);
+	AcBus1Switch3.Register(PSH, "AcBus1Switch3", TOGGLESWITCH_DOWN);
+	AcBus1ResetSwitch.Register(PSH, "AcBus1ResetSwitch", THREEPOSSWITCH_DOWN, SPRINGLOADEDSWITCH_CENTER_SPRINGUP, NULL);
 	AcBus1ResetSwitch.SetDelayTime(1);
-	AcBus2Switch1.Register(PSH, "AcBus2Switch1", false);
-	AcBus2Switch2.Register(PSH, "AcBus2Switch2", true);
-	AcBus2Switch3.Register(PSH, "AcBus2Switch3", false);
-	AcBus2ResetSwitch.Register(PSH, "AcBus2ResetSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER_SPRINGUP, NULL);
+	AcBus2Switch1.Register(PSH, "AcBus2Switch1", TOGGLESWITCH_DOWN);
+	AcBus2Switch2.Register(PSH, "AcBus2Switch2", TOGGLESWITCH_DOWN);
+	AcBus2Switch3.Register(PSH, "AcBus2Switch3", TOGGLESWITCH_DOWN);
+	AcBus2ResetSwitch.Register(PSH, "AcBus2ResetSwitch", THREEPOSSWITCH_DOWN, SPRINGLOADEDSWITCH_CENTER_SPRINGUP, NULL);
 	AcBus2ResetSwitch.SetDelayTime(1);
 
 	MainBusASwitch1.Register(PSH, "MainBusASwitch1", THREEPOSSWITCH_DOWN, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
 	MainBusASwitch1.SetDelayTime(1);
-	MainBusASwitch2.Register(PSH, "MainBusASwitch2", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	MainBusASwitch2.Register(PSH, "MainBusASwitch2", THREEPOSSWITCH_DOWN, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
 	MainBusASwitch2.SetDelayTime(1);
 	MainBusASwitch3.Register(PSH, "MainBusASwitch3", THREEPOSSWITCH_DOWN, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
 	MainBusASwitch3.SetDelayTime(1);
-	MainBusAResetSwitch.Register(PSH, "MainBusAResetSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	MainBusAResetSwitch.Register(PSH, "MainBusAResetSwitch", THREEPOSSWITCH_DOWN, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
 	MainBusBSwitch1.Register(PSH, "MainBusBSwitch1", THREEPOSSWITCH_DOWN, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
 	MainBusBSwitch1.SetDelayTime(1);
 	MainBusBSwitch2.Register(PSH, "MainBusBSwitch2", THREEPOSSWITCH_DOWN, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
 	MainBusBSwitch2.SetDelayTime(1);
 	MainBusBSwitch3.Register(PSH, "MainBusBSwitch3", THREEPOSSWITCH_DOWN, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
 	MainBusBSwitch3.SetDelayTime(1);
-	MainBusBResetSwitch.Register(PSH, "MainBusBResetSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
+	MainBusBResetSwitch.Register(PSH, "MainBusBResetSwitch", THREEPOSSWITCH_DOWN, SPRINGLOADEDSWITCH_CENTER_SPRINGUP);
 	MainBusBIndicator1.Register(PSH, "MainBusBIndicator1", true);
 	MainBusBIndicator2.Register(PSH, "MainBusBIndicator2", true);
 	MainBusBIndicator3.Register(PSH, "MainBusBIndicator3", true);
@@ -7095,19 +7095,19 @@ void Saturn::InitSwitchesPrecount() {
 	SPSOxidFlowValveMaxIndicator.Register(PSH, "SPSOxidFlowValveMaxIndicator", true);
 	SPSOxidFlowValveMinIndicator.Register(PSH, "SPSOxidFlowValveMinIndicator", true);
 
-	SPSOxidFlowValveSwitch.Register(PSH, "SPSOxidFlowValveSwitch", THREEPOSSWITCH_UP);
+	SPSOxidFlowValveSwitch.Register(PSH, "SPSOxidFlowValveSwitch", THREEPOSSWITCH_CENTER);
 	SPSOxidFlowValveSelectorSwitch.Register(PSH, "SPSOxidFlowValveSelectorSwitch", TOGGLESWITCH_UP);
 	SPSPugModeSwitch.Register(PSH, "SPSPugModeSwitch", THREEPOSSWITCH_CENTER);
 
 	SPSHeliumValveAIndicator.Register(PSH, "SPSHeliumValveAIndicator", true);
 	SPSHeliumValveBIndicator.Register(PSH, "SPSHeliumValveBIndicator", true);
 
-	SPSHeliumValveASwitch.Register(PSH, "SPSHeliumValveASwitch", THREEPOSSWITCH_UP);
-	SPSHeliumValveBSwitch.Register(PSH, "SPSHeliumValveBSwitch", THREEPOSSWITCH_UP);
+	SPSHeliumValveASwitch.Register(PSH, "SPSHeliumValveASwitch", THREEPOSSWITCH_CENTER);
+	SPSHeliumValveBSwitch.Register(PSH, "SPSHeliumValveBSwitch", THREEPOSSWITCH_CENTER);
 	SPSLineHTRSSwitch.Register(PSH, "SPSLineHTRSSwitch", THREEPOSSWITCH_CENTER);
 	SPSPressIndSwitch.Register(PSH, "SPSPressIndSwitch", THREEPOSSWITCH_UP);
 
-	CMUplinkSwitch.Register(PSH, "CMUplinkSwitch", TOGGLESWITCH_DOWN);
+	CMUplinkSwitch.Register(PSH, "CMUplinkSwitch", TOGGLESWITCH_UP);
 
 	if (!SkylabCM)
 		IUUplinkSwitch.Register(PSH, "IUUplinkSwitch", TOGGLESWITCH_DOWN);
@@ -7139,12 +7139,12 @@ void Saturn::InitSwitchesPrecount() {
 	CMRCSProp2Talkback.Register(PSH, "CMRCSProp2Talkback", false);
 
 	ManualAttRollSwitch.Register(PSH, "ManualAttRollSwitch", THREEPOSSWITCH_CENTER);
-	ManualAttPitchSwitch.Register(PSH, "ManualAttPitchSwitch", THREEPOSSWITCH_UP);
+	ManualAttPitchSwitch.Register(PSH, "ManualAttPitchSwitch", THREEPOSSWITCH_CENTER);
 	ManualAttYawSwitch.Register(PSH, "ManualAttYawSwitch", THREEPOSSWITCH_CENTER);
 
 	LimitCycleSwitch.Register(PSH, "LimitCycleSwitch", 0);
 	AttDeadbandSwitch.Register(PSH, "AttDeadbandSwitch", 0);
-	AttRateSwitch.Register(PSH, "AttRateSwitch", TOGGLESWITCH_UP);
+	AttRateSwitch.Register(PSH, "AttRateSwitch", TOGGLESWITCH_DOWN);
 	TransContrSwitch.Register(PSH, "TransContrSwitch", 0);
 
 	BMAGRollSwitch.Register(PSH, "BMAGRollSwitch", THREEPOSSWITCH_UP);
@@ -7154,9 +7154,9 @@ void Saturn::InitSwitchesPrecount() {
 	EMSModeSwitch.Register(PSH, "EMSModeSwitch", THREEPOSSWITCH_CENTER);
 	CMCAttSwitch.Register(PSH, "CMCAttSwitch", 1);
 
-	FDAIScaleSwitch.Register(PSH, "FDAIScaleSwitch", THREEPOSSWITCH_UP);
-	FDAISelectSwitch.Register(PSH, "FDAISelectSwitch", THREEPOSSWITCH_UP);
-	FDAISourceSwitch.Register(PSH, "FDAISourceSwitch", THREEPOSSWITCH_UP);
+	FDAIScaleSwitch.Register(PSH, "FDAIScaleSwitch", THREEPOSSWITCH_CENTER);
+	FDAISelectSwitch.Register(PSH, "FDAISelectSwitch", THREEPOSSWITCH_DOWN);
+	FDAISourceSwitch.Register(PSH, "FDAISourceSwitch", THREEPOSSWITCH_DOWN);
 	FDAIAttSetSwitch.Register(PSH, "FDAIAttSetSwitch", false);
 
 	IMUGuardedCageSwitch.Register(PSH, "IMUGuardedCageSwitch", 0, 0);
@@ -7181,9 +7181,9 @@ void Saturn::InitSwitchesPrecount() {
 	ECSIndicatorsSwitch.AddPosition(1, 20);
 	ECSIndicatorsSwitch.Register(PSH, "ECSIndicatorsSwitch", 0);
 
-	CGSwitch.Register(PSH, "CGSwitch", 1);
+	CGSwitch.Register(PSH, "CGSwitch", 0);
 	ELSLogicSwitch.Register(PSH, "ELSLogicSwitch", 0, 0);
-	ELSAutoSwitch.Register(PSH, "ELSAutoSwitch", 1);
+	ELSAutoSwitch.Register(PSH, "ELSAutoSwitch", 0);
 	CMRCSLogicSwitch.Register(PSH, "CMRCSLogicSwitch", 0);
 	CMPropDumpSwitch.Register(PSH, "CMPropDumpSwitch", 0, 0);
 	CMPropPurgeSwitch.Register(PSH, "CMPropPurgeSwitch", 0, 0);
@@ -7298,7 +7298,7 @@ void Saturn::InitSwitchesPrecount() {
 	EcsRadiatorsFlowContPwrSwitch.Register(PSH, "EcsRadiatorsFlowContPwrSwitch", THREEPOSSWITCH_CENTER);
 	EcsRadiatorsManSelSwitch.Register(PSH, "EcsRadiatorsManSelSwitch", THREEPOSSWITCH_UP);
 	EcsRadiatorsHeaterPrimSwitch.Register(PSH, "EcsRadiatorsHeaterPrimSwitch", THREEPOSSWITCH_CENTER);
-	EcsRadiatorsHeaterSecSwitch.Register(PSH, "EcsRadiatorsHeaterSecSwitch", false);
+	EcsRadiatorsHeaterSecSwitch.Register(PSH, "EcsRadiatorsHeaterSecSwitch", TOGGLESWITCH_DOWN);
 
 	PotH2oHtrSwitch.Register(PSH, "PotH2oHtrSwitch", THREEPOSSWITCH_CENTER);
 	SuitCircuitH2oAccumAutoSwitch.Register(PSH, "SuitCircuitH2oAccumAutoSwitch", THREEPOSSWITCH_CENTER);
@@ -7312,18 +7312,18 @@ void Saturn::InitSwitchesPrecount() {
 	SecCoolantLoopEvapSwitch.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
 		&SaturnGlycolCoolingController::SecEvapSwitchesToggled));
 	SecCoolantLoopPumpSwitch.Register(PSH, "SecCoolantLoopPumpSwitch", THREEPOSSWITCH_CENTER);
-	H2oQtyIndSwitch.Register(PSH, "H2oQtyIndSwitch", TOGGLESWITCH_UP);
-	GlycolEvapTempInSwitch.Register(PSH, "GlycolEvapTempInSwitch", false);
+	H2oQtyIndSwitch.Register(PSH, "H2oQtyIndSwitch", TOGGLESWITCH_DOWN);
+	GlycolEvapTempInSwitch.Register(PSH, "GlycolEvapTempInSwitch", TOGGLESWITCH_DOWN);
 	GlycolEvapTempInSwitch.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
 		&SaturnGlycolCoolingController::GlycolEvapTempInSwitchToggled));
-	GlycolEvapSteamPressAutoManSwitch.Register(PSH, "GlycolEvapSteamPressAutoManSwitch", false);
+	GlycolEvapSteamPressAutoManSwitch.Register(PSH, "GlycolEvapSteamPressAutoManSwitch", TOGGLESWITCH_DOWN);
 	GlycolEvapSteamPressAutoManSwitch.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
 		&SaturnGlycolCoolingController::PrimEvapSwitchesToggled));
 	GlycolEvapSteamPressIncrDecrSwitch.Register(PSH, "GlycolEvapSteamPressIncrDecrSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
 	GlycolEvapH2oFlowSwitch.Register(PSH, "GlycolEvapH2oFlowSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER_SPRINGDOWN);
 	GlycolEvapH2oFlowSwitch.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
 		&SaturnGlycolCoolingController::PrimEvapSwitchesToggled));
-	CabinTempAutoManSwitch.Register(PSH, "CabinTempAutoManSwitch", false);
+	CabinTempAutoManSwitch.Register(PSH, "CabinTempAutoManSwitch", TOGGLESWITCH_DOWN);
 	CabinTempAutoManSwitch.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
 		&SaturnGlycolCoolingController::CabinTempSwitchToggled));
 
@@ -7469,7 +7469,7 @@ void Saturn::InitSwitchesPrecount() {
 	ACIndicatorRotary.AddPosition(3, 20);
 	ACIndicatorRotary.AddPosition(4, 45);
 	ACIndicatorRotary.AddPosition(5, 70);
-	ACIndicatorRotary.Register(PSH, "ACIndicatorRotary", 5);
+	ACIndicatorRotary.Register(PSH, "ACIndicatorRotary", 0);
 
 	ACIndicatorRotary.SetSource(0, &ACBus1PhaseA);
 	ACIndicatorRotary.SetSource(1, &ACBus1PhaseB);
@@ -7503,7 +7503,7 @@ void Saturn::InitSwitchesPrecount() {
 	NumericRotarySwitch.AddPosition(8, 90);
 	NumericRotarySwitch.AddPosition(9, 120);
 	NumericRotarySwitch.AddPosition(10, 150);
-	NumericRotarySwitch.Register(PSH, "NumericRotarySwitch", 4);
+	NumericRotarySwitch.Register(PSH, "NumericRotarySwitch", 0);
 
 	FloodRotarySwitch.AddPosition(0, 210);
 	FloodRotarySwitch.AddPosition(1, 240);
@@ -7516,7 +7516,7 @@ void Saturn::InitSwitchesPrecount() {
 	FloodRotarySwitch.AddPosition(8, 90);
 	FloodRotarySwitch.AddPosition(9, 120);
 	FloodRotarySwitch.AddPosition(10, 150);
-	FloodRotarySwitch.Register(PSH, "FloodRotarySwitch", 4);
+	FloodRotarySwitch.Register(PSH, "FloodRotarySwitch", 0);
 
 	IntegralRotarySwitch.AddPosition(0, 210);
 	IntegralRotarySwitch.AddPosition(1, 240);
@@ -7529,7 +7529,7 @@ void Saturn::InitSwitchesPrecount() {
 	IntegralRotarySwitch.AddPosition(8, 90);
 	IntegralRotarySwitch.AddPosition(9, 120);
 	IntegralRotarySwitch.AddPosition(10, 150);
-	IntegralRotarySwitch.Register(PSH, "IntegralRotarySwitch", 4);
+	IntegralRotarySwitch.Register(PSH, "IntegralRotarySwitch", 0);
 
 	FDAIPowerRotarySwitch.AddPosition(0, 0);
 	FDAIPowerRotarySwitch.AddPosition(1, 30);
@@ -7545,12 +7545,12 @@ void Saturn::InitSwitchesPrecount() {
 	BMAGPowerRotary1Switch.AddPosition(0, 30);
 	BMAGPowerRotary1Switch.AddPosition(1, 60);
 	BMAGPowerRotary1Switch.AddPosition(2, 90);
-	BMAGPowerRotary1Switch.Register(PSH, "BMAGPowerRotary1Switch", 1);
+	BMAGPowerRotary1Switch.Register(PSH, "BMAGPowerRotary1Switch", 0);
 
 	BMAGPowerRotary2Switch.AddPosition(0, 30);
 	BMAGPowerRotary2Switch.AddPosition(1, 60);
 	BMAGPowerRotary2Switch.AddPosition(2, 90);
-	BMAGPowerRotary2Switch.Register(PSH, "BMAGPowerRotary2Switch", 1);
+	BMAGPowerRotary2Switch.Register(PSH, "BMAGPowerRotary2Switch", 0);
 
 	DirectO2RotarySwitch.AddPosition(0, 330);
 	DirectO2RotarySwitch.AddPosition(1, 0);
@@ -7584,7 +7584,7 @@ void Saturn::InitSwitchesPrecount() {
 	OxygenRepressPackageRotary.AddPosition(0, 330);
 	OxygenRepressPackageRotary.AddPosition(1, 60);
 	OxygenRepressPackageRotary.AddPosition(2, 120);
-	OxygenRepressPackageRotary.Register(PSH, "OxygenRepressPackageRotary", 1);
+	OxygenRepressPackageRotary.Register(PSH, "OxygenRepressPackageRotary", 0);
 
 	ORDEALAltSetRotary.AddPosition(0, 240);
 	ORDEALAltSetRotary.AddPosition(1, 270);
@@ -7604,13 +7604,13 @@ void Saturn::InitSwitchesPrecount() {
 	LeftSystemTestRotarySwitch.AddPosition(6, 60);
 	LeftSystemTestRotarySwitch.AddPosition(7, 90);
 	LeftSystemTestRotarySwitch.AddPosition(8, 120);
-	LeftSystemTestRotarySwitch.Register(PSH, "LeftSystemTestRotarySwitch", 4);
+	LeftSystemTestRotarySwitch.Register(PSH, "LeftSystemTestRotarySwitch", 0);
 
 	RightSystemTestRotarySwitch.AddPosition(0, 315);
 	RightSystemTestRotarySwitch.AddPosition(1, 340);
 	RightSystemTestRotarySwitch.AddPosition(2, 20);
 	RightSystemTestRotarySwitch.AddPosition(3, 45);
-	RightSystemTestRotarySwitch.Register(PSH, "RightSystemTestRotarySwitch", 1);
+	RightSystemTestRotarySwitch.Register(PSH, "RightSystemTestRotarySwitch", 0);
 
 	Panel100NumericRotarySwitch.AddPosition(0, 210);
 	Panel100NumericRotarySwitch.AddPosition(1, 240);
@@ -7623,7 +7623,7 @@ void Saturn::InitSwitchesPrecount() {
 	Panel100NumericRotarySwitch.AddPosition(8, 90);
 	Panel100NumericRotarySwitch.AddPosition(9, 120);
 	Panel100NumericRotarySwitch.AddPosition(10, 150);
-	Panel100NumericRotarySwitch.Register(PSH, "Panel100NumericRotarySwitch", 4);
+	Panel100NumericRotarySwitch.Register(PSH, "Panel100NumericRotarySwitch", 0);
 
 	Panel100FloodRotarySwitch.AddPosition(0, 210);
 	Panel100FloodRotarySwitch.AddPosition(1, 240);
@@ -7649,7 +7649,7 @@ void Saturn::InitSwitchesPrecount() {
 	Panel100IntegralRotarySwitch.AddPosition(8, 90);
 	Panel100IntegralRotarySwitch.AddPosition(9, 120);
 	Panel100IntegralRotarySwitch.AddPosition(10, 150);
-	Panel100IntegralRotarySwitch.Register(PSH, "Panel100IntegralRotarySwitch", 4);
+	Panel100IntegralRotarySwitch.Register(PSH, "Panel100IntegralRotarySwitch", 0);
 
 	OxygenSurgeTankValveRotary.AddPosition(0, 330);
 	OxygenSurgeTankValveRotary.AddPosition(1, 0);
@@ -7664,7 +7664,7 @@ void Saturn::InitSwitchesPrecount() {
 
 	GlycolToRadiatorsRotary.AddPosition(0, 0);
 	GlycolToRadiatorsRotary.AddPosition(1, 90);
-	GlycolToRadiatorsRotary.Register(PSH, "GlycolToRadiatorsRotary", 0);
+	GlycolToRadiatorsRotary.Register(PSH, "GlycolToRadiatorsRotary", 1);
 
 	GlycolRotary.AddPosition(0, 90);
 	GlycolRotary.AddPosition(1, 180);
@@ -7686,7 +7686,7 @@ void Saturn::InitSwitchesPrecount() {
 
 	WasteTankInletRotary.AddPosition(0, 0);
 	WasteTankInletRotary.AddPosition(1, 90);
-	WasteTankInletRotary.Register(PSH, "WasteTankInletRotary", 0);
+	WasteTankInletRotary.Register(PSH, "WasteTankInletRotary", 1);
 
 	PotableTankInletRotary.AddPosition(0, 0);
 	PotableTankInletRotary.AddPosition(1, 90);
@@ -7733,26 +7733,26 @@ void Saturn::InitSwitchesPrecount() {
 
 	EvapWaterControlPrimaryRotary.AddPosition(0, 0);
 	EvapWaterControlPrimaryRotary.AddPosition(1, 90);
-	EvapWaterControlPrimaryRotary.Register(PSH, "EvapWaterControlPrimaryRotary", 1);
+	EvapWaterControlPrimaryRotary.Register(PSH, "EvapWaterControlPrimaryRotary", 0);
 	EvapWaterControlPrimaryRotary.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
 		&SaturnGlycolCoolingController::PrimEvapSwitchesToggled));
 	EvapWaterControlSecondaryRotary.AddPosition(0, 0);
 	EvapWaterControlSecondaryRotary.AddPosition(1, 90);
-	EvapWaterControlSecondaryRotary.Register(PSH, "EvapWaterControlSecondaryRotary", 1);
+	EvapWaterControlSecondaryRotary.Register(PSH, "EvapWaterControlSecondaryRotary", 0);
 	EvapWaterControlSecondaryRotary.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
 		&SaturnGlycolCoolingController::SecEvapSwitchesToggled));
 
 	WaterAccumulator1Rotary.AddPosition(0, 200);
 	WaterAccumulator1Rotary.AddPosition(1, 240);
 	WaterAccumulator1Rotary.AddPosition(2, 290);
-	WaterAccumulator1Rotary.Register(PSH, "WaterAccumulator1Rotary", 0);
+	WaterAccumulator1Rotary.Register(PSH, "WaterAccumulator1Rotary", 1);
 	WaterAccumulator1Rotary.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
 		&SaturnGlycolCoolingController::H2oAccumSwitchesToggled));
 
 	WaterAccumulator2Rotary.AddPosition(0, 200);
 	WaterAccumulator2Rotary.AddPosition(1, 240);
 	WaterAccumulator2Rotary.AddPosition(2, 290);
-	WaterAccumulator2Rotary.Register(PSH, "WaterAccumulator2Rotary", 0);
+	WaterAccumulator2Rotary.Register(PSH, "WaterAccumulator2Rotary", 1);
 	WaterAccumulator2Rotary.SetCallback(new PanelSwitchCallback<SaturnGlycolCoolingController>(&GlycolCoolingController,
 		&SaturnGlycolCoolingController::H2oAccumSwitchesToggled));
 
@@ -7808,14 +7808,14 @@ void Saturn::InitSwitchesPrecount() {
 	MissionTimer306SecondsSwitch.Register(PSH, "MissionTimer306SecondsSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
 	MissionTimer306SecondsSwitch.SetSideways(1);
 
-	MissionTimer306Switch.Register(PSH, "MissionTimer306Switch", THREEPOSSWITCH_UP, SPRINGLOADEDSWITCH_CENTER_SPRINGDOWN); // Default state UP is correct!
+	MissionTimer306Switch.Register(PSH, "MissionTimer306Switch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER_SPRINGDOWN);
 	MissionTimer306Switch.SetSideways(1);
 
 	LMTunnelVentValve.AddPosition(0, 300);
 	LMTunnelVentValve.AddPosition(1, 330);
 	LMTunnelVentValve.AddPosition(2, 30);
 	LMTunnelVentValve.AddPosition(3, 60);
-	LMTunnelVentValve.Register(PSH, "LMTunnelVentValve", 0);
+	LMTunnelVentValve.Register(PSH, "LMTunnelVentValve", 2);
 
 	LMDPGauge.Register(PSH, "LMDPGauge", -1, 4, 5);
 
@@ -7834,13 +7834,13 @@ void Saturn::InitSwitchesPrecount() {
 	WasteMGMTBatteryVentRotary.AddPosition(0, 0);
 	WasteMGMTBatteryVentRotary.AddPosition(1, 180);
 	WasteMGMTBatteryVentRotary.AddPosition(2, 270);
-	WasteMGMTBatteryVentRotary.Register(PSH, "WasteMGMTBatteryVentRotary", 1);
+	WasteMGMTBatteryVentRotary.Register(PSH, "WasteMGMTBatteryVentRotary", 0);
 	WasteMGMTBatteryVentRotary.SetWraparound(true);
 
 	WasteMGMTStoageVentRotary.AddPosition(0, 0);
 	WasteMGMTStoageVentRotary.AddPosition(1, 180);
 	WasteMGMTStoageVentRotary.AddPosition(2, 270);
-	WasteMGMTStoageVentRotary.Register(PSH, "WasteMGMTStoageVentRotary", 1);
+	WasteMGMTStoageVentRotary.Register(PSH, "WasteMGMTStoageVentRotary", 0);
 	WasteMGMTStoageVentRotary.SetWraparound(true);
 
 	WasteDisposalSwitch.Register(PSH, "WasteDisposalSwitch", THREEPOSSWITCH_UP);
@@ -7853,11 +7853,11 @@ void Saturn::InitSwitchesPrecount() {
 	EpsSensorSignalAc1CircuitBraker.Register(PSH, "EpsSensorSignalAc1CircuitBraker", 1);
 	EpsSensorSignalAc2CircuitBraker.Register(PSH, "EpsSensorSignalAc2CircuitBraker", 1);
 
-	CWMnaCircuitBraker.Register(PSH, "CWMnaCircuitBraker", 1);
-	CWMnbCircuitBraker.Register(PSH, "CWMnbCircuitBraker", 1);
+	CWMnaCircuitBraker.Register(PSH, "CWMnaCircuitBraker", 0);
+	CWMnbCircuitBraker.Register(PSH, "CWMnbCircuitBraker", 0);
 
-	MnbLMPWR1CircuitBraker.Register(PSH, "MnbLMPWR1CircuitBraker", 1);
-	MnbLMPWR2CircuitBraker.Register(PSH, "MnbLMPWR2CircuitBraker", 1);
+	MnbLMPWR1CircuitBraker.Register(PSH, "MnbLMPWR1CircuitBraker", 0);
+	MnbLMPWR2CircuitBraker.Register(PSH, "MnbLMPWR2CircuitBraker", 0);
 
 	InverterControl1CircuitBraker.Register(PSH, "InverterControl1CircuitBraker", 1);
 	InverterControl2CircuitBraker.Register(PSH, "InverterControl2CircuitBraker", 1);
@@ -7875,8 +7875,8 @@ void Saturn::InitSwitchesPrecount() {
 	ControllerAc2CircuitBraker.Register(PSH, "ControllerAc2CircuitBraker", 1);
 	CONTHTRSMnACircuitBraker.Register(PSH, "CONTHTRSMnACircuitBraker", 1);
 	CONTHTRSMnBCircuitBraker.Register(PSH, "CONTHTRSMnBCircuitBraker", 1);
-	HTRSOVLDBatACircuitBraker.Register(PSH, "HTRSOVLDBatACircuitBraker", 1);
-	HTRSOVLDBatBCircuitBraker.Register(PSH, "HTRSOVLDBatBCircuitBraker", 1);
+	HTRSOVLDBatACircuitBraker.Register(PSH, "HTRSOVLDBatACircuitBraker", 1); // Close for precount, open for midcount (tbd)
+	HTRSOVLDBatBCircuitBraker.Register(PSH, "HTRSOVLDBatBCircuitBraker", 1); // Idem
 
 	BatteryChargerBatACircuitBraker.Register(PSH, "BatteryChargerBatACircuitBraker", 1);
 	BatteryChargerBatBCircuitBraker.Register(PSH, "BatteryChargerBatBCircuitBraker", 1);
@@ -7884,12 +7884,12 @@ void Saturn::InitSwitchesPrecount() {
 	BatteryChargerMnBCircuitBraker.Register(PSH, "BatteryChargerMnBCircuitBraker", 1);
 	BatteryChargerAcPwrCircuitBraker.Register(PSH, "BatteryChargerAcPWRCircuitBraker", 1);
 
-	InstrumentLightingESSMnACircuitBraker.Register(PSH, "InstrumentLightingESSMnACircuitBraker", 1);
-	InstrumentLightingESSMnBCircuitBraker.Register(PSH, "InstrumentLightingESSMnBCircuitBraker", 1);
+	InstrumentLightingESSMnACircuitBraker.Register(PSH, "InstrumentLightingESSMnACircuitBraker", 0);
+	InstrumentLightingESSMnBCircuitBraker.Register(PSH, "InstrumentLightingESSMnBCircuitBraker", 0);
 	InstrumentLightingNonESSCircuitBraker.Register(PSH, "InstrumentLightingNonESSCircuitBraker", 0);
-	InstrumentLightingSCIEquipSEP1CircuitBraker.Register(PSH, "InstrumentLightingSCIEquipSEP1CircuitBraker", 1);
-	InstrumentLightingSCIEquipSEP2CircuitBraker.Register(PSH, "InstrumentLightingSCIEquipSEP2CircuitBraker", 1);
-	InstrumentLightingSCIEquipHatchCircuitBraker.Register(PSH, "InstrumentLightingSCIEquipHatchCircuitBraker", 1);
+	InstrumentLightingSCIEquipSEP1CircuitBraker.Register(PSH, "InstrumentLightingSCIEquipSEP1CircuitBraker", 0);
+	InstrumentLightingSCIEquipSEP2CircuitBraker.Register(PSH, "InstrumentLightingSCIEquipSEP2CircuitBraker", 0);
+	InstrumentLightingSCIEquipHatchCircuitBraker.Register(PSH, "InstrumentLightingSCIEquipHatchCircuitBraker", 0);
 
 	ECSPOTH2OHTRMnACircuitBraker.Register(PSH, "ECSPOTH2OHTRMnACircuitBraker", 1);
 	ECSPOTH2OHTRMnBCircuitBraker.Register(PSH, "ECSPOTH2OHTRMnBCircuitBraker", 1);
@@ -7918,16 +7918,16 @@ void Saturn::InitSwitchesPrecount() {
 	ECSCabinFanAC2BCircuitBraker.Register(PSH, "ECSCabinFanAC2BCircuitBraker", 1);
 	ECSCabinFanAC2CCircuitBraker.Register(PSH, "ECSCabinFanAC2CCircuitBraker", 1);
 
-	GNPowerAc1CircuitBraker.Register(PSH, "GNPowerAc1CircuitBraker", 1);
-	GNPowerAc2CircuitBraker.Register(PSH, "GNPowerAc2CircuitBraker", 1);
-	GNIMUMnACircuitBraker.Register(PSH, "GNIMUMnACircuitBraker", 1);
-	GNIMUMnBCircuitBraker.Register(PSH, "GNIMUMnBCircuitBraker", 1);
-	GNIMUHTRMnACircuitBraker.Register(PSH, "GNIMUHTRMnACircuitBraker", 1);
-	GNIMUHTRMnBCircuitBraker.Register(PSH, "GNIMUHTRMnBCircuitBraker", 1);
+	GNPowerAc1CircuitBraker.Register(PSH, "GNPowerAc1CircuitBraker", 0);
+	GNPowerAc2CircuitBraker.Register(PSH, "GNPowerAc2CircuitBraker", 0);
+	GNIMUMnACircuitBraker.Register(PSH, "GNIMUMnACircuitBraker", 0);
+	GNIMUMnBCircuitBraker.Register(PSH, "GNIMUMnBCircuitBraker", 0);
+	GNIMUHTRMnACircuitBraker.Register(PSH, "GNIMUHTRMnACircuitBraker", 0);
+	GNIMUHTRMnBCircuitBraker.Register(PSH, "GNIMUHTRMnBCircuitBraker", 0);
 	GNComputerMnACircuitBraker.Register(PSH, "GNComputerMnACircuitBraker", 0);
 	GNComputerMnBCircuitBraker.Register(PSH, "GNComputerMnBCircuitBraker", 0);
-	GNOpticsMnACircuitBraker.Register(PSH, "GNOpticsMnACircuitBraker", 1);
-	GNOpticsMnBCircuitBraker.Register(PSH, "GNOpticsMnBCircuitBraker", 1);
+	GNOpticsMnACircuitBraker.Register(PSH, "GNOpticsMnACircuitBraker", 0);
+	GNOpticsMnBCircuitBraker.Register(PSH, "GNOpticsMnBCircuitBraker", 0);
 
 	SuitCompressorsAc1ACircuitBraker.Register(PSH, "SuitCompressorsAc1ACircuitBraker", 1);
 	SuitCompressorsAc1BCircuitBraker.Register(PSH, "SuitCompressorsAc1BCircuitBraker", 1);
@@ -7943,64 +7943,64 @@ void Saturn::InitSwitchesPrecount() {
 	ECSGlycolPumpsAc2BCircuitBraker.Register(PSH, "ECSGlycolPumpsAc2BCircuitBraker", 1);
 	ECSGlycolPumpsAc2CCircuitBraker.Register(PSH, "ECSGlycolPumpsAc2CCircuitBraker", 1);
 
-	StabContSystemTVCAc1CircuitBraker.Register(PSH, "StabContSystemTVCAc1CircuitBraker", 1);
-	StabContSystemAc1CircuitBraker.Register(PSH, "StabContSystemAc1CircuitBraker", 1);
-	StabContSystemAc2CircuitBraker.Register(PSH, "StabContSystemAc2CircuitBraker", 1);
+	StabContSystemTVCAc1CircuitBraker.Register(PSH, "StabContSystemTVCAc1CircuitBraker", 0);
+	StabContSystemAc1CircuitBraker.Register(PSH, "StabContSystemAc1CircuitBraker", 0);
+	StabContSystemAc2CircuitBraker.Register(PSH, "StabContSystemAc2CircuitBraker", 0);
 
-	ECATVCAc2CircuitBraker.Register(PSH, "StabContSystemTVCAc1CircuitBraker", 1);
-	DirectUllMnACircuitBraker.Register(PSH, "DirectUllMnACircuitBraker", 1);
-	DirectUllMnBCircuitBraker.Register(PSH, "DirectUllMnBCircuitBraker", 1);
-	ContrDirectMnA1CircuitBraker.Register(PSH, "ContrDirectMnA1CircuitBraker", 1);
-	ContrDirectMnB1CircuitBraker.Register(PSH, "ContrDirectMnB1CircuitBraker", 1);
-	ContrDirectMnA2CircuitBraker.Register(PSH, "ContrDirectMnA2CircuitBraker", 1);
-	ContrDirectMnB2CircuitBraker.Register(PSH, "ContrDirectMnB2CircuitBraker", 1);
-	ACRollMnACircuitBraker.Register(PSH, "ACRollMnACircuitBraker", 1);
-	ACRollMnBCircuitBraker.Register(PSH, "ACRollMnBCircuitBraker", 1);
-	BDRollMnACircuitBraker.Register(PSH, "BDRollMnACircuitBraker", 1);
-	BDRollMnBCircuitBraker.Register(PSH, "BDRollMnBCircuitBraker", 1);
-	PitchMnACircuitBraker.Register(PSH, "PitchMnACircuitBraker", 1);
-	PitchMnBCircuitBraker.Register(PSH, "PitchMnBCircuitBraker", 1);
-	YawMnACircuitBraker.Register(PSH, "YawMnACircuitBraker", 1);
-	YawMnBCircuitBraker.Register(PSH, "YawMnBCircuitBraker", 1);
+	ECATVCAc2CircuitBraker.Register(PSH, "StabContSystemTVCAc1CircuitBraker", 0);
+	DirectUllMnACircuitBraker.Register(PSH, "DirectUllMnACircuitBraker", 0);
+	DirectUllMnBCircuitBraker.Register(PSH, "DirectUllMnBCircuitBraker", 0);
+	ContrDirectMnA1CircuitBraker.Register(PSH, "ContrDirectMnA1CircuitBraker", 0);
+	ContrDirectMnB1CircuitBraker.Register(PSH, "ContrDirectMnB1CircuitBraker", 0);
+	ContrDirectMnA2CircuitBraker.Register(PSH, "ContrDirectMnA2CircuitBraker", 0);
+	ContrDirectMnB2CircuitBraker.Register(PSH, "ContrDirectMnB2CircuitBraker", 0);
+	ACRollMnACircuitBraker.Register(PSH, "ACRollMnACircuitBraker", 0);
+	ACRollMnBCircuitBraker.Register(PSH, "ACRollMnBCircuitBraker", 0);
+	BDRollMnACircuitBraker.Register(PSH, "BDRollMnACircuitBraker", 0);
+	BDRollMnBCircuitBraker.Register(PSH, "BDRollMnBCircuitBraker", 0);
+	PitchMnACircuitBraker.Register(PSH, "PitchMnACircuitBraker", 0);
+	PitchMnBCircuitBraker.Register(PSH, "PitchMnBCircuitBraker", 0);
+	YawMnACircuitBraker.Register(PSH, "YawMnACircuitBraker", 0);
+	YawMnBCircuitBraker.Register(PSH, "YawMnBCircuitBraker", 0);
 
-	OrdealAc2CircuitBraker.Register(PSH, "OrdealAc2CircuitBraker", 1);
-	OrdealMnBCircuitBraker.Register(PSH, "OrdealMnBCircuitBraker", 1);
-	ContrAutoMnACircuitBraker.Register(PSH, "ContrAutoMnACircuitBraker", 1);
-	ContrAutoMnBCircuitBraker.Register(PSH, "ContrAutoMnBCircuitBraker", 1);
-	LogicBus12MnACircuitBraker.Register(PSH, "LogicBus12MnACircuitBraker", 1);
-	LogicBus34MnACircuitBraker.Register(PSH, "LogicBus34MnACircuitBraker", 1);
-	LogicBus14MnBCircuitBraker.Register(PSH, "LogicBus14MnBCircuitBraker", 1);
-	LogicBus23MnBCircuitBraker.Register(PSH, "LogicBus23MnBCircuitBraker", 1);
-	SystemMnACircuitBraker.Register(PSH, "SystemMnACircuitBraker", 1);
-	SystemMnBCircuitBraker.Register(PSH, "SystemMnBCircuitBraker", 1);
+	OrdealAc2CircuitBraker.Register(PSH, "OrdealAc2CircuitBraker", 0);
+	OrdealMnBCircuitBraker.Register(PSH, "OrdealMnBCircuitBraker", 0);
+	ContrAutoMnACircuitBraker.Register(PSH, "ContrAutoMnACircuitBraker", 0);
+	ContrAutoMnBCircuitBraker.Register(PSH, "ContrAutoMnBCircuitBraker", 0);
+	LogicBus12MnACircuitBraker.Register(PSH, "LogicBus12MnACircuitBraker", 0);
+	LogicBus34MnACircuitBraker.Register(PSH, "LogicBus34MnACircuitBraker", 0);
+	LogicBus14MnBCircuitBraker.Register(PSH, "LogicBus14MnBCircuitBraker", 0);
+	LogicBus23MnBCircuitBraker.Register(PSH, "LogicBus23MnBCircuitBraker", 0);
+	SystemMnACircuitBraker.Register(PSH, "SystemMnACircuitBraker", 0);
+	SystemMnBCircuitBraker.Register(PSH, "SystemMnBCircuitBraker", 0);
 
 	CMHeater1MnACircuitBraker.Register(PSH, "CMHeater1MnACircuitBraker", 0);
 	CMHeater2MnBCircuitBraker.Register(PSH, "CMHeater2MnBCircuitBraker", 0);
-	SMHeatersAMnBCircuitBraker.Register(PSH, "SMHeatersAMnBCircuitBraker", 1);
-	SMHeatersCMnBCircuitBraker.Register(PSH, "SMHeatersCMnBCircuitBraker", 1);
-	SMHeatersBMnACircuitBraker.Register(PSH, "SMHeatersBMnACircuitBraker", 1);
-	SMHeatersDMnACircuitBraker.Register(PSH, "SMHeatersDMnACircuitBraker", 1);
-	PrplntIsolMnACircuitBraker.Register(PSH, "PrplntIsolMnACircuitBraker", 1);
-	PrplntIsolMnBCircuitBraker.Register(PSH, "PrplntIsolMnBCircuitBraker", 1);
-	RCSLogicMnACircuitBraker.Register(PSH, "RCSLogicMnACircuitBraker", 1);
-	RCSLogicMnBCircuitBraker.Register(PSH, "RCSLogicMnBCircuitBraker", 1);
-	EMSMnACircuitBraker.Register(PSH, "EMSMnACircuitBraker", 1);
-	EMSMnBCircuitBraker.Register(PSH, "EMSMnBCircuitBraker", 1);
-	DockProbeMnACircuitBraker.Register(PSH, "DockProbeMnACircuitBraker", 1);
-	DockProbeMnBCircuitBraker.Register(PSH, "DockProbeMnBCircuitBraker", 1);
+	SMHeatersAMnBCircuitBraker.Register(PSH, "SMHeatersAMnBCircuitBraker", 0);
+	SMHeatersCMnBCircuitBraker.Register(PSH, "SMHeatersCMnBCircuitBraker", 0);
+	SMHeatersBMnACircuitBraker.Register(PSH, "SMHeatersBMnACircuitBraker", 0);
+	SMHeatersDMnACircuitBraker.Register(PSH, "SMHeatersDMnACircuitBraker", 0);
+	PrplntIsolMnACircuitBraker.Register(PSH, "PrplntIsolMnACircuitBraker", 0);
+	PrplntIsolMnBCircuitBraker.Register(PSH, "PrplntIsolMnBCircuitBraker", 0);
+	RCSLogicMnACircuitBraker.Register(PSH, "RCSLogicMnACircuitBraker", 0);
+	RCSLogicMnBCircuitBraker.Register(PSH, "RCSLogicMnBCircuitBraker", 0);
+	EMSMnACircuitBraker.Register(PSH, "EMSMnACircuitBraker", 0);
+	EMSMnBCircuitBraker.Register(PSH, "EMSMnBCircuitBraker", 0);
+	DockProbeMnACircuitBraker.Register(PSH, "DockProbeMnACircuitBraker", 0);
+	DockProbeMnBCircuitBraker.Register(PSH, "DockProbeMnBCircuitBraker", 0);
 
-	GaugingMnACircuitBraker.Register(PSH, "GaugingMnACircuitBraker", 1);
-	GaugingMnBCircuitBraker.Register(PSH, "GaugingMnBCircuitBraker", 1);
-	GaugingAc1CircuitBraker.Register(PSH, "GaugingAc1CircuitBraker", 1);
-	GaugingAc2CircuitBraker.Register(PSH, "GaugingAc2CircuitBraker", 1);
-	HeValveMnACircuitBraker.Register(PSH, "HeValveMnACircuitBraker", 1);
-	HeValveMnBCircuitBraker.Register(PSH, "HeValveMnBCircuitBraker", 1);
+	GaugingMnACircuitBraker.Register(PSH, "GaugingMnACircuitBraker", 0);
+	GaugingMnBCircuitBraker.Register(PSH, "GaugingMnBCircuitBraker", 0);
+	GaugingAc1CircuitBraker.Register(PSH, "GaugingAc1CircuitBraker", 0);
+	GaugingAc2CircuitBraker.Register(PSH, "GaugingAc2CircuitBraker", 0);
+	HeValveMnACircuitBraker.Register(PSH, "HeValveMnACircuitBraker", 0);
+	HeValveMnBCircuitBraker.Register(PSH, "HeValveMnBCircuitBraker", 0);
 	PitchBatACircuitBraker.Register(PSH, "PitchBatACircuitBraker", 0);
-	PitchBatBCircuitBraker.Register(PSH, "PitchBatBCircuitBraker", 1);
+	PitchBatBCircuitBraker.Register(PSH, "PitchBatBCircuitBraker", 0);
 	YawBatACircuitBraker.Register(PSH, "YawBatACircuitBraker", 0);
-	YawBatBCircuitBraker.Register(PSH, "YawBatBCircuitBraker", 1);
-	PilotValveMnACircuitBraker.Register(PSH, "PilotValveMnACircuit", 1);
-	PilotValveMnBCircuitBraker.Register(PSH, "PilotValveMnBCircuit", 1);
+	YawBatBCircuitBraker.Register(PSH, "YawBatBCircuitBraker", 0);
+	PilotValveMnACircuitBraker.Register(PSH, "PilotValveMnACircuit", 0);
+	PilotValveMnBCircuitBraker.Register(PSH, "PilotValveMnBCircuit", 0);
 
 	FloatBag1BatACircuitBraker.Register(PSH, "FloatBag1BatACircuitBraker", 0);
 	FloatBag2BatBCircuitBraker.Register(PSH, "FloatBag2BatBCircuitBraker", 0);
@@ -8011,14 +8011,14 @@ void Saturn::InitSwitchesPrecount() {
 	SECSArmBatACircuitBraker.Register(PSH, "SECSArmBatACircuitBraker", 0);
 	SECSArmBatBCircuitBraker.Register(PSH, "SECSArmBatBCircuitBraker", 0);
 
-	EDS1BatACircuitBraker.Register(PSH, "EDS1BatACircuitBraker", 1);
-	EDS2BatCCircuitBraker.Register(PSH, "EDS2BatCCircuitBraker", 1);
-	EDS3BatBCircuitBraker.Register(PSH, "EDS3BatBCircuitBraker", 1);
+	EDS1BatACircuitBraker.Register(PSH, "EDS1BatACircuitBraker", 0);
+	EDS2BatCCircuitBraker.Register(PSH, "EDS2BatCCircuitBraker", 0);
+	EDS3BatBCircuitBraker.Register(PSH, "EDS3BatBCircuitBraker", 0);
 
-	ELSBatACircuitBraker.Register(PSH, "ELSBatACircuitBraker", 1);
-	ELSBatBCircuitBraker.Register(PSH, "ELSBatBCircuitBraker", 1);
+	ELSBatACircuitBraker.Register(PSH, "ELSBatACircuitBraker", 0);
+	ELSBatBCircuitBraker.Register(PSH, "ELSBatBCircuitBraker", 0);
 
-	FLTPLCircuitBraker.Register(PSH, "FLTPLCircuitBraker", 1);
+	FLTPLCircuitBraker.Register(PSH, "FLTPLCircuitBraker", 0);
 
 	ModeIntercomVOXSensThumbwheelSwitch.Register(PSH, "ModeIntercomVOXSensThumbwheelSwitch", 5, 9);
 
@@ -8064,43 +8064,43 @@ void Saturn::InitSwitchesPrecount() {
 	SuitTestRotary.AddPosition(2, 90);
 	SuitTestRotary.Register(PSH, "SuitTestRotary", 0);
 
-	ORDEALFDAI1Switch.Register(PSH, "ORDEALFDAI1Switch", false);
-	ORDEALFDAI2Switch.Register(PSH, "ORDEALFDAI2Switch", false);
+	ORDEALFDAI1Switch.Register(PSH, "ORDEALFDAI1Switch", TOGGLESWITCH_DOWN);
+	ORDEALFDAI2Switch.Register(PSH, "ORDEALFDAI2Switch", TOGGLESWITCH_DOWN);
 	ORDEALEarthSwitch.Register(PSH, "ORDEALEarthSwitch", THREEPOSSWITCH_CENTER);
 	ORDEALLightingSwitch.Register(PSH, "ORDEALLightingSwitch", THREEPOSSWITCH_CENTER);
-	ORDEALModeSwitch.Register(PSH, "ORDEALModeSwitch", false);
+	ORDEALModeSwitch.Register(PSH, "ORDEALModeSwitch", TOGGLESWITCH_DOWN);
 	ORDEALSlewSwitch.Register(PSH, "ORDEALSlewSwitch", THREEPOSSWITCH_CENTER, SPRINGLOADEDSWITCH_CENTER);
 	PanelOrdeal.Register(PSH, "PanelOrdeal", 0, 0, 0, 0);	// dummy switch/display for checklist controller
 
 	RNDZXPDRSwitch.Register(PSH, "RNDZXPDRSwitch", TOGGLESWITCH_DOWN, SPRINGLOADEDSWITCH_DOWN);
 
-	CMRCSHTRSSwitch.Register(PSH, "CMRCSHTRSSwitch", false);
+	CMRCSHTRSSwitch.Register(PSH, "CMRCSHTRSSwitch", TOGGLESWITCH_DOWN);
 	WasteH2ODumpSwitch.Register(PSH, "WasteH2ODumpSwitch", THREEPOSSWITCH_CENTER);
 	UrineDumpSwitch.Register(PSH, "UrineDumpSwitch", THREEPOSSWITCH_CENTER);
 
-	UtilityPowerSwitch.Register(PSH, "UtilityPowerSwitch", false);
+	UtilityPowerSwitch.Register(PSH, "UtilityPowerSwitch", TOGGLESWITCH_DOWN);
 	Panel100FloodDimSwitch.Register(PSH, "Panel100FloodDimSwitch", TOGGLESWITCH_UP);
-	Panel100FloodFixedSwitch.Register(PSH, "Panel100FloodFixedSwitch", false);
-	GNPowerOpticsSwitch.Register(PSH, "GNPowerOpticsSwitch", false);
+	Panel100FloodFixedSwitch.Register(PSH, "Panel100FloodFixedSwitch", TOGGLESWITCH_DOWN);
+	GNPowerOpticsSwitch.Register(PSH, "GNPowerOpticsSwitch", TOGGLESWITCH_DOWN);
 	GNPowerIMUSwitch.Register(PSH, "GNPowerIMUSwitch", TOGGLESWITCH_DOWN, false);
 	GNPowerIMUSwitch.SetGuardResetsState(false);
 	Panel100RNDZXPDRSwitch.Register(PSH, "Panel100RNDZXPDRSwitch", THREEPOSSWITCH_CENTER);
 
-	SCIUtilPowerSwitch.Register(PSH, "SCIUtilPowerSwitch", false);
+	SCIUtilPowerSwitch.Register(PSH, "SCIUtilPowerSwitch", TOGGLESWITCH_DOWN);
 
 	SCIInstSwitch.Register(PSH, "SCIInstSwitch", TOGGLESWITCH_UP);
 	SCIInstSwitch.SetSideways(1);
 
-	CenterSuitPowerSwitch.Register(PSH, "CenterSuitPowerSwitch", false);
+	CenterSuitPowerSwitch.Register(PSH, "CenterSuitPowerSwitch", TOGGLESWITCH_DOWN);
 	CenterAudioControlSwitch.Register(PSH, "CenterAudioControlSwitch", TOGGLESWITCH_UP);
 
 	ModeIntercomSwitch.Register(PSH, "ModeIntercomSwitch", THREEPOSSWITCH_UP);
-	PadComSwitch.Register(PSH, "PadComSwitch", THREEPOSSWITCH_UP);
-	SBandSwitch.Register(PSH, "SBandSwitch", THREEPOSSWITCH_UP);
+	PadComSwitch.Register(PSH, "PadComSwitch", THREEPOSSWITCH_CENTER);
+	SBandSwitch.Register(PSH, "SBandSwitch", THREEPOSSWITCH_CENTER);
 
 	PowerAudioSwitch.Register(PSH, "PowerAudioSwitch", THREEPOSSWITCH_CENTER);
-	IntercomSwitch.Register(PSH, "IntercomSwitch", THREEPOSSWITCH_UP);
-	VHFAMSwitch.Register(PSH, "VHFAMSwitch", THREEPOSSWITCH_UP);
+	IntercomSwitch.Register(PSH, "IntercomSwitch", THREEPOSSWITCH_CENTER);
+	VHFAMSwitch.Register(PSH, "VHFAMSwitch", THREEPOSSWITCH_CENTER);
 
 	InverterPower3MainBCircuitBraker.Register(PSH, "InverterPower3MainBCircuitBraker", 1);
 	InverterPower3MainACircuitBraker.Register(PSH, "InverterPower3MainACircuitBraker", 1);
@@ -8123,8 +8123,8 @@ void Saturn::InitSwitchesPrecount() {
 
 	UprightingSystemCompressor1CircuitBraker.Register(PSH, "UprightingSystemCompressor1CircuitBraker", 0);
 	UprightingSystemCompressor2CircuitBraker.Register(PSH, "UprightingSystemCompressor2CircuitBraker", 0);
-	SIVBLMSepPyroACircuitBraker.Register(PSH, "SIVBLMSepPyroACircuitBraker", 1);
-	SIVBLMSepPyroBCircuitBraker.Register(PSH, "SIVBLMSepPyroBCircuitBraker", 1);
+	SIVBLMSepPyroACircuitBraker.Register(PSH, "SIVBLMSepPyroACircuitBraker", 0);
+	SIVBLMSepPyroBCircuitBraker.Register(PSH, "SIVBLMSepPyroBCircuitBraker", 0);
 
 	PCMTLMGroup1CB.Register(PSH, "PCMTLMGroup1CB", 1);
 	PCMTLMGroup2CB.Register(PSH, "PCMTLMGroup2CB", 1);
@@ -8135,68 +8135,68 @@ void Saturn::InitSwitchesPrecount() {
 	VHFStationAudioLCB.Register(PSH, "VHFStationAudioLCB", 1);
 	VHFStationAudioCTRCB.Register(PSH, "VHFStationAudioCTRCB", 1);
 	VHFStationAudioRCB.Register(PSH, "VHFStationAudioRCB", 1);
-	UDLCB.Register(PSH, "UDLCB", 1);
+	UDLCB.Register(PSH, "UDLCB", 0);
 	HGAFLTBus1CB.Register(PSH, "HGAFLTBus1CB", 0);
 	HGAGroup2CB.Register(PSH, "HGAGroup2CB", 0);
 	SBandFMXMTRFLTBusCB.Register(PSH, "SBandFMXMTRFLTBusCB", 1);
 	SBandFMXMTRGroup1CB.Register(PSH, "SBandFMXMTRGroup1CB", 1);
-	CentralTimingEquipMNACB.Register(PSH, "CentralTimingEquipMNACB", 1);
-	CentralTimingEquipMNBCB.Register(PSH, "CentralTimingEquipMNBCB", 1);
-	RNDZXPNDRFLTBusCB.Register(PSH, "RNDZXPNDRFLTBusCB", 1);
-	SIGCondrFLTBusCB.Register(PSH, "SIGCondrFLTBusCB", 1);
+	CentralTimingEquipMNACB.Register(PSH, "CentralTimingEquipMNACB", 0);
+	CentralTimingEquipMNBCB.Register(PSH, "CentralTimingEquipMNBCB", 0);
+	RNDZXPNDRFLTBusCB.Register(PSH, "RNDZXPNDRFLTBusCB", 0);
+	SIGCondrFLTBusCB.Register(PSH, "SIGCondrFLTBusCB", 0);
 	SBandPWRAmpl1FLTBusCB.Register(PSH, "SBandPWRAmpl1FLTBusCB", 1);
 	SBandPWRAmpl1Group1CB.Register(PSH, "SBandPWRAmpl1Group1CB", 1);
 	SBandPWRAmpl2FLTBusCB.Register(PSH, "SBandPWRAmpl2FLTBusCB", 1);
 	SBandPWRAmpl2Group1CB.Register(PSH, "SBandPWRAmpl2Group1CB", 1);
 
 	FuelCell1PumpsACCB.Register(PSH, "FuelCell1PumpsACCB", 1);
-	FuelCell1ReacsCB.Register(PSH, "FuelCell1ReacsCB", 0);
+	FuelCell1ReacsCB.Register(PSH, "FuelCell1ReacsCB", 1);
 	FuelCell1BusContCB.Register(PSH, "FuelCell1BusContCB", 1);
 	FuelCell1PurgeCB.Register(PSH, "FuelCell1PurgeCB", 1);
 	FuelCell1RadCB.Register(PSH, "FuelCell1RadCB", 1);
 	CryogenicH2HTR1CB.Register(PSH, "CryogenicH2HTR1CB", 1);
 	CryogenicH2HTR2CB.Register(PSH, "CryogenicH2HTR2CB", 1);
 	FuelCell2PumpsACCB.Register(PSH, "FuelCell2PumpsACCB", 1);
-	FuelCell2ReacsCB.Register(PSH, "FuelCell2ReacsCB", 0);
+	FuelCell2ReacsCB.Register(PSH, "FuelCell2ReacsCB", 1);
 	FuelCell2BusContCB.Register(PSH, "FuelCell2BusContCB", 1);
 	FuelCell2PurgeCB.Register(PSH, "FuelCell2PurgeCB", 1);
 	FuelCell2RadCB.Register(PSH, "FuelCell2RadCB", 1);
 	CryogenicO2HTR1CB.Register(PSH, "CryogenicO2HTR1CB", 1);
 	CryogenicO2HTR2CB.Register(PSH, "CryogenicO2HTR2CB", 1);
 	FuelCell3PumpsACCB.Register(PSH, "FuelCell3PumpsACCB", 1);
-	FuelCell3ReacsCB.Register(PSH, "FuelCell3ReacsCB", 0);
+	FuelCell3ReacsCB.Register(PSH, "FuelCell3ReacsCB", 1);
 	FuelCell3BusContCB.Register(PSH, "FuelCell3BusContCB", 1);
 	FuelCell3PurgeCB.Register(PSH, "FuelCell3PurgeCB", 1);
 	FuelCell3RadCB.Register(PSH, "FuelCell3RadCB", 1);
-	CryogenicQTYAmpl1CB.Register(PSH, "CryogenicQTYAmpl1CB", 1);
-	CryogenicQTYAmpl2CB.Register(PSH, "CryogenicQTYAmpl2CB", 1);
+	CryogenicQTYAmpl1CB.Register(PSH, "CryogenicQTYAmpl1CB", 0);
+	CryogenicQTYAmpl2CB.Register(PSH, "CryogenicQTYAmpl2CB", 0);
 	CryogenicFanMotorsAC1ACB.Register(PSH, "CryogenicFanMotorsAC1ACB", 1);
 	CryogenicFanMotorsAC1BCB.Register(PSH, "CryogenicFanMotorsAC1BCB", 1);
 	CryogenicFanMotorsAC1CCB.Register(PSH, "CryogenicFanMotorsAC1CCB", 1);
 	CryogenicFanMotorsAC2ACB.Register(PSH, "CryogenicFanMotorsAC2ACB", 1);
 	CryogenicFanMotorsAC2BCB.Register(PSH, "CryogenicFanMotorsAC2BCB", 1);
 	CryogenicFanMotorsAC2CCB.Register(PSH, "CryogenicFanMotorsAC2CCB", 1);
-	LightingRndzMNACB.Register(PSH, "LightingRndzMNACB", 1);
-	LightingRndzMNBCB.Register(PSH, "LightingRndzMNBCB", 1);
-	LightingFloodMNACB.Register(PSH, "LightingFloodMNACB", 1);
-	LightingFloodMNBCB.Register(PSH, "LightingFloodMNBCB", 1);
-	LightingFloodFLTPLCB.Register(PSH, "LightingFloodFLTPLCB", 1);
-	LightingNumIntLEBCB.Register(PSH, "LightingNumIntLEBCB", 1);
-	LightingNumIntLMDCCB.Register(PSH, "LightingNumIntLMDCCB", 1);
-	LightingNumIntRMDCCB.Register(PSH, "LightingNumIntRMDCCB", 1);
-	RunEVATRGTAC1CB.Register(PSH, "RunEVATRGTAC1CB", 1);
-	RunEVATRGTAC2CB.Register(PSH, "RunEVATRGTAC2CB", 1);
+	LightingRndzMNACB.Register(PSH, "LightingRndzMNACB", 0);
+	LightingRndzMNBCB.Register(PSH, "LightingRndzMNBCB", 0);
+	LightingFloodMNACB.Register(PSH, "LightingFloodMNACB", 0);
+	LightingFloodMNBCB.Register(PSH, "LightingFloodMNBCB", 0);
+	LightingFloodFLTPLCB.Register(PSH, "LightingFloodFLTPLCB", 0);
+	LightingNumIntLEBCB.Register(PSH, "LightingNumIntLEBCB", 0);
+	LightingNumIntLMDCCB.Register(PSH, "LightingNumIntLMDCCB", 0);
+	LightingNumIntRMDCCB.Register(PSH, "LightingNumIntRMDCCB", 0);
+	RunEVATRGTAC1CB.Register(PSH, "RunEVATRGTAC1CB", 0);
+	RunEVATRGTAC2CB.Register(PSH, "RunEVATRGTAC2CB", 0);
 
-	TimersMnACircuitBraker.Register(PSH, "TimersMnACircuitBraker", 1);
-	TimersMnBCircuitBraker.Register(PSH, "TimersMnBCircuitBraker", 1);
+	TimersMnACircuitBraker.Register(PSH, "TimersMnACircuitBraker", 0);
+	TimersMnBCircuitBraker.Register(PSH, "TimersMnBCircuitBraker", 0);
 	EPSMnAGroup1CircuitBraker.Register(PSH, "EPSMnAGroup1CircuitBraker", 1);
 	EPSMnBGroup1CircuitBraker.Register(PSH, "EPSMnBGroup1CircuitBraker", 1);
-	SPSLineHtrsMnACircuitBraker.Register(PSH, "SPSLineHtrsMnACircuitBraker", 1);
-	SPSLineHtrsMnBCircuitBraker.Register(PSH, "SPSLineHtrsMnBCircuitBraker", 1);
+	SPSLineHtrsMnACircuitBraker.Register(PSH, "SPSLineHtrsMnACircuitBraker", 0);
+	SPSLineHtrsMnBCircuitBraker.Register(PSH, "SPSLineHtrsMnBCircuitBraker", 0);
 	EPSMnAGroup2CircuitBraker.Register(PSH, "EPSMnAGroup2CircuitBraker", 1);
 	EPSMnBGroup2CircuitBraker.Register(PSH, "EPSMnBGroup2CircuitBraker", 1);
-	O2VacIonPumpsMnACircuitBraker.Register(PSH, "O2VacIonPumpsMnACircuitBraker", 0);
-	O2VacIonPumpsMnBCircuitBraker.Register(PSH, "O2VacIonPumpsMnBCircuitBraker", 0);
+	O2VacIonPumpsMnACircuitBraker.Register(PSH, "O2VacIonPumpsMnACircuitBraker", 1);
+	O2VacIonPumpsMnBCircuitBraker.Register(PSH, "O2VacIonPumpsMnBCircuitBraker", 1);
 	EPSMnAGroup3CircuitBraker.Register(PSH, "EPSMnAGroup3CircuitBraker", 1);
 	EPSMnBGroup3CircuitBraker.Register(PSH, "EPSMnBGroup3CircuitBraker", 1);
 	MainReleasePyroACircuitBraker.Register(PSH, "MainReleasePyroACircuitBraker", 0);
@@ -8205,21 +8205,21 @@ void Saturn::InitSwitchesPrecount() {
 	EPSMnBGroup4CircuitBraker.Register(PSH, "EPSMnBGroup4CircuitBraker", 1);
 	EPSMnAGroup5CircuitBraker.Register(PSH, "EPSMnAGroup5CircuitBraker", 1);
 	EPSMnBGroup5CircuitBraker.Register(PSH, "EPSMnBGroup5CircuitBraker", 1);
-	UtilityCB1.Register(PSH, "UtilityCB1", 1);
-	UtilityCB2.Register(PSH, "UtilityCB2", 1);
+	UtilityCB1.Register(PSH, "UtilityCB1", 0);
+	UtilityCB2.Register(PSH, "UtilityCB2", 0);
 	EPSBatBusACircuitBraker.Register(PSH, "EPSBatBusACircuitBraker", 1);
 	EPSBatBusBCircuitBraker.Register(PSH, "EPSBatBusBCircuitBraker", 1);
 
 	BatBusAToPyroBusTieCircuitBraker.Register(PSH, "BatBusAToPyroBusTieCircuitBraker", 0);
-	PyroASeqACircuitBraker.Register(PSH, "PyroASeqACircuitBraker", 1);
+	PyroASeqACircuitBraker.Register(PSH, "PyroASeqACircuitBraker", 0);
 	BatBusBToPyroBusTieCircuitBraker.Register(PSH, "BatBusBToPyroBusTieCircuitBraker", 0);
-	PyroBSeqBCircuitBraker.Register(PSH, "PyroBSeqBCircuitBraker", 1);
-	BatAPWRCircuitBraker.Register(PSH, "BatAPWRCircuitBraker", 1);
-	BatBPWRCircuitBraker.Register(PSH, "BatBPWRCircuitBraker", 1);
-	BatCPWRCircuitBraker.Register(PSH, "BatCPWRCircuitBraker", 1);
+	PyroBSeqBCircuitBraker.Register(PSH, "PyroBSeqBCircuitBraker", 0);
+	BatAPWRCircuitBraker.Register(PSH, "BatAPWRCircuitBraker", 0);
+	BatBPWRCircuitBraker.Register(PSH, "BatBPWRCircuitBraker", 0);
+	BatCPWRCircuitBraker.Register(PSH, "BatCPWRCircuitBraker", 0);
 	BatCtoBatBusACircuitBraker.Register(PSH, "BatCtoBatBusACircuitBraker", 0);
 	BatCtoBatBusBCircuitBraker.Register(PSH, "BatCtoBatBusBCircuitBraker", 0);
-	BatCCHRGCircuitBraker.Register(PSH, "BatCCHRGCircuitBraker", 1);
+	BatCCHRGCircuitBraker.Register(PSH, "BatCCHRGCircuitBraker", 0);
 
 	SuitCircuitFlow300Switch.Register(PSH, "SuitCircuitFlow300Switch", THREEPOSSWITCH_DOWN);
 	SuitCircuitFlow301Switch.Register(PSH, "SuitCircuitFlow301Switch", THREEPOSSWITCH_DOWN);
@@ -8343,4 +8343,7 @@ void Saturn::InitSwitchesPrecount() {
 	ASCPRollSwitch.Register(PSH, "ASCPRollSwitch", 0, 0, 0, 0);	// dummy switch/display for checklist controller
 	ASCPPitchSwitch.Register(PSH, "ASCPPitchSwitch", 0, 0, 0, 0);
 	ASCPYawSwitch.Register(PSH, "ASCPYawSwitch", 0, 0, 0, 0);
+	ascp.output.x = 0;
+	ascp.output.y = 0;
+	ascp.output.z = 0;
 }
