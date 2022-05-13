@@ -1171,7 +1171,7 @@ void Saturn::initSaturn()
 		PanelId = SATPANEL_MAIN; 		// default panel
 		MainPanelSplit = false;
 		GNSplit = false;
-		InitSwitches();
+		InitSwitchesPrecount();
 
 		// "dummy" SetSwitches to enable the panel event handling
 		SetSwitches(PanelId);
